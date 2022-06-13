@@ -17,7 +17,7 @@ import {
 import { VictoryPie } from 'victory-native';
 import {Svg} from 'react-native-svg';
 
-import { COLORS, FONTS, SIZES, icons, images } from '../constants';
+import { COLORS, FONTS, SIZES, icons, images } from '../../constants';
 
 
 
@@ -257,34 +257,9 @@ const Home = () => {
 
     function renderHeader() {
         return (
-            <View style = {styles.Header}>
-                <View>
-                    <Text style={styles.expenseHeader}>
-                        My Expenses
-                    </Text>
-                    <Text style={styles.sumHeader}>
-                        Summary (private)
-                    </Text>
-                </View>
-                <View>
-                    <View>
-                        <Image source={icons.calendar}
-                            style={ styles.imgHeader}/>
-                    </View>
-                    <View>
-                        <Text> 11 Nov, 2020</Text>
-                        <Text> 18% more than last month</Text>
-                    </View>
-                </View>
-            </View>
-        )
-    }
-    function renderHeader() {
-        return (
             <View style={{ paddingHorizontal: SIZES.padding, paddingVertical: SIZES.padding, backgroundColor: COLORS.white }}>
                 <View>
-                    <Text style={{ color: COLORS.primary, ...FONTS.h3}}>My Expenses</Text>
-                    <Text style={{ ...FONTS.h2, color: COLORS.darkgray }}>Summary (private)</Text>
+                    <Text style={{ color: COLORS.primary, ...FONTS.h2}}>Hello, Tom!</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', marginTop: SIZES.padding, alignItems: 'center' }}>
@@ -761,8 +736,8 @@ const Home = () => {
     }
 
     return (
-        <View style={styles.container}>
-            {renderNavBar()}
+        <SafeAreaView style={styles.container}>
+            {/* {renderNavBar()} */}
             {renderHeader()}
             {renderCategoryHeaderSection()}
             <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
@@ -781,7 +756,7 @@ const Home = () => {
                     </View>
                 }
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 }
 
