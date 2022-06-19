@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 
-const listJars = [
+export const listJars = [
   {
     name: 'NEC',
     percent: 55,

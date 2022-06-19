@@ -85,6 +85,9 @@ const styles = StyleSheet.create({
   date: {
     marginTop: 5,
   },
+  list: {
+    marginBottom: 60
+  },
 
   payment: {
     fontWeight: 'bold',

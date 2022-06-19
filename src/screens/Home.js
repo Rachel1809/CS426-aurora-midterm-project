@@ -736,7 +736,7 @@ const Home = () => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             {/* {renderNavBar()} */}
             {renderHeader()}
             {renderCategoryHeaderSection()}
@@ -756,7 +756,7 @@ const Home = () => {
                     </View>
                 }
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 

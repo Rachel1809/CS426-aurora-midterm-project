@@ -4,10 +4,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Card from '../components/Card';
 import ListJar from '../components/ListJars';
 import RecentActivity from '../components/LastActivity';
-
-const HomeScreen = () => {
+  
+const HomeScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <View style={styles.greet_container}>
         <View style={styles.header}>
           <View>
@@ -15,7 +15,7 @@ const HomeScreen = () => {
             <Text style={styles.userName}>Tom L!</Text>
           </View>
           <View style={styles.pay}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Input')}>
               <Image source={require('../assets/ic_pay.png')} />
               <Text>Input</Text>
             </TouchableOpacity>
@@ -31,7 +31,7 @@ const HomeScreen = () => {
         <Text style={styles.title}>Last Activity</Text>
         <RecentActivity/>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 24,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   userName: {
     fontWeight: 'bold',
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 30
   },
   pay: {
     paddingVertical: 14,
