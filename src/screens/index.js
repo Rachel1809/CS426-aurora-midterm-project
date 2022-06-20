@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 import HomeScreen from '../screens/HomeScreen';
 import InputScreen from '../screens/InputScreen'
+
+
 const Stack = createStackNavigator();
 
 const theme = {
@@ -25,11 +28,11 @@ const Navigator = () => {
             name="Home"
             component={HomeScreen}
             options={{headerShown: false}}
-                  />
-            <Stack.Screen
-                name="Input"
-                component={InputScreen}
-                options={{headerShown: false}}
+           />
+          <Stack.Screen
+            name="Input"
+            component={InputScreen}
+            options={{headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>

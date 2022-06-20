@@ -17,18 +17,24 @@ const card_size = {
   height: 196,
 };
 
+export const CardInfo = {
+  currency: 'VND',
+  balance: '0.00',
+  holder: 'Kim Ngoc Nghien',
+}
+
 const Card = () => {
   return (
     <ImageBackground
       source={require('../assets/card_visa_bg.png')}
       style={styles.card}>
-      <View style={styles.cardNumber}>
-        <Text style={styles.cardNumberText}>{`1234 5678 1234 5678`}</Text>
+      <View style={styles.cardBalance}>
+        <Text style={styles.cardBalanceText}>{CardInfo.currency + ' ' + CardInfo.balance}</Text>
       </View>
       <View style={styles.cardFooter}>
         <View>
           <Text style={styles.cardHolderName}>Card holder</Text>
-          <Text style={styles.cardName}>Nguyen Van A</Text>
+          <Text style={styles.cardName}>{CardInfo.holder}</Text>
         </View>
       </View>
     </ImageBackground>
@@ -43,11 +49,11 @@ const styles = StyleSheet.create({
     height: (card_item * card_size.height) / card_size.width,
     padding: 24,
   },
-  cardNumber: {
+  cardBalance: {
     flex: 1,
     justifyContent: 'center',
   },
-  cardNumberText: {
+  cardBalanceText: {
     color: 'white',
     fontSize: 22,
     fontWeight: '600',

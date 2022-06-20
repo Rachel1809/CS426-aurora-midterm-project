@@ -1,11 +1,18 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Card from '../components/Card';
+import Card, {CardInfo} from '../components/Card';
 import ListJar from '../components/ListJars';
 import RecentActivity from '../components/LastActivity';
+
   
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log(CardInfo);
+    });
+    return unsubscribe;
+  }, [navigation]);
   return (
     <View style={{flex: 1}}>
       <View style={styles.greet_container}>

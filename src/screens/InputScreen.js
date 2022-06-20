@@ -10,7 +10,8 @@ import {
     Keyboard
 } from "react-native"; 
 
-import { listJars} from "../components/ListJars";
+import { listJars } from "../components/ListJars";
+import { CardInfo } from "../components/Card";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const InputScreen = ({ navigation }) => {
@@ -18,7 +19,7 @@ const InputScreen = ({ navigation }) => {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    const onChange = (event, selectedDate) => {
+    const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate;
         //setShow(false);
         setDate(currentDate);
@@ -37,15 +38,17 @@ const InputScreen = ({ navigation }) => {
 
     const [number, onChangeNumber] = React.useState(null);
     const loadOldNum = () => {
-        return 100
+        return 0;
     }
 
     const submit = () => {
         if (!date || !number) {
             return;
         }
-        console.log(number);
+        
         let sum = loadOldNum() + parseFloat(number);
+        CardInfo.balance = sum.toLocaleString();
+        console.log(CardInfo.balance);
         for (var i in listJars) {
             listJars[i].value = sum * listJars[i].percent / 100;
         }
@@ -74,7 +77,7 @@ const InputScreen = ({ navigation }) => {
                 <TextInput
                     style={styles.input}
                     onFocus={showDatepicker}
-                    onChange={onChange}
+                    onChange={onChangeDate}
                     value={date.getDate() + "/" + parseFloat(date.getMonth()+1).toLocaleString()  + "/" + date.getFullYear()}
                     placeholder="0.00"
                     returnKeyType='done'
@@ -84,7 +87,7 @@ const InputScreen = ({ navigation }) => {
                         testID="dateTimePicker"
                         value={date}
                         mode={mode}
-                        onChange={onChange}
+                        onChange={onChangeDate}
                         display="spinner"
 
                     />
