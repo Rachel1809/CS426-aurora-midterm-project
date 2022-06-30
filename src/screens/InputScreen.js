@@ -38,17 +38,27 @@ const InputScreen = ({ navigation }) => {
 
     const [number, onChangeNumber] = React.useState(null);
     const loadOldNum = () => {
-        return 0;
+        return parseFloat(CardInfo.balance.replace('.', ''));
     }
 
-    const submit = () => {
+    function increment() {
         if (!date || !number) {
             return;
         }
-        
         let sum = loadOldNum() + parseFloat(number);
         CardInfo.balance = sum.toLocaleString();
-        console.log(CardInfo.balance);
+        for (var i in listJars) {
+            listJars[i].value = sum * listJars[i].percent / 100;
+        }
+        navigation.navigate('Home');
+    }
+
+    function create() {
+        if (!date || !number) {
+            return;
+        }
+        let sum = parseFloat(number);
+        CardInfo.balance = sum.toLocaleString();
         for (var i in listJars) {
             listJars[i].value = sum * listJars[i].percent / 100;
         }
@@ -104,9 +114,16 @@ const InputScreen = ({ navigation }) => {
                     keyboardType="numeric"
                     returnKeyType='done'
                 />
-                <TouchableOpacity onPress={submit} style={styles.subBtn}>
+                
+                <TouchableOpacity onPress={increment} style={styles.subBtn1}>
                     <Text style={styles.submit}>
-                        Submit
+                        Increment balance
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={create} style={styles.subBtn2}>
+                    <Text style={styles.submit}>
+                        Create new balance
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -146,13 +163,22 @@ const styles = StyleSheet.create({
         marginTop: -6,
         marginBottom: -30,
     },
-    subBtn: {
+    subBtn1: {
+        backgroundColor: "#c31432",
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 50,
+        marginTop: 10,
+        borderRadius: 50,
+    },
+    subBtn2: {
         backgroundColor: "#23395d",
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 50,
-        marginTop: -40,
+        marginTop: -20,
         borderRadius: 50,
     },
     submit: {

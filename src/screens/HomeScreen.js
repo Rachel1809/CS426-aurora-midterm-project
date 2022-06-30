@@ -7,12 +7,6 @@ import RecentActivity from '../components/LastActivity';
 
   
 const HomeScreen = ({ navigation }) => {
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      console.log(CardInfo);
-    });
-    return unsubscribe;
-  }, [navigation]);
   return (
     <View style={{flex: 1}}>
       <View style={styles.greet_container}>
@@ -31,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <ScrollView style={styles.container}>
         <View style={styles.card}>
-          <Card />
+          <Card value={ CardInfo.balance} />
         </View>
         <Text style={styles.title}>Management</Text>
         <ListJar/>

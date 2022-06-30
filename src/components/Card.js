@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 
+import { useIsFocused } from "@react-navigation/native"; 
+
 const width_screen = Dimensions.get('window').width;
 
 const card_item = width_screen - 24 * 2;
@@ -20,16 +22,23 @@ const card_size = {
 export const CardInfo = {
   currency: 'VND',
   balance: '0.00',
-  holder: 'Kim Ngoc Nghien',
+  holder: 'Tom L',
 }
 
-const Card = () => {
+const Card = (val) => {
+  const focus = useIsFocused();
+  const [balance, setBalance] = React.useState(CardInfo.balance)
+  React.useEffect(() => {  // whenever you are in the current screen, it will be true vice versa
+    setBalance(CardInfo.balance)
+  }, [focus]);
+
+
   return (
     <ImageBackground
       source={require('../assets/card_visa_bg.png')}
       style={styles.card}>
       <View style={styles.cardBalance}>
-        <Text style={styles.cardBalanceText}>{CardInfo.currency + ' ' + CardInfo.balance}</Text>
+        <Text style={styles.cardBalanceText}>{CardInfo.currency + ' ' + balance}</Text>
       </View>
       <View style={styles.cardFooter}>
         <View>
