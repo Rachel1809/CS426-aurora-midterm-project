@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import HomeScreen from '../screens/HomeScreen';
 import InputScreen from '../screens/InputScreen'
+import MapScreen from './MapScreen';
 
 
 const Stack = createStackNavigator();
@@ -32,6 +33,11 @@ const Navigator = () => {
           <Stack.Screen
             name="Input"
             component={InputScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Maps"
+            component={MapScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
