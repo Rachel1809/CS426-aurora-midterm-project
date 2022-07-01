@@ -24,14 +24,6 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.title}>Last Activity</Text>
         <RecentActivity/>
       </ScrollView>
-      <View style={styles.optBar}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Icon name="home" size={25} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Maps')}>
-          <Icon name="map-pin" size={25} color="#fff" />
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
@@ -39,25 +31,17 @@ const HomeScreen = ({ navigation }) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  optBar: {
-    backgroundColor: '#040F38',
-    flex: 0.1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    paddingHorizontal: 100,
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25
-  },
   greet_container: {
     flex: 0,
     backgroundColor: 'white',
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingVertical: 18,
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 24,
+    paddingHorizontal: 24,
+
 
   },
   hello: {

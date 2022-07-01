@@ -1,30 +1,30 @@
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { Marker, MyCustomMarkerView, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 const styles = StyleSheet.create({
  container: {
    ...StyleSheet.absoluteFillObject,
-   height: 400,
-   width: 400,
    justifyContent: 'flex-end',
    alignItems: 'center',
+   backgrounđColor: 'transparent'
  },
  map: {
-   height: '100%'
+  ...StyleSheet.absoluteFillObject,
  },
 });
 
 const MapScreen = ({ navigation }) => (
    <View style={styles.container}>
-     <MapView
-       provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-       style={styles.map}
-       region={{
-         latitude: 37.78825,
-         longitude: -122.4324,
-         latitudeDelta: 0.015,
-         longitudeDelta: 0.0121,
-       }}
-     >
+      <MapView
+        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        style={styles.map}
+        region={{
+          latitude: 21.033333,
+          longitude: 105.849998,
+          latitudeDelta: 1.209,
+          longitudeDelta: 3.728,
+        }}
+      >
+        <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }}></Marker>
      </MapView>
    </View>
 );
