@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
  },
 });
 
+const pinColor = '#8C001A';
+
 const MapScreen = ({ navigation }) => (
    <View style={styles.container}>
       <MapView
@@ -24,7 +26,7 @@ const MapScreen = ({ navigation }) => (
           longitudeDelta: 3.728,
         }}
       >
-        <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }}></Marker>
+        <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }} pinColor = {pinColor}></Marker>
      </MapView>
    </View>
 );

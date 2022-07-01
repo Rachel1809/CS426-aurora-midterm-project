@@ -56,21 +56,28 @@ const Navigator = () => {
 
             return <Feather name={iconName} size={size} color={color} />;
           },
-          "tabBarActiveTintColor": '#F3A712',
-          "tabBarInactiveTintColor": 'white',
-          "tabBarShowLabel": false,
-          "tabBarStyle": [{
+          tabBarActiveTintColor: '#F3A712',
+          tabBarInactiveTintColor: 'white',
+          tabBarShowLabel: false,
+          tabBarStyle: [{
             position: 'absolute',
             padding: 10, 
             height: 70,
             backgroundColor: '#040F38',
             borderRadius: 30,
             ...styles.shadow
-          }]
+          }],
+          headerStyle: {
+            backgroundColor: "#040F38",
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#F3A712",
+          },
         })}>
 
         <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"Maps"} component={MapScreen} options={{headerShown: false}}/>
+        <Tab.Screen name={"Maps"} component={MapScreen} options={{ title: 'Our Stores' }}/>
 
       </Tab.Navigator>
       </NavigationContainer>
