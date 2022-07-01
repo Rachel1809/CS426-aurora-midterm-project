@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
       height: 10,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 30,
+    shadowRadius: 21,
     elevation: 24,
   }
 })
@@ -64,11 +64,13 @@ const Navigator = () => {
             padding: 10, 
             height: 70,
             backgroundColor: '#040F38',
-            borderRadius: 30,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
             ...styles.shadow
           }],
           headerStyle: {
             backgroundColor: "#040F38",
+            ...styles.shadow
           },
           headerTitleStyle: {
             fontWeight: "bold",
@@ -77,7 +79,7 @@ const Navigator = () => {
         })}>
 
         <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"Maps"} component={MapScreen} options={{ title: 'Our Stores' }}/>
+        <Tab.Screen name={"Maps"} component={MapScreen} options={{headerShown: false}}/>
 
       </Tab.Navigator>
       </NavigationContainer>

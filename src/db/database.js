@@ -1,10 +1,11 @@
-export const Album = [
+export const Albums = [
     {
         id: 1,
         name: '30',
         artist: 'Adele',
         year: '2021',
-        cover: '',
+        price: 40.98,
+        cover: require('../assets/30.png'),
         songs: [
             {
                 id: 1,
@@ -105,7 +106,8 @@ export const Album = [
         name: '1989',
         artist: 'Taylor Swift',
         year: '2014',
-        cover: '',
+        price: 60.79,
+        cover: require('../assets/1989.jpg'),
         songs: [
             {
                 id: 1,
@@ -230,7 +232,8 @@ export const Album = [
         name: 'Lust for Life',
         artist: 'Lana Del Rey',
         year: '2017',
-        cover: '',
+        price: 47.76,
+        cover: require('../assets/lustforlife.jpg'),
         songs: [
             {
                 id: 1,
@@ -336,7 +339,8 @@ export const Album = [
         name: 'Hoang',
         artist: 'Hoang Thuy Linh',
         year: '2019',
-        cover: '',
+        price: 42.89,
+        cover: require('../assets/hoang.jpg'),
         songs: [
             {
                 id: 1,
@@ -406,7 +410,8 @@ export const Album = [
         name: 'Blue Neighbourhood',
         artist: 'Troye Sivan',
         year: '2015',
-        cover: '',
+        price: 35.17,
+        cover: require('../assets/blueneigh.jpg'),
         songs: [
             {
                 id: 1,

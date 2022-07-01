@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
+import Album from '../db'
 
 export const listJars = [
   {

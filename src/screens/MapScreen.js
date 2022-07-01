@@ -20,10 +20,10 @@ const MapScreen = ({ navigation }) => (
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={{
-          latitude: 21.033333,
-          longitude: 105.849998,
-          latitudeDelta: 1.209,
-          longitudeDelta: 3.728,
+          latitude: 21.018989225397323, 
+          longitude: 105.84056326827525,
+          latitudeDelta: 8.209,
+          longitudeDelta: 15.728,
         }}
       >
         <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }} pinColor = {pinColor}></Marker>
