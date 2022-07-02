@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { Albums } from '../db/database';
 import CartScreen from './CartScreen';
 import SearchScreen from './SearchScreen';
+import DetailsScreen from './DetailScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
@@ -19,6 +20,7 @@ export function HomeStackScreen() {
         <HomeStack.Screen name="Aurora" component={HomeScreen} />
         <HomeStack.Screen name="Search" component={SearchScreen} />
         <HomeStack.Screen name="Cart" component={CartScreen} />
+        <HomeStack.Screen name="Details" component={DetailsScreen} />
       </HomeStack.Navigator>
     );
   }
@@ -26,23 +28,23 @@ export function HomeStackScreen() {
 const HomeScreen = ({ navigation }) => {
   
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white', flexGrow: 1}}
+    <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff', flexGrow: 1}}
     nestedScrollEnabled={true}>
       <View style={styles.greet_container}>
         <View style={styles.header}>
           <View style={styles.brand}>
-            <Text style={styles.brandText}>Aurora</Text>
+            <Text style={styles.brandText}>aurora</Text>
           </View>
 
           <View style={styles.cart}>
           <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
-            <Icon name="shopping-cart" size={25} color="#000" />
+            <Icon name="shopping-cart" size={25} color="#000000" />
           </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity activeOpacity={1}>
           <TouchableOpacity style={styles.searchBar} onPress={()=>navigation.navigate('Search')}>
-            <Icon name="search" size={25} color="#000" />
+            <Icon name="search" size={25} color="#000000" />
             <Text style={styles.searchGuide}>What album motivates you today?</Text>
           </TouchableOpacity>
         </TouchableOpacity>
@@ -74,13 +76,13 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   greet_container: {
     flex: 0,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     paddingHorizontal: 24,
     paddingVertical: 18,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     paddingHorizontal: 24,
   },
   hello: {
@@ -100,14 +102,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   cart: {
-    alignItems: 'left',
+    alignItems: 'flex-end',
     paddingBottom: 24,
     paddingTop: 10,
   },
   searchBar: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderColor: '#000',
+    backgroundColor: '#ffffff',
+    borderColor: '#000000',
     borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 5,

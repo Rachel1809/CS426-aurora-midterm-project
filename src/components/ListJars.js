@@ -92,10 +92,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     width: 60,
     height: 60,
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: {height: 10, width: 2},
     shadowOpacity: 0.7,
     shadowRadius: 80,

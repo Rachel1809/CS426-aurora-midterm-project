@@ -53,7 +53,7 @@ const Navigator = () => {
             return <Feather name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#F3A712',
-          tabBarInactiveTintColor: 'white',
+          tabBarInactiveTintColor: '#ffffff',
           tabBarShowLabel: false,
           tabBarStyle: [{
             position: 'absolute',

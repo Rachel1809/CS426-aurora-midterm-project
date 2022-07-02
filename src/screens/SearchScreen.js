@@ -58,7 +58,7 @@ const SearchScreen = () => {
                 <Text numberOfLines={1}
                   style={{
                     marginTop: 30,
-                    color: 'black',
+                    color: '#000000',
                     fontWeight: 'bold',
                     fontSize: 20,
                   }}>
@@ -70,7 +70,7 @@ const SearchScreen = () => {
                     style={{
                     marginTop: 10,
                     fontSize: 16,
-                    color: 'black',
+                    color: '#000000',
                   }}>
                   {item.artist}
                 </Text>
@@ -103,7 +103,7 @@ const SearchScreen = () => {
             inputStyle = {styles.searchGuide}     
             placeholderTextColor="#CBD2D0"  
             inputContainerStyle={styles.searchBar}
-            clearIcon={{ color: 'white' }}
+            clearIcon={{ color: '#fff' }}
           />
         </View>
         <FlatList
@@ -120,12 +120,12 @@ const SearchScreen = () => {
  
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         paddingHorizontal: 24,
     },
     header: {
         marginTop: 50,
-        fontColor: '#000',
+        fontColor: '#000000',
     },
     searchContainer: {
         borderTopWidth: 0,

@@ -75,7 +75,7 @@ const Card = ({ navigation, album }) => {
             onPress={() => addToCart(album)}
           >
             <Text
-              style={{fontSize: 20, color: '#fff', fontWeight: 'bold'}}>
+              style={{fontSize: 20, color: '#ffffff', fontWeight: 'bold'}}>
               +
             </Text>
           </TouchableOpacity>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     width: 60,
     height: 60,
     shadowColor: '#000',
