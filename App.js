@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 
 const App = () => {
   const [loaded] = useFonts({
+    "FredokaOne-Regular": require('../CS426-aurora-midterm-project/src/assets/fonts/FredokaOne-Regular.ttf')
   })
 
   if(!loaded){

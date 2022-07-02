@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Card from '../components/ListAlbums';
-import RecentActivity from '../components/LastActivity';
 import Icon from 'react-native-vector-icons/Feather';
 import { Albums } from '../db/database';
 
@@ -102,6 +101,6 @@ const styles = StyleSheet.create({
   },
   brand: {
     alignItems: 'center',
-    fontStyle: require('../assets/fonts/FredokaOne-Regular.ttf')
+    fontFamily: "FredokaOne-Regular",
   }
 });
