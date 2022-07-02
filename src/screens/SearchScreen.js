@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Cart, Albums } from '../db/database';
 import {
-    SafeAreaView, View, FlatList, StyleSheet, Text, Image, ScrollView, TouchableOpacity
+    SafeAreaView, View, FlatList, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions
 } from 'react-native';
 // import all the components we are going to use
-
 import {SearchBar} from 'react-native-elements';
- 
+
 const SearchScreen = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
@@ -43,51 +42,46 @@ const SearchScreen = () => {
  
   const ItemView = ({ item }) => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView>
         <TouchableOpacity
-          style={styles.itemStyle}
           onPress ={() => getItem(item)}
         >
+          <View style={styles.itemStyle}>
             {item.cover && (
             <Image
-              style={{ width: 100, height: 100, margin:10 }}
+              style={{ width: 100, height: 100, margin: 10 }}
               source={item.cover}
             />
             )}
-            <View style={{ flexDirection: "column", marginLeft: 10 }}>
+            <View style={{ marginLeft: 10 }}>
               {!!item.name && (
-                <Text
+                <Text numberOfLines={1}
                   style={{
-                    marginTop: 5,
-                    marginLeft: -5,
-                    color: 'white',
-                    fontFamily: 'RobotoCondensed-Bold',
-                    fontSize: 28,
+                    marginTop: 30,
+                    color: 'black',
+                    fontWeight: 'bold',
+                    fontSize: 20,
                   }}>
-                  {item.name + "\n"}
+                  {item.name}
                 </Text>
-              )
-              }
+              )}
               {!!item.artist && (
                 <Text
                     style={{
-                    marginTop: -5,
-                    fontSize: 20,
-                    marginLeft: -5,
-                    color: 'white',
-                    fontFamily:'Roboto-Italic'
+                    marginTop: 10,
+                    fontSize: 16,
+                    color: 'black',
                   }}>
                   {item.artist}
                 </Text>
               )
               }
             </View>
+            </View>
           </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
   };
- 
-  
  
   const getItem = (item) => {
     // Function for click on an item
@@ -96,33 +90,29 @@ const SearchScreen = () => {
  
   return (
     <View style={{flex: 1}}>
-          <View style={styles.container}>
-              <View style={styles.header}>
-                  <SearchBar 
-                    lightTheme={true}
-                    searchIcon={{size: 24}}
-                    onChangeText={(text) => searchFilterFunction(text)}
-                    onClear={(text) => searchFilterFunction('')}
-                    placeholder="Which one makes your day?"
-                    containerStyle={styles.searchContainer}
-                    value={search}
-                    inputStyle = {styles.searchGuide}     
-                    placeholderTextColor="#040F38"  
-                    inputContainerStyle={styles.searchBar}
-                    clearIcon={{ color: 'white' }}
-                  />
-                </View>
-                    <FlatList
-                        data={filteredDataSource}
-                        keyExtractor={(item, index) => index.toString()}
-                        
-                        renderItem={ItemView}
-                        contentContainerStyle={{ paddingBottom: 200 }}
-                    />
-                  
-                
-              
-        
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <SearchBar 
+            lightTheme={true}
+            searchIcon={{size: 24}}
+            onChangeText={(text) => searchFilterFunction(text)}
+            onClear={(text) => searchFilterFunction('')}
+            placeholder="Which one makes your day?"
+            containerStyle={styles.searchContainer}
+            value={search}
+            inputStyle = {styles.searchGuide}     
+            placeholderTextColor="#CBD2D0"  
+            inputContainerStyle={styles.searchBar}
+            clearIcon={{ color: 'white' }}
+          />
+        </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={filteredDataSource}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={ItemView}
+          contentContainerStyle={{paddingBottom: 200, fontColor: '#000000' }}
+        />
       </View>
     </View>
   );
@@ -130,12 +120,12 @@ const SearchScreen = () => {
  
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: 'white',
+        paddingHorizontal: 24,
     },
     header: {
         marginTop: 50,
-        paddingHorizontal: 24
+        fontColor: '#000',
     },
     searchContainer: {
         borderTopWidth: 0,
@@ -143,14 +133,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     itemStyle: {
-        padding: 5,
-        backgroundColor: '#040F38',
-        marginVertical: 5,
-        marginHorizontal: 25,
+        backgroundColor: '#f0f0f0',
+        marginVertical: 10,
         flexDirection: "row",
+        borderRadius: 10,
+        padding: 5,
     },
     searchBar: {
-        width: '100%',
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderWidth: 2,
@@ -158,14 +147,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         paddingVertical: 2,
         borderColor: '#040F38',
-        borderBottomWidth: 1, 
-        marginBottom: 10
+        borderBottomWidth: 2, 
+        marginBottom: 10,
+        height: 40
     },
     searchGuide: {
-        
-        fontSize: 20,
-        color: '#040F38',
-        fontFamily: 'Roboto-Regular',
+        fontSize: 16,
+        color: '#CBD2D0'
     },
 });
  

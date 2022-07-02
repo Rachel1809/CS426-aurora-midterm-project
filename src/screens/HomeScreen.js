@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingHorizontal: 24,
-
-
   },
   hello: {
       fontSize: 20
@@ -103,7 +101,8 @@ const styles = StyleSheet.create({
   },
   cart: {
     alignItems: 'left',
-    paddingBottom: 20,
+    paddingBottom: 24,
+    paddingTop: 10,
   },
   searchBar: {
     flexDirection: 'row',
@@ -120,10 +119,10 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: 120
+    marginRight: 90
   },
   brandText: {
     fontFamily: "FredokaOne-Regular",
-    fontSize: 24,
+    fontSize: 40,
   }
 });

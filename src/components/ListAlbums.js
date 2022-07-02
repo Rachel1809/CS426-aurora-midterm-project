@@ -10,6 +10,7 @@ const Card = ({ navigation, album }) => {
       if (e.name === item.name) {
         e.quantity += 1;
         e.total = (e.quantity * e.price).toFixed(2);
+        return true;
       }
     });
     if (!isFound) {
