@@ -2,15 +2,12 @@ import React from 'react';
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen, {HomeStackScreen} from '../screens/HomeScreen';
 import MapScreen from './MapScreen';
 import { Feather } from '@expo/vector-icons';
-
-
-const Stack = createStackNavigator();
 
 const theme = {
     ...DefaultTheme,
@@ -36,7 +33,6 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
-    
     return (
     <>
       <NavigationContainer theme={theme}>
@@ -78,7 +74,7 @@ const Navigator = () => {
           },
         })}>
 
-        <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
+        <Tab.Screen name={"Home"} component={HomeStackScreen} options={{headerShown: false}}/>
         <Tab.Screen name={"Maps"} component={MapScreen} options={{headerShown: false}}/>
 
       </Tab.Navigator>

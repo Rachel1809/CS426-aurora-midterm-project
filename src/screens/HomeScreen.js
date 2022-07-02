@@ -4,28 +4,47 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Card from '../components/ListAlbums';
 import Icon from 'react-native-vector-icons/Feather';
 import { Albums } from '../db/database';
+import CartScreen from './CartScreen';
+import SearchScreen from './SearchScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+
+const HomeStack  = createStackNavigator();
+
+export function HomeStackScreen() {
+    return (
+      <HomeStack.Navigator screenOptions={{
+          headerShown: false
+      }}>
+        <HomeStack.Screen name="Aurora" component={HomeScreen} />
+        <HomeStack.Screen name="Search" component={SearchScreen} />
+        <HomeStack.Screen name="Cart" component={CartScreen} />
+      </HomeStack.Navigator>
+    );
+  }
 
 const HomeScreen = ({ navigation }) => {
+  
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white', flexGrow: 1}}
     nestedScrollEnabled={true}>
       <View style={styles.greet_container}>
         <View style={styles.header}>
           <View style={styles.brand}>
-            <Text>Aurora</Text>
+            <Text style={styles.brandText}>Aurora</Text>
           </View>
 
           <View style={styles.cart}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
             <Icon name="shopping-cart" size={25} color="#000" />
           </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity activeOpacity={1}>
-          <View style={styles.searchBar}>
+          <TouchableOpacity style={styles.searchBar} onPress={()=>navigation.navigate('Search')}>
             <Icon name="search" size={25} color="#000" />
             <Text style={styles.searchGuide}>What album motivates you today?</Text>
-          </View>
+          </TouchableOpacity>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.container}>
@@ -41,11 +60,12 @@ const HomeScreen = ({ navigation }) => {
           numColumns={2}
           data={Albums}
           renderItem={({item}) => {
-            return <Card album={item} />;
+            return <Card navigation={navigation} album={item} />;
           }}
         />
       </ScrollView>
     </SafeAreaView>
+    
   );
 };
 
@@ -100,7 +120,10 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    alignItems: 'center',
+    marginRight: 120
+  },
+  brandText: {
     fontFamily: "FredokaOne-Regular",
+    fontSize: 24,
   }
 });

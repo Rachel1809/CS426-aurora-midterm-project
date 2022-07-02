@@ -520,6 +520,6 @@ export const Albums = [
     },
 ]
 
-export const Cart = [
-    
-]
+export const Cart = {
+    list: [],
+}

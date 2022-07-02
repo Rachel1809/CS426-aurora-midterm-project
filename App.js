@@ -6,12 +6,18 @@ import { useFonts } from 'expo-font';
 
 const App = () => {
   const [loaded] = useFonts({
-    "FredokaOne-Regular": require('../CS426-aurora-midterm-project/src/assets/fonts/FredokaOne-Regular.ttf')
+    "FredokaOne-Regular": require('./assets/fonts/FredokaOne-Regular.ttf'),
+    "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
+    "RobotoCondensed-Bold": require("./assets/fonts/RobotoCondensed-Bold.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Italic": require("./assets/fonts/Roboto-Italic.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   })
 
-  if(!loaded){
-    return null;
+  if (!loaded) {
+    console.log('Cannot load');
   }
+
   return <Navigator />;
 };
 
