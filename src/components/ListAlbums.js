@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
-import {Albums} from '../db/database';
 const width = Dimensions.get('window').width / 2 - 30;
 
 const Card = ({album}) => {
@@ -20,14 +19,17 @@ const Card = ({album}) => {
             />
           </View>
 
-          <Text style={{fontWeight: 'bold', fontSize: 16, marginTop: 10}}>
+          <Text numberOfLines={1} style={{fontWeight: 'bold', fontSize: 20, marginTop: 10}}>
             {album.name}
+          </Text>
+          <Text numberOfLines={1} style={{fontSize: 16, marginTop: 3}}>
+            {album.artist}
           </Text>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginTop: 5,
+              marginVertical: 10,
             }}>
             <Text style={{fontSize: 19, fontWeight: 'bold', color: '#040F38'}}>
               ${album.price}
@@ -40,6 +42,7 @@ const Card = ({album}) => {
                 borderRadius: 5,
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginBottom: 10,
               }}>
               <Text
                 style={{fontSize: 20, color: '#fff', fontWeight: 'bold'}}>
@@ -55,18 +58,6 @@ const Card = ({album}) => {
 export default Card;
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: 'bold',
-    fontSize: 24,
-  },
-  list: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    margin: 10,
-  },
   each: {
     paddingBottom: 8,
     height: 0.1,
@@ -97,8 +88,8 @@ const styles = StyleSheet.create({
     width,
     backgroundColor: '#f0f0f0',
     borderRadius: 10,
-    marginBottom: 20,
+    marginBottom: 15,
     padding: 15,
-    paddingTop: 30,
+    paddingTop: 20,
   },
 });

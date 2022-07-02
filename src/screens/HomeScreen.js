@@ -12,6 +12,10 @@ const HomeScreen = ({ navigation }) => {
     nestedScrollEnabled={true}>
       <View style={styles.greet_container}>
         <View style={styles.header}>
+          <View style={styles.brand}>
+            <Text>Aurora</Text>
+          </View>
+
           <View style={styles.cart}>
           <TouchableOpacity>
             <Icon name="shopping-cart" size={25} color="#000" />
@@ -95,5 +99,9 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingLeft: 5,
     color: '#CBD2D0',
+  },
+  brand: {
+    alignItems: 'center',
+    fontStyle: require('../assets/fonts/FredokaOne-Regular.ttf')
   }
 });
