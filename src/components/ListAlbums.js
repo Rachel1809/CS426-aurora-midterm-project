@@ -7,7 +7,7 @@ const Card = ({ navigation, album }) => {
   const [element, setElement] = React.useState(Cart.list); 
   const addToCart = (item) => {
     const isFound = element.some(e => {
-      if (e.name === item.name) {
+      if (e.id === item.id) {
         e.quantity += 1;
         e.total = (e.quantity * e.price).toFixed(2);
         return true;
@@ -15,10 +15,13 @@ const Card = ({ navigation, album }) => {
     });
     if (!isFound) {
       Cart.list.push({
+        id: item.id,
         name: item.name,
+        artist: item.artist,
         price: item.price,
         quantity: 1,
         total: item.price,
+        cover: item.cover
       });
       setElement(Cart.list);
     }
@@ -75,7 +78,7 @@ const Card = ({ navigation, album }) => {
             onPress={() => addToCart(album)}
           >
             <Text
-              style={{fontSize: 20, color: '#ffffff', fontWeight: 'bold'}}>
+              style={{fontSize: 20, color: '#fff', fontWeight: 'bold'}}>
               +
             </Text>
           </TouchableOpacity>
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     width: 60,
     height: 60,
     shadowColor: '#000',
