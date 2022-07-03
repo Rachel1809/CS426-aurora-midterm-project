@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, Image, Text, StyleSheet} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 const DetailsScreen = ({navigation, route}) => {
@@ -25,18 +26,17 @@ const DetailsScreen = ({navigation, route}) => {
             flexDirection: 'row',
             alignItems: 'flex-end',
           }}>
-          <View style={style.line} />
-          <Text style={{fontSize: 18, fontWeight: 'bold'}}>Best choice</Text>
         </View>
         <View
           style={{
             marginLeft: 20,
-            marginTop: 20,
+            marginTop: 5,
+            marginBottom: 10,
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 22, fontWeight: 'bold'}}>{album.name}</Text>
+          <Text style={{fontSize: 28, fontWeight: 'bold'}}>{album.name}</Text>
           <View style={style.priceTag}>
             <Text
               style={{
@@ -49,6 +49,7 @@ const DetailsScreen = ({navigation, route}) => {
             </Text>
           </View>
         </View>
+        <ScrollView>
         <View style={{paddingHorizontal: 20, marginTop: 10}}>
           <Text style={{fontSize: 20, fontWeight: 'bold'}}>About</Text>
           <Text
@@ -60,41 +61,8 @@ const DetailsScreen = ({navigation, route}) => {
             }}>
             {album.description}
           </Text>
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <View style={style.borderBtn}>
-                <Text style={style.borderBtnText}>-</Text>
-              </View>
-              <Text
-                style={{
-                  fontSize: 20,
-                  marginHorizontal: 10,
-                  fontWeight: 'bold',
-                }}>
-                1
-              </Text>
-              <View style={style.borderBtn}>
-                <Text style={style.borderBtnText}>+</Text>
-              </View>
-            </View>
-
-            <View style={style.buyBtn}>
-              <Text
-                style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
-                Buy
-              </Text>
-            </View>
-          </View>
         </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -108,17 +76,17 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   imageContainer: {
-    flex: 0.45,
+    flex: 1,
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   detailsContainer: {
-    flex: 0.55,
+    height: 450,
     backgroundColor: '#f0f0f0',
-    marginHorizontal: 7,
     marginBottom: 7,
-    borderRadius: 20,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     marginTop: 30,
     paddingTop: 30,
   },

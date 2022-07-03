@@ -2,11 +2,17 @@ import React from 'react';
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+
 import HomeScreen, {HomeStackScreen} from '../screens/HomeScreen';
-import MapScreen from './MapScreen';
+import CartScreen from './CartScreen';
+import SearchScreen from './SearchScreen';
+import DetailsScreen from './DetailScreen';
+
 import { Feather } from '@expo/vector-icons';
 
 const theme = {
@@ -30,57 +36,21 @@ const styles = StyleSheet.create({
   }
 })
 
-const Tab = createBottomTabNavigator();
+const HomeStack  = createStackNavigator();
 
 const Navigator = () => {
     return (
-    <>
       <NavigationContainer theme={theme}>
-      <Tab.Navigator
-        initialRouteName={"Home"}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({color, size }) => {
-            let iconName;
-            let rn = route.name;
-            
-            if (rn === "Home") {
-              iconName = "home"
-            }
-            else if (rn === "Maps") {
-              iconName = "map-pin"
-            }
-
-            return <Feather name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#F3A712',
-          tabBarInactiveTintColor: '#ffffff',
-          tabBarShowLabel: false,
-          tabBarStyle: [{
-            position: 'absolute',
-            padding: 10, 
-            height: 70,
-            backgroundColor: '#040F38',
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-            ...styles.shadow
-          }],
-          headerStyle: {
-            backgroundColor: "#040F38",
-            ...styles.shadow
-          },
-          headerTitleStyle: {
-            fontWeight: "bold",
-            color: "#F3A712",
-          },
-        })}>
-
-        <Tab.Screen name={"Home"} component={HomeStackScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"Maps"} component={MapScreen} options={{headerShown: false}}/>
-
-      </Tab.Navigator>
+        <HomeStack.Navigator screenOptions={{
+            headerShown: false
+        }}>
+          <HomeStack.Screen name="Aurora" component={HomeStackScreen} />
+          <HomeStack.Screen name="Search" component={SearchScreen} />
+          <HomeStack.Screen name="Cart" component={CartScreen} />
+          <HomeStack.Screen name="Details" component={DetailsScreen} />
+        </HomeStack.Navigator>
       </NavigationContainer>
-    </>
-  );
-};
+    );
+}
 
 export default Navigator;
