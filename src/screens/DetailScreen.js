@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const DetailsScreen = ({navigation, route}) => {
   const album = route.params;
-
+  console.log(album);
   return (
     <SafeAreaView
       style={{
