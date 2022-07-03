@@ -90,7 +90,7 @@ const DetailsScreen = ({navigation, route}) => {
             <View style={style.buyBtn}>
               <Text
                 style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
-                Buy
+                Add to Cart
               </Text>
             </View>
           </View>
@@ -135,20 +135,20 @@ const style = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 60,
+    width: 40,
     height: 40,
   },
   borderBtnText: {fontWeight: 'bold', fontSize: 28},
   buyBtn: {
-    width: 130,
+    width: 170,
     height: 50,
-    backgroundColor: '#0f0f0f',
+    backgroundColor: '#040F38',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
   },
   priceTag: {
-    backgroundColor: '#0f0f0f',
+    backgroundColor: '#F3A712',
     width: 100,
     height: 40,
     justifyContent: 'center',
@@ -160,7 +160,7 @@ const style = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     marginTop: 5,
-    marginRight: 70,
+    marginRight: 75,
     textAlign: 'justify',
   }
 });

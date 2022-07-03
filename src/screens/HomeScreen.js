@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList} from 'react-native';
+import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme } from '@react-navigation/native';
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   cart: {
     alignItems: 'flex-end',
     paddingBottom: 24,
-    paddingTop: 10,
+    paddingTop: 12,
   },
   searchBar: {
     flexDirection: 'row',
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: 90
+    marginRight: Dimensions.get('window').width/4,
   },
   brandText: {
     fontFamily: "FredokaOne-Regular",

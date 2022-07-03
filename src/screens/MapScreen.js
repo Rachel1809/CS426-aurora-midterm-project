@@ -1,5 +1,7 @@
 import MapView, { Marker, MyCustomMarkerView, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
+
 const styles = StyleSheet.create({
  container: {
    ...StyleSheet.absoluteFillObject,
@@ -27,7 +29,11 @@ const MapScreen = ({ navigation }) => (
         }}
         showsUserLocation={true}
       >
-        <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }} pinColor = {pinColor}></Marker>
+        <Marker 
+          coordinate={{ latitude : 21.033333 , longitude : 105.849998 }} 
+          >
+            <Icon name= "location-pin" size={50} color={"#040F38"} />
+        </Marker>
      </MapView>
    </View>
 );
