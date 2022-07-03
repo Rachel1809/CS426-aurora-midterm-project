@@ -25,6 +25,7 @@ const MapScreen = ({ navigation }) => (
           latitudeDelta: 8.209,
           longitudeDelta: 15.728,
         }}
+        showsUserLocation={true}
       >
         <Marker coordinate={{ latitude : 21.033333 , longitude : 105.849998 }} pinColor = {pinColor}></Marker>
      </MapView>
