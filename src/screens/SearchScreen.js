@@ -6,11 +6,11 @@ import {
 // import all the components we are going to use
 import {SearchBar} from 'react-native-elements';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
- 
+  const [checkResult, setResult] = useState(true);
   useEffect(() => {
     setFilteredDataSource(Albums);
     setMasterDataSource(Albums);
@@ -27,16 +27,19 @@ const SearchScreen = () => {
         const itemData = item.name
           ? item.name.toUpperCase()
           : ''.toUpperCase();
+        const itemArtist = item.artist ? item.artist.toUpperCase() : ''.toUpperCase();
         const textData = text.toUpperCase();
-        return itemData.indexOf(textData) > -1;
+        return itemData.indexOf(textData) > -1 || itemArtist.indexOf(textData) > -1;
       });
       setFilteredDataSource(newData);
       setSearch(text);
+      setResult(newData.length > 0);
     } else {
       // Inserted text is blank
       // Update FilteredDataSource with masterDataSource
       setFilteredDataSource(masterDataSource);
       setSearch(text);
+      setResult(masterDataSource.length > 0);
     }
   };
  
@@ -85,8 +88,17 @@ const SearchScreen = () => {
  
   const getItem = (item) => {
     // Function for click on an item
-    console.log(item.name);
+    const album = Albums.find(obj => item.id === obj.id);
+    navigation.navigate('Details', album);
   };
+
+  const printNoResult = () => {
+    return (
+      <View>
+        <Text>No results found</Text>
+      </View>
+    )
+  }
  
   return (
     <View style={{flex: 1}}>
@@ -95,7 +107,7 @@ const SearchScreen = () => {
           <SearchBar 
             lightTheme={true}
             searchIcon={{size: 24}}
-            onChangeText={(text) => searchFilterFunction(text)}
+            onChangeText={(text) => {  searchFilterFunction(text)}}
             onClear={(text) => searchFilterFunction('')}
             placeholder="Which one makes your day?"
             containerStyle={styles.searchContainer}
@@ -110,6 +122,7 @@ const SearchScreen = () => {
           showsVerticalScrollIndicator={false}
           data={filteredDataSource}
           keyExtractor={(item, index) => index.toString()}
+
           renderItem={ItemView}
           contentContainerStyle={{paddingBottom: 200, fontColor: '#000000' }}
         />
@@ -152,8 +165,9 @@ const styles = StyleSheet.create({
         height: 40
     },
     searchGuide: {
-        fontSize: 16,
-        color: '#CBD2D0'
+      fontSize: 16,
+      color: '#040F38'
+        //color: '#CBD2D0'
     },
 });
  
