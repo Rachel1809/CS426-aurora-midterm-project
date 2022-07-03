@@ -36,33 +36,65 @@ const DetailsScreen = ({navigation, route}) => {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
+          <View>
           <Text style={{fontSize: 28, fontWeight: 'bold'}}>{album.name}</Text>
+          <Text style={{fontSize: 20, paddingTop: 10 }}>{album.artist}</Text>
+          </View>
           <View style={style.priceTag}>
             <Text
               style={{
-                marginLeft: 15,
+                marginHorizontal: 15,
                 color: '#ffffff',
                 fontWeight: 'bold',
-                fontSize: 16,
+                fontSize: 20,
               }}>
               ${album.price}
             </Text>
           </View>
         </View>
-        <ScrollView>
-        <View style={{paddingHorizontal: 20, marginTop: 10}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>About</Text>
-          <Text
+        <View style={{marginHorizontal: 20, marginTop: 10, flexWrap: 'wrap', flex: 1}}>
+          <ScrollView>
+            <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
+            <Text style={style.info}> {album.description} </Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
+            <Text style={style.info}> Published year: {album.year} </Text>
+            <Text style={style.info}> Number of songs: {album.songs.length} </Text>
+          </ScrollView>
+          <View
             style={{
-              color: 'grey',
-              fontSize: 16,
-              lineHeight: 22,
-              marginTop: 10,
+              marginVertical: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
             }}>
-            {album.description}
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <View style={style.borderBtn}>
+                <Text style={style.borderBtnText}>-</Text>
+              </View>
+              <Text
+                style={{
+                  fontSize: 20,
+                  marginHorizontal: 10,
+                  fontWeight: 'bold',
+                }}>
+                1
+              </Text>
+              <View style={style.borderBtn}>
+                <Text style={style.borderBtnText}>+</Text>
+              </View>
+            </View>
+
+            <View style={style.buyBtn}>
+              <Text
+                style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
+                Buy
+              </Text>
+            </View>
+          </View>
         </View>
-        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -117,12 +149,20 @@ const style = StyleSheet.create({
   },
   priceTag: {
     backgroundColor: '#0f0f0f',
-    width: 80,
+    width: 100,
     height: 40,
     justifyContent: 'center',
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
   },
+  info: {
+    color: 'grey',
+    fontSize: 16,
+    lineHeight: 22,
+    marginTop: 5,
+    marginRight: 70,
+    textAlign: 'justify',
+  }
 });
 
 export default DetailsScreen;

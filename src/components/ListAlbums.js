@@ -60,7 +60,7 @@ const Card = ({ navigation, album }) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginVertical: 10,
+            marginVertical: 12,
           }}>
           <Text style={{fontSize: 19, fontWeight: 'bold', color: '#040F38'}}>
             ${album.price}
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   card: {
-    height: 225,
+    height: 230,
     width,
     backgroundColor: '#f0f0f0',
     borderRadius: 10,
