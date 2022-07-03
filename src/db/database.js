@@ -403,7 +403,7 @@ export const Albums = [
                 file: '',
             },
         ],
-        description: 'Hoang is the third studio album by Vietnamese female singer Hoang Thuy Linh , released by Thoi Dai Records and Sony Music Entertainment on October 20, 2019. [1] The album includes 9 songs in the future bass genre, electronic folk songs, global music. The album brought home many awards, including the Dedication Music Award for "Album of the Year", helping DTAP as well as Linh herself win the categories "Producer of the year" and "Singer of the year". Hoang is a theme album imbued with Vietnamese folklore and literature, it is also the emotional journey of a woman going through many ups and downs in life. Therefore, "Hoang" is not only appreciated for the quality of the music, but also the melody and lyrics have received positive feedback.'
+        description: 'Hoang is the third studio album by Vietnamese female singer Hoang Thuy Linh , released by Thoi Dai Records and Sony Music Entertainment on October 20, 2019. The album includes 9 songs in the future bass genre, electronic folk songs, global music. The album brought home many awards, including the Dedication Music Award for "Album of the Year", helping DTAP as well as Linh herself win the categories "Producer of the year" and "Singer of the year". Hoang is a theme album imbued with Vietnamese folklore and literature, it is also the emotional journey of a woman going through many ups and downs in life. Therefore, "Hoang" is not only appreciated for the quality of the music, but also the melody and lyrics have received positive feedback.'
     },
     {
         id: 5,

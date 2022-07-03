@@ -1,11 +1,51 @@
 import React from 'react';
-import {View, SafeAreaView, Image, Text, StyleSheet} from 'react-native';
+import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
+import { Cart } from '../db/database';
 
 const DetailsScreen = ({navigation, route}) => {
+  const [element, setElement] = React.useState(Cart.list);
+  const [quantity, setQuantity] = React.useState(1);
   const album = route.params;
-  console.log(album);
+  const add = () => {
+    setQuantity(quantity + 1)
+  }
+  const remove = () => {
+    setQuantity(quantity - 1)
+  }
+
+  const confirm = () => {
+    const isFound = element.some(e => {
+      if (e.id === album.id) {
+        e.quantity += quantity;
+        e.total = (e.quantity * e.price).toFixed(2);
+        return true;
+      }
+    });
+    if (!isFound) {
+      Cart.list.push({
+        id: album.id,
+        name: album.name,
+        artist: album.artist,
+        price: album.price,
+        quantity: quantity,
+        total: (quantity * album.price).toFixed(2),
+        cover: album.cover
+      });
+      setElement(Cart.list);
+    }
+    Cart.sum = Cart.list.reduce((acc, cur) => {
+      let s = acc + parseFloat(cur.total)
+      s = parseFloat(s.toFixed(2));
+      return s;
+    }, 0);
+    Cart.count = Cart.list.reduce((acc, cur) => {
+      return acc + cur.quantity;
+    }, 0);
+    navigation.navigate('Cart');
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -71,28 +111,28 @@ const DetailsScreen = ({navigation, route}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <View style={style.borderBtn}>
+              <TouchableOpacity style={style.borderBtn} onPress={remove}>
                 <Text style={style.borderBtnText}>-</Text>
-              </View>
+              </TouchableOpacity>
               <Text
                 style={{
                   fontSize: 20,
                   marginHorizontal: 10,
                   fontWeight: 'bold',
                 }}>
-                1
+                {quantity}
               </Text>
-              <View style={style.borderBtn}>
+              <TouchableOpacity style={style.borderBtn} onPress={add}>
                 <Text style={style.borderBtnText}>+</Text>
-              </View>
+              </TouchableOpacity>
             </View>
 
-            <View style={style.buyBtn}>
+            <TouchableOpacity style={style.buyBtn} onPress={confirm}>
               <Text
                 style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
                 Add to Cart
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
