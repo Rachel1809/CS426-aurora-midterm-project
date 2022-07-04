@@ -305,11 +305,6 @@ const CartScreen = ({ navigation }) => {
                     <Text style={styles.checkoutText}>Checkout</Text>
                 </TouchableOpacity>
             </View>)}
-            
-            {Cart.count == 0 && (
-                <View style={{flex: 10, alignItems: 'center'}}>
-                        <Text style={styles.footerText}>No items</Text>
-            </View>)}
         </SafeAreaView>
         <SafeAreaView style={{ flex: 0, backgroundColor: '#040F38' }} />
         </Fragment>
@@ -348,15 +343,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     deleteStyle: {
+        height: 175,
+        width: 100,
         marginVertical: 10,
         marginRight: 20,
         marginLeft: -30,
-        width: 100,
-        height: '91%',
         flexDirection: "row",
+        justifyContent: 'center',
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
-        backgroundColor: 'red',
+        backgroundColor: '#E84855',
 
     },
     itemStyle: {
@@ -366,6 +362,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 10,
         padding: 10,
+        height: 175,
     },
     iconMinus: {
         borderRadius: 0,
@@ -469,7 +466,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#fff',
-    
+
     },
     modalButtonTextNo: {
         fontSize: 25,

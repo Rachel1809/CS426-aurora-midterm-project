@@ -3,17 +3,18 @@ import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, D
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme } from '@react-navigation/native';
-
 import Card from '../components/ListAlbums';
 import Icon from 'react-native-vector-icons/Feather';
 import MapScreen from './MapScreen';
-import { Albums } from '../db/database';
+import { Albums, Cart } from '../db/database';
 
 import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 const Tab = createBottomTabNavigator();
 
 export function HomeStackScreen() {
+    const [quantity, setQuantity] = React.useState(Cart.count > 0 ? Cart.count : 0);
+    
     return (
       <Tab.Navigator
         initialRouteName={"Home"}
@@ -72,9 +73,25 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           <View style={styles.cart}>
-          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+          <View style={{
+            backgroundColor: 'yellow',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 18,
+            width: 18,
+            marginBottom: -8,
+            marginRight: -8,
+            zIndex: 5,
+            borderRadius: 9,
+            fontSize: 1
+            }}>
+            <Text>{Cart.count}</Text>
+          </View>
+          <View style={{}}>
+          <TouchableOpacity disabled = {!Cart.count | Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
             <Icon name="shopping-cart" size={25} color="#000000" />
           </TouchableOpacity>
+          </View>
           </View>
         </View>
         <TouchableOpacity activeOpacity={1}>
@@ -85,7 +102,6 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.container}>
-        <Text style={styles.title}>Category</Text>
         <Text style={styles.title}>All items</Text>
         <FlatList
           columnWrapperStyle={{justifyContent: 'space-between'}}
@@ -139,7 +155,7 @@ const styles = StyleSheet.create({
   cart: {
     alignItems: 'flex-end',
     paddingBottom: 24,
-    paddingTop: 12,
+    paddingTop: 12
   },
   searchBar: {
     flexDirection: 'row',

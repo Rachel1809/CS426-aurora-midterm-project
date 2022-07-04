@@ -13,9 +13,7 @@ const HEIGHT = Dimensions.get('window').height;
 const Detail = ({ navigation, album }) => {
   const [element, setElement] = React.useState(Cart.list);
   const [quantity, setQuantity] = React.useState(1);
-
-
-
+  
   const add = () => {
     setQuantity(quantity + 1)
   }
@@ -164,9 +162,26 @@ const DetailsScreen = ({ navigation, route }) => {
           <TouchableOpacity onPress={() => navigation.goBack()} >
             <Icon name="arrow-left" size={28} color='#000' />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {navigation.navigate('Cart')}} >
-            <Icon name="shopping-cart" size={28} color='#000' />
-          </TouchableOpacity>
+          <View style={{position: 'relative', justifyContent: 'flex-end', marginTop: -8, marginLeft: WIDTH - 100}}>
+          <View style={{
+            backgroundColor: 'yellow',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 18,
+            width: 18,
+            marginBottom: -8,
+            marginLeft: 18,
+            zIndex: 5,
+            borderRadius: 9,
+            fontSize: 1
+            }}>
+            <Text>{Cart.count}</Text>
+          </View> 
+            <TouchableOpacity disabled = {!Cart.count} onPress={() => {navigation.navigate('Cart')}} >
+              <Icon name="shopping-cart" size={28} color='#000' />
+            </TouchableOpacity>
+          </View>
+
         </View>
         <ScrollView
           showsHorizontalScrollIndicator={false}
@@ -194,7 +209,6 @@ const style = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   wrap: {
     width: WIDTH,

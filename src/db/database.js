@@ -455,8 +455,20 @@ export const Cart = {
 }
 
 export const Stores = [
-    { coordinates: { latitude: 21.030961775351827, longitude: 105.84854823005392 } },
-    { coordinates: { latitude: 16.06336904296533, longitude:  108.23408680558316 } },
-    { coordinates: { latitude: 10.7748190093447, longitude:  106.69986300331179 } },
-    { coordinates: { latitude: 10.38198089123573, longitude: 105.44246632357063 } },
+    { 
+        key: 1,
+        coordinates: { latitude: 21.030961775351827, longitude: 105.84854823005392 } 
+    },
+    { 
+        key: 2,
+        coordinates: { latitude: 16.06336904296533, longitude:  108.23408680558316 } 
+    },
+    { 
+        key: 3,
+        coordinates: { latitude: 10.7748190093447, longitude:  106.69986300331179 } 
+    },
+    { 
+        key: 4,
+        coordinates: { latitude: 10.38198089123573, longitude: 105.44246632357063 } 
+    },
   ];

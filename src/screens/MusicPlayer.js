@@ -63,7 +63,7 @@ const MusicPlayer = ({ album }) => {
     }
 
     return (
-        <View style={{ marginTop: 20, flex: 1, backgroundColor: '#ecf0f1', }}>
+        <View style={{ marginTop: 20, flex: 1, backgroundColor: '#f0f0f0', }}>
         <View style={style.imageContainer}>
             <Image source={album.cover} style={style.image} resizeMode={'contain'} />
         </View >
@@ -81,7 +81,7 @@ const MusicPlayer = ({ album }) => {
                 <View>
                     <View style={{marginTop: 50, alignItems: 'center', justifyContent:'center'}  }>
                         <TouchableOpacity style={style.btn} onPress={() => { handlePlaying()}}>
-                            <Icon name={playing ? 'pause' : 'play'} size={40} color='#F3A712' />
+                            <Icon name={playing ? 'pause' : 'play'} size={30} color='#F3A712' />
                         </TouchableOpacity>
                     </View>
                 </View>    
@@ -98,15 +98,15 @@ const style = StyleSheet.create({
         
     },
     image: {
-        width: 350,
-        height: 350,
+        width: 325,
+        height: 325,
         borderRadius: 175, 
         shadowColor: '#202020',
         shadowOffset: {width: 0, height: 0},
         shadowRadius: 5,  
     },
     imageContainer: {
-        marginTop: -50,
+        marginTop: -20,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -123,9 +123,9 @@ const style = StyleSheet.create({
         backgroundColor: '#040F38',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 50,
-        width: 150,
-        height: 80,
+        borderRadius: '50%',
+        width: 70,
+        height: 70,
     },
 });
 
