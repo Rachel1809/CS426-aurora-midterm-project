@@ -5,6 +5,7 @@ import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollVie
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
 import MusicPlayer from './MusicPlayer';
+import LinearGradient from 'react-native-linear-gradient';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -51,6 +52,7 @@ const Detail = ({ navigation, album }) => {
       return acc + cur.quantity;
     }, 0);
     navigation.navigate('Cart');
+    setQuantity(1);
   }
   return (
     <View style={{flex:1}}>
@@ -155,7 +157,7 @@ const DetailsScreen = ({ navigation, route }) => {
       }}>
       <View style={style.header}>
         <Icon name="arrow-left" size={28} onPress={() => navigation.goBack()} />
-        <Icon name="shopping-cart" size={28} onPress={() => navigation.navigate('Cart')} />
+        <Icon name="shopping-cart" size={28} onPress={() => {navigation.navigate('Cart'); setQuantity(1)}} />
         
       </View>
       <ScrollView
