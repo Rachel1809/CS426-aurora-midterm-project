@@ -453,3 +453,10 @@ export const Albums = [
 export const Cart = {
     list: [],
 }
+
+export const Stores = [
+    { coordinates: { latitude: 21.030961775351827, longitude: 105.84854823005392 } },
+    { coordinates: { latitude: 16.06336904296533, longitude:  108.23408680558316 } },
+    { coordinates: { latitude: 10.7748190093447, longitude:  106.69986300331179 } },
+    { coordinates: { latitude: 10.38198089123573, longitude: 105.44246632357063 } },
+  ];
