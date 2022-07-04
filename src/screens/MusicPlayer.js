@@ -16,10 +16,23 @@ const HEIGHT = Dimensions.get('window').height;
 
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
-
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const MusicPlayer = ({ album }) => {
+    
+    useFocusEffect(
+        React.useCallback(() => {
+
+        console.log('Screen was focused');
+
+        return () => {
+            console.log('Screen was unfocused');
+            sound.pauseAsync();
+            setPlaying(false);
+        };
+        }, [])
+    );
     const [playing, setPlaying] = useState(false);
     const [sound, setSound] = useState(new Audio.Sound());
     const [status, setStatus] = useState(null);
@@ -27,6 +40,7 @@ const MusicPlayer = ({ album }) => {
         if (status === null) {
             setPlaying(!playing);
             return loadSound(album.songs[0]);
+
         }
         if (playing) {
             let current = await sound.pauseAsync();
