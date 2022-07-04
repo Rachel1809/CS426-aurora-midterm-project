@@ -173,7 +173,6 @@ const CartScreen = ({ navigation }) => {
                                                         style={{
                                                             fontSize: 18,
                                                             marginHorizontal: 10,
-                                                            marginVertical: 4,
                                                             fontWeight: 'bold',
                                                     
                                                     }}>
@@ -181,9 +180,11 @@ const CartScreen = ({ navigation }) => {
                                                 </Text>
                                                 )}   
                                         </View>
-                                            <TouchableOpacity  style={styles.borderBtn} onPress={() => addItem(item)}>
+                                        <TouchableOpacity onPress={() => addItem(item)}>
+                                            <View style={[styles.borderBtn]}>
                                                 <Text style={styles.borderBtnText}>+</Text>
-                                            </TouchableOpacity>    
+                                            </View>
+                                        </TouchableOpacity>    
                             </View>        
                         </View>        
                             

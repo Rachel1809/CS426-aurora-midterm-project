@@ -105,7 +105,9 @@ const SearchScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <View style={styles.container}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: -6}}>
-          <Icon name="arrow-left" size={28} style={{marginTop: 25}} onPress={() => navigation.goBack()} />
+          <TouchableOpacity onPress={() => navigation.goBack()} >
+          <Icon name="arrow-left" size={28} style={{marginTop: 25}} color='#000' />
+          </TouchableOpacity>
           <View style={styles.header}>
             <SearchBar 
               lightTheme={true}

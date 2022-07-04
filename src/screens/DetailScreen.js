@@ -1,5 +1,5 @@
 import { onChange } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
-import React from 'react';
+import React, {Fragment} from 'react';
 import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -103,7 +103,7 @@ const Detail = ({ navigation, album }) => {
             <View
               style={{
               marginTop: 20,
-                marginBottom: 35,
+                marginBottom: 40,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
@@ -154,42 +154,45 @@ const DetailsScreen = ({ navigation, route }) => {
     <MusicPlayer album={album} />
   ]
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#ffffff',
-      }}>
-      <View style={style.header}>
-        <Icon name="arrow-left" size={28} onPress={() => navigation.goBack()} />
-        <Icon name="shopping-cart" size={28} onPress={() => {navigation.navigate('Cart')}} />
-
-      </View>
-      <ScrollView
-
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled={true}
-        horizontal
-        style={style.wrap}
-      >
-        {screens.map((screen, index) => {
-          return (
-            <View key={index} style={style.wrap}>
-              {screen}
-            </View>
-          );
-        }
-        )}
-      </ScrollView>
-
-
-    </View>
+    <Fragment>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: '#ffffff',
+        }}>
+        <View style={style.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()} >
+            <Icon name="arrow-left" size={28} color='#000' />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {navigation.navigate('Cart')}} >
+            <Icon name="shopping-cart" size={28} color='#000' />
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled={true}
+          horizontal
+          style={style.wrap}
+        >
+          {screens.map((screen, index) => {
+            return (
+              <View key={index} style={style.wrap}>
+                {screen}
+              </View>
+            );
+          }
+          )}
+        </ScrollView>
+      </SafeAreaView>
+      <SafeAreaView style={{ flex: 0, backgroundColor: '#f0f0f0' }} />
+    </Fragment>
   );
 };
 
 const style = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    marginTop: 60,
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -204,7 +207,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   detailsContainer: {
-    height: 450,
+    flex: 2,
     backgroundColor: '#f0f0f0',
     marginBottom: 7,
     borderTopRightRadius: 20,
