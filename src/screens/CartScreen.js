@@ -117,15 +117,15 @@ const CartScreen = ({ navigation }) => {
                     <View style={styles.itemStyle}>
                         { item.cover && (
                         <Image
-                            style={{ width: 125, height: 125, margin:10 }}
+                            style={{ width: 100, height: 100, margin:10 }}
                             source={item.cover}
                             />
                             )}
-                        <View style={{ flexDirection: "column", marginLeft: 10 }}>
+                        <View style={{ flexDirection: "column", marginLeft: 5 }}>
                         {!!item.name && (
                             <Text
                             style={{
-                                marginTop: 15,
+                                marginTop: 10,
                                 color: 'black',
                                 fontWeight: 'bold',
                                 fontSize: 24,
@@ -138,7 +138,7 @@ const CartScreen = ({ navigation }) => {
                             <Text
                                 style={{
                                 marginTop: 2,
-                                fontSize: 16,
+                                fontSize: 20,
                                 color: 'black',
                                 }}>
                             {item.artist}
@@ -149,10 +149,10 @@ const CartScreen = ({ navigation }) => {
                             {!!item.total && (
                             <Text
                                 style={{
-                                    marginTop: 15,
-                                    color: 'black',
-                                    fontFamily: 'Roboto-Black',
-                                    fontSize: 25,
+                                    marginTop: 24,
+                                    color: '#F3A712',
+                                    fontWeight: 'bold',
+                                    fontSize: 22,
                                 
                                 }}>
                             {'$' + item.total}
@@ -160,8 +160,7 @@ const CartScreen = ({ navigation }) => {
                             )} 
                                     <View style={{ 
                                         flexDirection:'row', 
-                                        justifyContent: 'flex-end', 
-                                        marginTop: 20, 
+                                        marginTop: 4, 
                                         alignItems: 'center',
                                         marginBottom: 5}}>
                                         <TouchableOpacity style={styles.borderBtn} onPress={() => removeItem(item)}>
@@ -172,7 +171,7 @@ const CartScreen = ({ navigation }) => {
                                             
                                                 <Text
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 18,
                                                             marginHorizontal: 10,
                                                             marginVertical: 4,
                                                             fontWeight: 'bold',
@@ -337,7 +336,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         paddingHorizontal: 24,
         borderBottomColor: '#040F38',
-        marginBottom: 40,
+        marginBottom: 20,
     },
     cartContainer: {
         flex: 5,
@@ -482,10 +481,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 35,
-        height: 35,
+        width: 30,
+        height: 30,
       },
-      borderBtnText: {fontWeight: 'bold', fontSize: 24},
+      borderBtnText: {fontWeight: 'bold', fontSize: 20},
 })
 
 
