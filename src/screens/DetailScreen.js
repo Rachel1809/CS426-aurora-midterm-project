@@ -92,7 +92,7 @@ const Detail = ({ navigation, album }) => {
               </Text>
             </View>
           </View>
-          <View style={{marginHorizontal: 20, marginTop: 10, flexWrap: 'wrap', flex: 1}}>
+          <View style={{marginHorizontal: 20, marginTop: 10, flex: 1}}>
             <ScrollView>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
               <Text style={style.info}> {album.description} </Text>
@@ -112,7 +112,11 @@ const Detail = ({ navigation, album }) => {
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}>
-                <TouchableOpacity style={style.borderBtn} onPress={remove}>
+                <TouchableOpacity 
+                  disabled={quantity < 2} 
+                  activeOpacity = {quantity < 2 ? 1 : 0} 
+                  style={style.borderBtn} 
+                  onPress={remove}>
                   <Text style={style.borderBtnText}>-</Text>
                 </TouchableOpacity>
                 <Text
@@ -157,7 +161,7 @@ const DetailsScreen = ({ navigation, route }) => {
       }}>
       <View style={style.header}>
         <Icon name="arrow-left" size={28} onPress={() => navigation.goBack()} />
-        <Icon name="shopping-cart" size={28} onPress={() => {navigation.navigate('Cart'); setQuantity(1)}} />
+        <Icon name="shopping-cart" size={28} onPress={() => {navigation.navigate('Cart')}} />
 
       </View>
       <ScrollView

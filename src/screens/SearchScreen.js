@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 // import all the components we are going to use
 import {SearchBar} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Feather';
 
 const SearchScreen = ({navigation}) => {
   const [search, setSearch] = useState('');
@@ -101,22 +102,25 @@ const SearchScreen = ({navigation}) => {
   }
  
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <SearchBar 
-            lightTheme={true}
-            searchIcon={{size: 24}}
-            onChangeText={(text) => {  searchFilterFunction(text)}}
-            onClear={(text) => searchFilterFunction('')}
-            placeholder="Which one makes your day?"
-            containerStyle={styles.searchContainer}
-            value={search}
-            inputStyle = {styles.searchGuide}     
-            placeholderTextColor="#CBD2D0"  
-            inputContainerStyle={styles.searchBar}
-            clearIcon={{ color: '#fff' }}
-          />
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: -6}}>
+          <Icon name="arrow-left" size={28} style={{marginTop: 25}} onPress={() => navigation.goBack()} />
+          <View style={styles.header}>
+            <SearchBar 
+              lightTheme={true}
+              searchIcon={{size: 24}}
+              onChangeText={(text) => {  searchFilterFunction(text)}}
+              onClear={(text) => searchFilterFunction('')}
+              placeholder="Which one makes your day?"
+              containerStyle={styles.searchContainer}
+              value={search}
+              inputStyle = {styles.searchGuide}     
+              placeholderTextColor="#CBD2D0"  
+              inputContainerStyle={styles.searchBar}
+              clearIcon={{ color: '#fff' }}
+            />
+          </View>
         </View>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -127,7 +131,7 @@ const SearchScreen = ({navigation}) => {
           contentContainerStyle={{paddingBottom: 200, fontColor: '#000000' }}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
  
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
     },
     header: {
-        marginTop: 50,
+        marginTop: 10,
         fontColor: '#000000',
     },
     searchContainer: {
@@ -153,7 +157,6 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     searchBar: {
-        flexDirection: 'row',
         backgroundColor: '#fff',
         borderWidth: 2,
         borderRadius: 10,
@@ -162,7 +165,8 @@ const styles = StyleSheet.create({
         borderColor: '#040F38',
         borderBottomWidth: 2, 
         marginBottom: 10,
-        height: 40
+        height: 40,
+        width:  Dimensions.get('window').width - 90,
     },
     searchGuide: {
       fontSize: 16,

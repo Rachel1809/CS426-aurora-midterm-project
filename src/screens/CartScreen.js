@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { LayoutAnimation, StyleSheet, Text, View, Image, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Modal, Dimensions } from 'react-native';
+import React, {useState, useEffect, Fragment } from 'react';
+import { LayoutAnimation, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Modal, Dimensions } from 'react-native';
 import { Albums, Cart } from '../db/database';
 import Icon from 'react-native-vector-icons/Feather';
 import { Card } from 'react-native-elements';
@@ -158,7 +158,12 @@ const CartScreen = ({ navigation }) => {
                             {'$' + item.total}
                             </Text>
                             )} 
-                                    <View style={{ flexDirection:'row', justifyContent: 'flex-end', marginTop: 20, alignItems: 'center'}}>
+                                    <View style={{ 
+                                        flexDirection:'row', 
+                                        justifyContent: 'flex-end', 
+                                        marginTop: 20, 
+                                        alignItems: 'center',
+                                        marginBottom: 5}}>
                                         <TouchableOpacity style={styles.borderBtn} onPress={() => removeItem(item)}>
                                             <Text style={styles.borderBtnText}>-</Text>
                                         </TouchableOpacity>
@@ -195,10 +200,11 @@ const CartScreen = ({ navigation }) => {
     
 
     return (
-        <View style={styles.container}>
+        <Fragment>
+        <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => { Card.list = Product; navigation.goBack() }} style={styles.backIcon}>
-                    <Icon name="chevron-left" size={25} color="#000" />
+                    <Icon name="arrow-left" size={25} color="#000" />
                 </TouchableOpacity>
                 <View style={styles.cartText}>
                     <Text style={styles.headerText}>Cart</Text>
@@ -304,18 +310,18 @@ const CartScreen = ({ navigation }) => {
                 <View style={{flex: 10, alignItems: 'center'}}>
                         <Text style={styles.footerText}>No items</Text>
             </View>)}
-
-        </View>
+        </SafeAreaView>
+        <SafeAreaView style={{ flex: 0, backgroundColor: '#040F38' }} />
+        </Fragment>
     );
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        backgroundColor: 'white',
+        backgroundColor: '#fff'
     },
     backIcon: {
-        marginTop: 8
+        marginTop: 12
     },
     cartText: {
         alignItems: 'center',
@@ -328,7 +334,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        marginTop: 50,
+        marginTop: 10,
         paddingHorizontal: 24,
         borderBottomColor: '#040F38',
         marginBottom: 40,
@@ -378,21 +384,21 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'column',
         justifyContent: 'space-between',
-        
+        backgroundColor: '#040F38',
         paddingHorizontal: 30,
-        borderTopColor: '#040F38',
-        flex: 3,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        flex: 2.3,
     }, 
     footerMoney: {
         flexDirection: 'column',
         justifyContent: 'space-between',
         marginTop: 20,
-        borderTopColor: '#040F38',
     },
     footerText: {
         fontSize: 20,
         fontFamily: 'Roboto-Black',
-        color: '#040F38',
+        color: '#fff',
     },
     footerCal: {
         flexDirection: 'row',
@@ -402,21 +408,19 @@ const styles = StyleSheet.create({
     },
     footerNumber: {
         fontSize: 20,
-        
-        color: '#040F38',
+        color: '#fff',
     },
     checkout: {
-        backgroundColor: '#040F38',
-        borderRadius: 50,
-        padding: 25,
-        marginHorizontal: 50,
-        marginBottom: 40,
+        backgroundColor: '#fff',
+        borderRadius: 80,
+        padding: 15,
+        marginBottom: 2,
         alignItems: 'center',
     },
     checkoutText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fff',
+        color: '#040F38',
     },
     modalView: {
         flex: 1,

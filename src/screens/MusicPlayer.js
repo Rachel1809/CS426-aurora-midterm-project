@@ -56,7 +56,7 @@ const MusicPlayer = ({ album }) => {
         <View style={style.detailsContainer}>
             <View style={{alignItems: 'center', marginTop: -80}}>
                 <Text style={{fontSize: 30, fontWeight: 'bold'}}>
-                    {album.songs[0].name + ' - ' + album.name}
+                    {album.songs[0].name}
                 </Text>
             </View>
             <View style={{alignItems: 'center', marginTop: 10}}>

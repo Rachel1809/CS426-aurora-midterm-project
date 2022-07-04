@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native';
 import {Cart} from '././../db/database';
 const width = Dimensions.get('window').width / 2 - 30;
 
