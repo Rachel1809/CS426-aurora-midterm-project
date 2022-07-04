@@ -10,11 +10,13 @@ import {
 } from 'react-native-swipe-list';
 
 const CartScreen = ({ navigation }) => { 
+    
     const [Product, setProduct] = useState(Cart.list);
     const [visible, setVisible] = useState(false);
     const [Id, setId] = useState();
     const [isRender, setRender] = useState(false);
     const [viewProductVisible, setViewProductVisible] = useState(false);
+
     const addItem = (item) => { 
         const newProduct = Product.map(e => {
             if (e.id === item.id) {
@@ -99,6 +101,8 @@ const CartScreen = ({ navigation }) => {
         // Function for click on an item
         const album = Albums.find(obj => Id === obj.id);
         navigation.navigate('Details', album);
+        setProduct(Cart.list);
+        setRender(!isRender);
     };
 
     const ItemView = ({ item, index }) => {

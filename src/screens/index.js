@@ -7,13 +7,13 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-
 import HomeScreen, {HomeStackScreen} from '../screens/HomeScreen';
 import CartScreen from './CartScreen';
 import SearchScreen from './SearchScreen';
 import DetailsScreen from './DetailScreen';
 
 import { Feather } from '@expo/vector-icons';
+
 
 const theme = {
     ...DefaultTheme,

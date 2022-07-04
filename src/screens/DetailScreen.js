@@ -1,14 +1,21 @@
+import { onChange } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
 import React from 'react';
-import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
-import {LinearGradient} from 'expo-linear-gradient';
+import MusicPlayer from './MusicPlayer';
+import LinearGradient from 'react-native-linear-gradient';
 
-const DetailsScreen = ({navigation, route}) => {
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+
+const Detail = ({ navigation, album }) => {
   const [element, setElement] = React.useState(Cart.list);
   const [quantity, setQuantity] = React.useState(1);
-  const album = route.params;
+
+
+
   const add = () => {
     setQuantity(quantity + 1)
   }
@@ -45,110 +52,146 @@ const DetailsScreen = ({navigation, route}) => {
       return acc + cur.quantity;
     }, 0);
     navigation.navigate('Cart');
+    setQuantity(1);
   }
-
   return (
-    <SafeAreaView
+    <View style={{flex:1}}>
+        <View style={style.imageContainer}>
+        <Image source={album.cover} style={{resizeMode: 'contain', flex: 1}} />
+        </View>
+        <View style={style.detailsContainer}>
+          <View
+            style={{
+              marginLeft: 20,
+              flexDirection: 'row',
+              alignItems: 'flex-end',
+            }}>
+          </View>
+          <View
+            style={{
+              marginLeft: 20,
+              marginTop: 5,
+              marginBottom: 10,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View>
+            <Text style={{fontSize: 28, fontWeight: 'bold'}}>{album.name}</Text>
+            <Text style={{fontSize: 20, paddingTop: 10 }}>{album.artist}</Text>
+            </View>
+            <View style={style.priceTag}>
+              <Text
+                style={{
+                  marginHorizontal: 15,
+                  color: '#ffffff',
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                }}>
+                ${album.price}
+              </Text>
+            </View>
+          </View>
+          <View style={{marginHorizontal: 20, marginTop: 10, flexWrap: 'wrap', flex: 1}}>
+            <ScrollView>
+              <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
+              <Text style={style.info}> {album.description} </Text>
+              <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
+              <Text style={style.info}> Published year: {album.year} </Text>
+              <Text style={style.info}> Number of songs: {album.songs.length} </Text>
+            </ScrollView>
+            <View
+              style={{
+              marginTop: 20,
+                marginBottom: 35,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity style={style.borderBtn} onPress={remove}>
+                  <Text style={style.borderBtnText}>-</Text>
+                </TouchableOpacity>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    marginHorizontal: 10,
+                    fontWeight: 'bold',
+                  }}>
+                  {quantity}
+                </Text>
+                <TouchableOpacity style={style.borderBtn} onPress={add}>
+                  <Text style={style.borderBtnText}>+</Text>
+                </TouchableOpacity>
+              </View>
+
+              <TouchableOpacity style={style.buyBtn} onPress={confirm}>
+                <Text
+                  style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
+                  Add to Cart
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
+  );
+};
+
+
+
+const DetailsScreen = ({ navigation, route }) => {
+  const album = route.params;
+  const screens = [
+    <Detail navigation={navigation} album={album} />,
+    <MusicPlayer album={album} />
+  ]
+  return (
+    <View
       style={{
         flex: 1,
         backgroundColor: '#ffffff',
       }}>
       <View style={style.header}>
         <Icon name="arrow-left" size={28} onPress={() => navigation.goBack()} />
-        <Icon name="shopping-cart" size={28} />
-      </View>
-      <View style={style.imageContainer}>
-        <Image source={album.cover} style={{resizeMode: 'contain', flex: 1}} />
-      </View>
-      <View style={style.detailsContainer}>
-        <View
-          style={{
-            marginLeft: 20,
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-          }}>
-        </View>
-        <View
-          style={{
-            marginLeft: 20,
-            marginTop: 5,
-            marginBottom: 10,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <View>
-          <Text style={{fontSize: 28, fontWeight: 'bold'}}>{album.name}</Text>
-          <Text style={{fontSize: 20, paddingTop: 10 }}>{album.artist}</Text>
-          </View>
-          <View style={style.priceTag}>
-            <Text
-              style={{
-                marginHorizontal: 15,
-                color: '#ffffff',
-                fontWeight: 'bold',
-                fontSize: 20,
-              }}>
-              ${album.price}
-            </Text>
-          </View>
-        </View>
-        <View style={{marginHorizontal: 20, marginTop: 10, flex: 2}}>
-          <ScrollView>
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
-            <Text style={style.info}> {album.description} </Text>
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
-            <Text style={style.info}> Published year: {album.year} </Text>
-            <Text style={style.info}> Number of songs: {album.songs.length} </Text>
-          </ScrollView>
-          <View
-            style={{
-              marginVertical: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <TouchableOpacity disabled={quantity < 2} style={style.borderBtn} onPress={remove}>
-                <Text style={style.borderBtnText}>-</Text>
-              </TouchableOpacity>
-              <Text
-                style={{
-                  fontSize: 20,
-                  marginHorizontal: 10,
-                  fontWeight: 'bold',
-                }}>
-                {quantity}
-              </Text>
-              <TouchableOpacity style={style.borderBtn} onPress={add}>
-                <Text style={style.borderBtnText}>+</Text>
-              </TouchableOpacity>
-            </View>
+        <Icon name="shopping-cart" size={28} onPress={() => {navigation.navigate('Cart'); setQuantity(1)}} />
 
-            <TouchableOpacity onPress={confirm}>
-            <LinearGradient colors={['#00B4DB', '#0083B0']} style={style.buyBtn}>
-                <Text
-                  style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
-                  Add to Cart
-                </Text>
-            </LinearGradient>
-            </TouchableOpacity>
-          </View>
-        </View>
       </View>
-    </SafeAreaView>
+      <ScrollView
+
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled={true}
+        horizontal
+        style={style.wrap}
+      >
+        {screens.map((screen, index) => {
+          return (
+            <View key={index} style={style.wrap}>
+              {screen}
+            </View>
+          );
+        }
+        )}
+      </ScrollView>
+
+
+    </View>
   );
 };
 
 const style = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginTop: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  wrap: {
+    width: WIDTH,
+    height: HEIGHT*0.91,
   },
   imageContainer: {
     flex: 1,
