@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: Dimensions.get('window').width/4,
+    marginRight: Dimensions.get('window').width/4 - 12,
   },
   brandText: {
     fontFamily: "FredokaOne-Regular",

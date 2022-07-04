@@ -3,6 +3,7 @@ import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity} from 'rea
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
+import LinearGradient from 'react-native-linear-gradient';
 
 const DetailsScreen = ({navigation, route}) => {
   const [element, setElement] = React.useState(Cart.list);

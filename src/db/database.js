@@ -525,7 +525,8 @@ export const Cart = {
 }
 
 export const Stores = [
-    { coordinates: { latitude: 21.039796, longitude: 105.846135 } },
-    { coordinates: { latitude: 10.386325, longitude: 105.434754 } },
-    { coordinates: { latitude: 16.052435, longitude:  108.233476 } },
+    { coordinates: { latitude: 21.030961775351827, longitude: 105.84854823005392 } },
+    { coordinates: { latitude: 16.06336904296533, longitude:  108.23408680558316 } },
+    { coordinates: { latitude: 10.7748190093447, longitude:  106.69986300331179 } },
+    { coordinates: { latitude: 10.38198089123573, longitude: 105.44246632357063 } },
   ];

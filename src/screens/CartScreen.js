@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { LayoutAnimation, StyleSheet, Text, View, Image, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Modal } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, View, Image, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Modal, Dimensions } from 'react-native';
 import { Albums, Cart } from '../db/database';
 import Icon from 'react-native-vector-icons/Feather';
 import { Card } from 'react-native-elements';
@@ -113,7 +113,7 @@ const CartScreen = ({ navigation }) => {
                     <View style={styles.itemStyle}>
                         { item.cover && (
                         <Image
-                            style={{ width: 100, height: 100, margin:10 }}
+                            style={{ width: 125, height: 125, margin:10 }}
                             source={item.cover}
                             />
                             )}
@@ -124,7 +124,7 @@ const CartScreen = ({ navigation }) => {
                                 marginTop: 15,
                                 color: 'black',
                                 fontWeight: 'bold',
-                                fontSize: 20,
+                                fontSize: 24,
                             }}>
                             {item.name}
                             </Text>
@@ -154,36 +154,28 @@ const CartScreen = ({ navigation }) => {
                             {'$' + item.total}
                             </Text>
                             )} 
-                                    <View style={{ flexDirection:'row'}}>
-                                        <TouchableOpacity onPress={() => removeItem(item)}>
-                                            <Icon name="minus-circle" size={25} color="#000" style={styles.iconMinus}/>
+                                    <View style={{ flexDirection:'row', justifyContent: 'flex-end', marginLeft: 50}}>
+                                        <TouchableOpacity style={styles.borderBtn} onPress={() => removeItem(item)}>
+                                            <Text style={styles.borderBtnText}>-</Text>
                                         </TouchableOpacity>
                                         <View>
                                                 {!!item.quantity && (
                                             
                                                 <Text
                                                         style={{
-                                                            flex: 1,
-                                                            justifyContent: 'center',
-                                                            alignItems: 'center',
-                                                            
-                                                            marginTop: 16,
-                                                            left: 7,
-                                                            color: 'black',
-                                                            fontFamily: 'Roboto-Black',
-                                                            fontSize: 30,
+                                                            fontSize: 24,
+                                                            marginHorizontal: 10,
+                                                            marginVertical: 4,
+                                                            fontWeight: 'bold',
                                                     
                                                     }}>
                                                 {item.quantity < 10 ? '0' + item.quantity : item.quantity}
                                                 </Text>
                                                 )}   
                                         </View>
-                                        <View style={{position: 'absolute', zIndex: 2, left: 120}}>
-                                            <TouchableOpacity onPress={() => addItem(item)}>
-                                                <Icon name="plus-circle" size={25} color="#000" style={styles.iconPlus}/>
-                                            </TouchableOpacity>        
-                                        </View>
-                                        
+                                            <TouchableOpacity  style={styles.borderBtn} onPress={() => addItem(item)}>
+                                                <Text style={styles.borderBtnText}>+</Text>
+                                            </TouchableOpacity>    
                             </View>        
                         </View>        
                             
@@ -294,16 +286,21 @@ const CartScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.footerCal}>
                         <Text style={styles.footerText}>Bag Total</Text>
-                        <Text style={styles.footerNumber}>{'(' + (Cart.count) + ' items )'}</Text>
+                        <Text style={styles.footerNumber}>{'(' + (Cart.count) + ' items)'}</Text>
                         <Text style={styles.footerNumber}>{'$' + (Cart.sum + (Cart.sum * 0.01)).toFixed(2)}</Text>
                     </View>
                     
                 </View>
-                <TouchableOpacity onPress={() => { Card.list = Product; navigation.navigate('Checkout') }} style={styles.checkout}>
+                <TouchableOpacity style={styles.checkout}>
                     <Text style={styles.checkoutText}>Checkout</Text>
                 </TouchableOpacity>
             </View>)}
-                
+            
+            {Cart.count == 0 && (
+                <View style={{flex: 10, alignItems: 'center'}}>
+                        <Text style={styles.footerText}>No items</Text>
+            </View>)}
+
         </View>
     );
 }
@@ -319,10 +316,10 @@ const styles = StyleSheet.create({
     cartText: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: 130
+        marginLeft: Dimensions.get('window').width/4 + 18,
     },
     headerText: {
-        fontSize: 30,
+        fontSize: 32,
         fontFamily: 'Roboto-Bold',
     },
     header: {
@@ -361,13 +358,10 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     iconMinus: {
-        borderRadius: 50,
-        backgroundColor: '#f0f0f0',
-        
+        borderRadius: 0,
         fontSize: 35,
         padding: 20,
-        paddingLeft: 10,
-        
+        paddingLeft: 0,
     },
     iconPlus: {
         borderRadius: 50,
@@ -411,7 +405,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#040F38',
         borderRadius: 50,
         padding: 25,
-        marginHorizontal: 30,
+        marginHorizontal: 50,
         marginBottom: 40,
         alignItems: 'center',
     },
@@ -473,7 +467,17 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
     
-    }
+    },
+    borderBtn: {
+        borderColor: 'grey',
+        borderWidth: 1,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 35,
+        height: 35,
+      },
+      borderBtnText: {fontWeight: 'bold', fontSize: 24},
 })
 
 
