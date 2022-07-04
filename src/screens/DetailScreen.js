@@ -3,7 +3,7 @@ import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity} from 'rea
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
-import LinearGradient from 'react-native-linear-gradient';
+import {LinearGradient} from 'expo-linear-gradient';
 
 const DetailsScreen = ({navigation, route}) => {
   const [element, setElement] = React.useState(Cart.list);
@@ -93,7 +93,7 @@ const DetailsScreen = ({navigation, route}) => {
             </Text>
           </View>
         </View>
-        <View style={{marginHorizontal: 20, marginTop: 10, flexWrap: 'wrap', flex: 1}}>
+        <View style={{marginHorizontal: 20, marginTop: 10, flex: 2}}>
           <ScrollView>
             <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
             <Text style={style.info}> {album.description} </Text>
@@ -112,7 +112,7 @@ const DetailsScreen = ({navigation, route}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <TouchableOpacity style={style.borderBtn} onPress={remove}>
+              <TouchableOpacity disabled={quantity < 2} style={style.borderBtn} onPress={remove}>
                 <Text style={style.borderBtnText}>-</Text>
               </TouchableOpacity>
               <Text
@@ -128,11 +128,13 @@ const DetailsScreen = ({navigation, route}) => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={style.buyBtn} onPress={confirm}>
-              <Text
-                style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
-                Add to Cart
-              </Text>
+            <TouchableOpacity onPress={confirm}>
+            <LinearGradient colors={['#00B4DB', '#0083B0']} style={style.buyBtn}>
+                <Text
+                  style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
+                  Add to Cart
+                </Text>
+            </LinearGradient>
             </TouchableOpacity>
           </View>
         </View>
@@ -201,7 +203,6 @@ const style = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     marginTop: 5,
-    marginRight: 75,
     textAlign: 'justify',
   }
 });

@@ -154,7 +154,7 @@ const CartScreen = ({ navigation }) => {
                             {'$' + item.total}
                             </Text>
                             )} 
-                                    <View style={{ flexDirection:'row', justifyContent: 'flex-end', marginLeft: 50}}>
+                                    <View style={{ flexDirection:'row', justifyContent: 'flex-end', marginTop: 20, alignItems: 'center'}}>
                                         <TouchableOpacity style={styles.borderBtn} onPress={() => removeItem(item)}>
                                             <Text style={styles.borderBtnText}>-</Text>
                                         </TouchableOpacity>
