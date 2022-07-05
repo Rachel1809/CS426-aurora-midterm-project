@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useRef} from 'react';
+import {StyleSheet, Animated, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Navigator from './src/screens';
 import { useFonts } from 'expo-font';
