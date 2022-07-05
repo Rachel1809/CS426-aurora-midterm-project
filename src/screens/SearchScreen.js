@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         paddingHorizontal: 24,
+        marginTop: 40,
     },
     header: {
         marginTop: 10,

@@ -313,7 +313,7 @@ const CartScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
     },
     backIcon: {
         marginTop: 12

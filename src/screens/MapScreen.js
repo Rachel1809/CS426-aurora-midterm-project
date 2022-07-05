@@ -20,6 +20,7 @@ const MapScreen = () => {
       style={styles.map}
       customMapStyle= {mapStyle}
       initialRegion={initialState}
+      showUserLocation={true}
     >
       {Stores.map((marker) => (
         <Marker

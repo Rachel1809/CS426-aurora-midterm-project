@@ -88,7 +88,7 @@ const HomeScreen = ({ navigation }) => {
             <Text>{Cart.count}</Text>
           </View>
           <View style={{}}>
-          <TouchableOpacity disabled = {!Cart.count | Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
+          <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
             <Icon name="shopping-cart" size={25} color="#000000" />
           </TouchableOpacity>
           </View>

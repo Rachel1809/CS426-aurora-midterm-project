@@ -207,7 +207,7 @@ const DetailsScreen = ({ navigation, route }) => {
 const style = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    marginTop: 10,
+    marginTop: 40,
     flexDirection: 'row',
   },
   wrap: {
