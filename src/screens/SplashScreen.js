@@ -122,7 +122,7 @@ const SplashScreen = () => {
                         fontSize: 25,
                         fontWeight: 'bold',
                         color: 'white',
-                        fontFamily: 'FredokaOne-Regular',
+                        fontFamily: "FredokaOne-Regular",
                         transform: [
                             { translateY: moveTitle.y },
                             { scale: scaleTitle }

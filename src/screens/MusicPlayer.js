@@ -5,7 +5,8 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Dimensions
+    Dimensions,
+    Platform
 } from 'react-native';
 
 import { Audio } from 'expo-av';
@@ -115,7 +116,7 @@ const style = StyleSheet.create({
         marginBottom: 7,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
-        paddingTop: 30,
+        paddingTop: Platform.OS === 'android' ? 50 : 30,
     },
     btn: {
         backgroundColor: '#040F38',
