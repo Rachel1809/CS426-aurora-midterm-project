@@ -1,6 +1,6 @@
 import { onChange } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
 import React, {Fragment} from 'react';
-import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, ViewBase} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
@@ -91,12 +91,17 @@ const Detail = ({ navigation, album }) => {
             </View>
           </View>
           <View style={{marginHorizontal: 20, marginTop: 10, flex: 1}}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
               <Text style={style.info}> {album.description} </Text>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
               <Text style={style.info}> Published year: {album.year} </Text>
               <Text style={style.info}> Number of songs: {album.songs.length} </Text>
+              <View style={{marginLeft: 5, marginTop: 5}}>
+                {album.songs.map((song, index) => { 
+                  return <Text key={index} style={style.song}>{song.id + '. ' + song.name + '\n'}</Text>
+                })}
+              </View>
             </ScrollView>
             <View
               style={{
@@ -267,6 +272,13 @@ const style = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     marginTop: 5,
+    textAlign: 'justify',
+  }, 
+  song: {
+    color: 'grey',
+    fontSize: 16,
+    lineHeight: 22,
+    marginBottom: -17,
     textAlign: 'justify',
   }
 });

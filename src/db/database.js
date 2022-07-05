@@ -82,7 +82,7 @@ export const Albums = [
             },
             {
                 id: 15,
-                name: "\"Easy on Me\" (with Chris Stapleton)",
+                name: "Easy on Me (with Chris Stapleton)",
                 duration: '3:44',
             },
         ],
