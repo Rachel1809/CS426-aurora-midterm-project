@@ -122,11 +122,12 @@ const SplashScreen = () => {
                         fontSize: 25,
                         fontWeight: 'bold',
                         color: 'white',
+                        fontFamily: 'FredokaOne-Regular',
                         transform: [
                             { translateY: moveTitle.y },
                             { scale: scaleTitle }
                         ]
-                    }}>Chatty</Animated.Text>
+                    }}>aurora</Animated.Text>
 
                 </Animated.View>
 
