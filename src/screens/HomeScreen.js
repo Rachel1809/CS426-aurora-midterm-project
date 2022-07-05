@@ -78,7 +78,6 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.brand}>
             <Text style={styles.brandText}>aurora</Text>
           </View>
-
           <View style={styles.cart}>
           <View style={{}}>
           <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Cart")}>

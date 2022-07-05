@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import {
-  View, 
-  SafeAreaView, 
-  Image, 
-  Text, 
-  StyleSheet, 
-  TouchableOpacity, 
-  ScrollView, 
-  Dimensions, 
+  View,
+  SafeAreaView,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Dimensions,
   Platform
 } from 'react-native';
 
@@ -21,7 +21,7 @@ const HEIGHT = Dimensions.get('window').height;
 const Detail = ({ navigation, album }) => {
   const [element, setElement] = React.useState(Cart.list);
   const [quantity, setQuantity] = React.useState(1);
-  
+
   const add = () => {
     setQuantity(quantity + 1)
   }
@@ -99,12 +99,17 @@ const Detail = ({ navigation, album }) => {
             </View>
           </View>
           <View style={{marginHorizontal: 20, marginTop: 10, flex: 1}}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
               <Text style={style.info}> {album.description} </Text>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
               <Text style={style.info}> Published year: {album.year} </Text>
               <Text style={style.info}> Number of songs: {album.songs.length} </Text>
+              <View style={{marginLeft: 5, marginTop: 5}}>
+                {album.songs.map((song, index) => {
+                  return <Text key={index} style={style.song}>{song.id + '. ' + song.name + '\n'}</Text>
+                })}
+              </View>
             </ScrollView>
             <View
               style={{
@@ -118,10 +123,10 @@ const Detail = ({ navigation, album }) => {
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}>
-                <TouchableOpacity 
-                  disabled={quantity < 2} 
-                  activeOpacity = {quantity < 2 ? 1 : 0} 
-                  style={style.borderBtn} 
+                <TouchableOpacity
+                  disabled={quantity < 2}
+                  activeOpacity = {quantity < 2 ? 1 : 0}
+                  style={style.borderBtn}
                   onPress={remove}>
                   <Text style={style.borderBtnText}>-</Text>
                 </TouchableOpacity>
@@ -259,6 +264,13 @@ const style = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     marginTop: 5,
+    textAlign: 'justify',
+  }, 
+  song: {
+    color: 'grey',
+    fontSize: 16,
+    lineHeight: 22,
+    marginBottom: -17,
     textAlign: 'justify',
   }
 });
