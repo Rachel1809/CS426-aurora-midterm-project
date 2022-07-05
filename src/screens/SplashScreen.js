@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Animated, Dimensions, Image, Text, View } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Logo from '../assets/logo.png';
+import Logo from '../assets/splashscreen.png';
 
 const BGColor = "#040F38"
 

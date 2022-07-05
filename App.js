@@ -1,9 +1,9 @@
 import React, {useRef} from 'react';
 import {StyleSheet, Animated, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import Navigator from './src/screens';
 import { useFonts } from 'expo-font';
-
+import SplashScreen from './src/screens/SplashScreen';
 const App = () => {
   const [loaded] = useFonts({
     "FredokaOne-Regular": require('./assets/fonts/FredokaOne-Regular.ttf'),
@@ -18,7 +18,38 @@ const App = () => {
     console.log('Cannot load');
   }
 
-  return <Navigator />;
+  return (
+    <SafeAreaProvider>
+      <View style={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    }}>
+      <SplashScreen/>
+      <Animated.View style={{
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        zIndex: 0,
+        transform: [
+            { translateY: 0 }
+        ]
+    }}>
+
+      <Navigator />
+
+    </Animated.View>
+    </View>
+    </SafeAreaProvider>
+    
+    
+    
+  );
 };
 
 const styles = StyleSheet.create({
