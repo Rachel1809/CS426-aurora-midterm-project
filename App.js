@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {StyleSheet, Animated, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {StyleSheet, Animated, View, LogBox} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import Navigator from './src/screens';
 import { useFonts } from 'expo-font';
@@ -13,6 +13,10 @@ const App = () => {
     "Roboto-Italic": require("./assets/fonts/Roboto-Italic.ttf"),
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   })
+  useEffect(() => {
+    
+    LogBox.ignoreAllLogs();
+  });
 
   if (!loaded) {
     console.log('Cannot load');
