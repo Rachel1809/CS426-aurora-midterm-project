@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import {StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -11,6 +12,8 @@ const initialState = {
 }
 
 const MapScreen = () => {
+  const [visible, setVisible] = useState(false);
+
   return (
     <View style={styles.container}>
     <MapView
@@ -24,9 +27,11 @@ const MapScreen = () => {
         <Marker
           key={marker.key}
           coordinate={marker.coordinates}
+          title={marker.storeName}
+          description={marker.address}
         >
           <Icon name= "location-pin" size={50} 
-          colors="#040F38"/>
+          colors="#040F38" style={{zIndex: 10}}/>
         </Marker>
       ))}
    </MapView>
@@ -44,6 +49,25 @@ const styles = StyleSheet.create({
   map: {
    ...StyleSheet.absoluteFillObject,
   },
+  modalView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalBtnClose: {
+    justifyContent: 'flex-end'
+  },
+  modalName: {
+    fontSize: 20,
+    color: '#040F38',
+    marginTop: 20,
+    fontWeight: 'bold'
+  },
+  modalText: {
+    fontSize: 20,
+    color: '#040F38',
+    marginTop: 20,
+},
  });
  
 
