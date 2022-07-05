@@ -1,8 +1,21 @@
 import React, {useState, useEffect, Fragment } from 'react';
-import { LayoutAnimation, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Modal, Dimensions } from 'react-native';
+import { 
+    LayoutAnimation, 
+    StyleSheet, 
+    Text, 
+    View, 
+    SafeAreaView, 
+    Image, 
+    TouchableOpacity, 
+    TouchableNativeFeedback, 
+    Modal, 
+    Dimensions 
+} from 'react-native';
+
 import { Albums, Cart } from '../db/database';
 import Icon from 'react-native-vector-icons/Feather';
 import { Card } from 'react-native-elements';
+
 import {
   SwipeableFlatList,
   SwipeableQuickActionButton,
@@ -314,9 +327,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
     },
     backIcon: {
-        marginTop: 12
+        marginTop: 4
     },
     cartText: {
         alignItems: 'center',
@@ -324,7 +338,7 @@ const styles = StyleSheet.create({
         marginLeft: Dimensions.get('window').width/4 + 18,
     },
     headerText: {
-        fontSize: 32,
+        fontSize: 28,
         fontFamily: 'Roboto-Bold',
     },
     header: {
@@ -333,6 +347,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         borderBottomColor: '#040F38',
         marginBottom: 20,
+        alignItems: 'center',
     },
     cartContainer: {
         flex: 5,

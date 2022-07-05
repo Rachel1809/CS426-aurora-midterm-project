@@ -1,9 +1,7 @@
-import MapView, { Marker, MyCustomMarkerView, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-import {Image, StyleSheet, Text, View, ActivityIndicator, LogBox } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import {StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Stores} from '../db/database'
-import {LinearGradient} from 'expo-linear-gradient';
-import { useEffect, useState } from 'react';
 
 const initialState = {
   latitude: 16.06336904296533, 

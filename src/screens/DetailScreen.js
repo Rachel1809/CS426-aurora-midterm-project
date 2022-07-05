@@ -1,11 +1,19 @@
-import { onChange } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
-import React, {Fragment} from 'react';
-import {View, SafeAreaView, Image, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import React, { Fragment } from 'react';
+import {
+  View, 
+  SafeAreaView, 
+  Image, 
+  Text, 
+  StyleSheet, 
+  TouchableOpacity, 
+  ScrollView, 
+  Dimensions, 
+  Platform
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
 import MusicPlayer from './MusicPlayer';
-import LinearGradient from 'react-native-linear-gradient';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -162,26 +170,9 @@ const DetailsScreen = ({ navigation, route }) => {
           <TouchableOpacity onPress={() => navigation.goBack()} >
             <Icon name="arrow-left" size={28} color='#000' />
           </TouchableOpacity>
-          <View style={{position: 'relative', justifyContent: 'flex-end', marginTop: -8, marginLeft: WIDTH - 100}}>
-          <View style={{
-            backgroundColor: 'yellow',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 18,
-            width: 18,
-            marginBottom: -8,
-            marginLeft: 18,
-            zIndex: 5,
-            borderRadius: 9,
-            fontSize: 1
-            }}>
-            <Text>{Cart.count}</Text>
-          </View> 
-            <TouchableOpacity disabled = {!Cart.count} onPress={() => {navigation.navigate('Cart')}} >
+          <TouchableOpacity onPress={() => {navigation.navigate('Cart')}} >
               <Icon name="shopping-cart" size={28} color='#000' />
-            </TouchableOpacity>
-          </View>
-
+          </TouchableOpacity>
         </View>
         <ScrollView
           showsHorizontalScrollIndicator={false}
@@ -207,8 +198,9 @@ const DetailsScreen = ({ navigation, route }) => {
 const style = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    marginTop: 40,
+    paddingTop: Platform.OS === 'android' ? 40 : 0,
     flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   wrap: {
     width: WIDTH,

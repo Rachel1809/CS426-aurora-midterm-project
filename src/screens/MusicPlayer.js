@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
     View,
-    SafeAreaView,
     Image,
     Text,
     StyleSheet,
@@ -15,7 +14,6 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 import Icon from 'react-native-vector-icons/Feather';
-import { Cart } from '../db/database';
 import { useFocusEffect } from '@react-navigation/native';
 
 

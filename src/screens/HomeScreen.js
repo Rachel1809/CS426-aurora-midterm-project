@@ -1,20 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Dimensions} from 'react-native';
+import {
+  StyleSheet, 
+  Text, 
+  View, 
+  ScrollView, 
+  TouchableOpacity, 
+  FlatList, 
+  Dimensions
+} from 'react-native';
+
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme } from '@react-navigation/native';
+
 import Card from '../components/ListAlbums';
 import Icon from 'react-native-vector-icons/Feather';
 import MapScreen from './MapScreen';
 import { Albums, Cart } from '../db/database';
 
-import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 const Tab = createBottomTabNavigator();
 
-export function HomeStackScreen() {
-    const [quantity, setQuantity] = React.useState(Cart.count > 0 ? Cart.count : 0);
-    
+export function HomeStackScreen() {    
     return (
       <Tab.Navigator
         initialRouteName={"Home"}
@@ -73,20 +80,6 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           <View style={styles.cart}>
-          <View style={{
-            backgroundColor: 'yellow',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 18,
-            width: 18,
-            marginBottom: -8,
-            marginRight: -8,
-            zIndex: 5,
-            borderRadius: 9,
-            fontSize: 1
-            }}>
-            <Text>{Cart.count}</Text>
-          </View>
           <View style={{}}>
           <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
             <Icon name="shopping-cart" size={25} color="#000000" />

@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import { Cart, Albums } from '../db/database';
+import { Albums } from '../db/database';
 import {
-    SafeAreaView, View, FlatList, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions
+    SafeAreaView, 
+    View, 
+    FlatList,
+    StyleSheet, 
+    Text, 
+    Image, 
+    TouchableOpacity, 
+    Dimensions
 } from 'react-native';
-// import all the components we are going to use
+
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -127,7 +134,7 @@ const SearchScreen = ({navigation}) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={filteredDataSource}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(index) => index.toString()}
 
           renderItem={ItemView}
           contentContainerStyle={{paddingBottom: 200, fontColor: '#000000' }}
@@ -141,7 +148,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         paddingHorizontal: 24,
-        marginTop: 40,
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
     },
     header: {
         marginTop: 10,
