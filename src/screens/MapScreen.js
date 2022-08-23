@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {Stores} from '../db/database'
 
 const initialState = {
-  latitude: 16.06336904296533, 
-  longitude: 105.84056326827525,
-  latitudeDelta: 8.209,
-  longitudeDelta: 15.728,
+  latitude: 10.787546979605876,
+  longitude:  106.70618797505074,
+  latitudeDelta: 0.0009,
+  longitudeDelta: 0.0028,
 }
 
 const MapScreen = () => {
@@ -18,10 +18,11 @@ const MapScreen = () => {
     <View style={styles.container}>
     <MapView
       provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+      showUserLocation
       style={styles.map}
       customMapStyle= {mapStyle}
       initialRegion={initialState}
-      showUserLocation={true}
+
     >
       {Stores.map((marker) => (
         <Marker

@@ -147,25 +147,14 @@ const CartScreen = ({ navigation }) => {
                             </Text>
                         )
                         }
-                        {!!item.artist && (
-                            <Text
-                                style={{
-                                marginTop: 2,
-                                fontSize: 20,
-                                color: 'black',
-                                }}>
-                            {item.artist}
-                            </Text>
-                        )
-                        }
                         <View style={{flexDirection: 'column'}}>
                             {!!item.total && (
                             <Text
                                 style={{
-                                    marginTop: 24,
-                                    color: '#F3A712',
+                                    marginTop: 20,
+                                    color: '#8B5D33',
                                     fontWeight: 'bold',
-                                    fontSize: 22,
+                                    fontSize: 20,
                                 
                                 }}>
                             {'$' + item.total}
@@ -319,7 +308,7 @@ const CartScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </View>)}
         </SafeAreaView>
-        <SafeAreaView style={{ flex: 0, backgroundColor: '#040F38' }} />
+        <SafeAreaView style={{ flex: 0, backgroundColor: '#58641D' }} />
         </Fragment>
     );
 }
@@ -377,7 +366,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 10,
         padding: 10,
-        height: 175,
+        height: 140,
     },
     iconMinus: {
         borderRadius: 0,
@@ -396,7 +385,7 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: '#040F38',
+        backgroundColor: '#58641D',
         paddingHorizontal: 30,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -432,7 +421,7 @@ const styles = StyleSheet.create({
     checkoutText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#040F38',
+        color: '#58641D',
     },
     modalView: {
         flex: 1,
@@ -494,10 +483,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
       },
-      borderBtnText: {fontWeight: 'bold', fontSize: 20},
+      borderBtnText: {fontWeight: 'bold', fontSize: 16},
 })
 
 

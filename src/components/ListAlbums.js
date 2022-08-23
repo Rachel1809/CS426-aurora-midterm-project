@@ -50,26 +50,24 @@ const Card = ({ navigation, album }) => {
           />
         </View>
 
-        <Text numberOfLines={1} style={{fontWeight: 'bold', fontSize: 20, marginTop: 10}}>
+        <Text numberOfLines={1} style={{fontWeight: 'bold', fontSize: 18, marginTop: 10}}>
           {album.name}
         </Text>
-        <Text numberOfLines={1} style={{fontSize: 16, marginTop: 3}}>
-          {album.artist}
-        </Text>
+
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginVertical: 12,
+            marginVertical: 16,
           }}>
-          <Text style={{fontSize: 19, fontWeight: 'bold', color: '#040F38'}}>
+          <Text style={{fontSize: 19, fontWeight: 'bold', color: '#8B5D33'}}>
             ${album.price}
           </Text>
           <TouchableOpacity
             style={{
               height: 30,
               width: 30,
-              backgroundColor: '#F3A712',
+              backgroundColor: '#58641D',
               borderRadius: 5,
               justifyContent: 'center',
               alignItems: 'center',
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   card: {
-    height: 230,
+    height: 210,
     width,
     backgroundColor: '#f0f0f0',
     borderRadius: 10,

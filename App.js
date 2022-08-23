@@ -7,6 +7,7 @@ import SplashScreen from './src/screens/SplashScreen';
 const App = () => {
   const [loaded] = useFonts({
     "FredokaOne-Regular": require('./assets/fonts/FredokaOne-Regular.ttf'),
+    "PTSerif-Regular": require('./assets/fonts/PTSerif-Regular.ttf'),
     "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
     "RobotoCondensed-Bold": require("./assets/fonts/RobotoCondensed-Bold.ttf"),
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),

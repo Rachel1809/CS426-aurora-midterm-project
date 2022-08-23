@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   StyleSheet, 
   Text, 
@@ -14,12 +14,36 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme } from '@react-navigation/native';
 
 import Card from '../components/ListAlbums';
-import Icon from 'react-native-vector-icons/Feather';
+import ListService from '../components/ListServices';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import Entypo from 'react-native-vector-icons/Entypo';
+
 import MapScreen from './MapScreen';
 import { Albums, Cart } from '../db/database';
 
-
 const Tab = createBottomTabNavigator();
+
+const OptionItem = ({icon, bgColor, label, onPress, navigation}) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => navigation.navigate(onPress)}
+    >
+      <View style={[{flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30}]}>
+        <View style={[{alignItems: 'center', width: 60, height: 60, backgroundColor: '#fff', borderRadius: 13}]}>
+          <View
+            style = {{flex: 1, justifyContent: 'center'}}
+          >
+            <Entypo name = {icon} color = {bgColor} size={32}/>
+          </View>
+        </View>
+        <Text style={{marginVertical: 10, fontSize: 12}}>{label}</Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
+
 
 export function HomeStackScreen() {    
     return (
@@ -34,21 +58,19 @@ export function HomeStackScreen() {
               iconName = "home"
             }
             else if (rn === "Maps") {
-              iconName = "map-pin"
+              iconName = "map"
             }
 
             return <Icon name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#F3A712',
-          tabBarInactiveTintColor: '#ffffff',
+          tabBarActiveTintColor: '#58641D',
+          tabBarInactiveTintColor: '#000000',
           tabBarShowLabel: false,
           tabBarStyle: [{
             position: 'absolute',
             padding: 10, 
             height: 70,
-            backgroundColor: '#040F38',
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
+            backgroundColor: '#ffffff',
             ...styles.shadow
           }],
           headerStyle: {
@@ -71,30 +93,27 @@ export function HomeStackScreen() {
 const HomeScreen = ({ navigation }) => {
   
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff', flexGrow: 1}}
-    nestedScrollEnabled={true}>
+    <Fragment>
+    <SafeAreaView style={{flex:0, backgroundColor: '#58641d'}}/>
+    <SafeAreaView style={{flex:1, backgroundColor: '#fff', paddingTop: -50}}>
       <View style={styles.greet_container}>
         <View style={styles.header}>
           <View style={styles.brand}>
-            <Text style={styles.brandText}>aurora</Text>
+            <Text style={styles.brandText}>suki</Text>
           </View>
           <View style={styles.cart}>
           <View style={{}}>
           <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
-            <Icon name="shopping-cart" size={25} color="#000000" />
+            <Icon name="cart" size={25} color="#fff" />
           </TouchableOpacity>
           </View>
           </View>
         </View>
-        <TouchableOpacity activeOpacity={1}>
-          <TouchableOpacity style={styles.searchBar} onPress={()=>navigation.navigate('Search')}>
-            <Icon name="search" size={25} color="#000000" />
-            <Text style={styles.searchGuide}>What album motivates you today?</Text>
-          </TouchableOpacity>
-        </TouchableOpacity>
       </View>
       <ScrollView style={styles.container}>
-        <Text style={styles.title}>All items</Text>
+        <Text style={styles.title}>Services</Text>
+        <ListService navigation = {navigation}/>
+        <Text style={styles.title}>New items</Text>
         <FlatList
           columnWrapperStyle={{justifyContent: 'space-between'}}
           showsVerticalScrollIndicator={false}
@@ -103,6 +122,7 @@ const HomeScreen = ({ navigation }) => {
             paddingBottom: 50,
           }}
           numColumns={2}
+          key={2}
           data={Albums}
           renderItem={({item}) => {
             return <Card navigation={navigation} album={item} />;
@@ -110,7 +130,7 @@ const HomeScreen = ({ navigation }) => {
         />
       </ScrollView>
     </SafeAreaView>
-    
+    </Fragment>
   );
 };
 
@@ -119,9 +139,10 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   greet_container: {
     flex: 0,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#58641d',
+    borderBottomLeftRadius: 40,
     paddingHorizontal: 24,
-    paddingVertical: 18,
+    paddingBottom: 250
   },
   container: {
     flex: 1,
@@ -133,8 +154,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 24,
-    paddingBottom: 10,
+    fontSize: 20,
+    paddingVertical: 15,
   },
   userName: {
     fontWeight: 'bold',
@@ -164,11 +185,12 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: Dimensions.get('window').width/4 - 12,
+    marginRight: Dimensions.get('window').width/4 + 16,
   },
   brandText: {
-    fontFamily: "FredokaOne-Regular",
+    fontFamily: 'PTSerif-Regular',
     fontSize: 40,
+    color:'#fff'
   }
 });
 
