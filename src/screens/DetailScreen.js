@@ -113,7 +113,7 @@ const Detail = ({ navigation, album }) => {
             </ScrollView>
             <View
               style={{
-              marginTop: 20,
+                marginTop: 20,
                 marginBottom: 40,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
