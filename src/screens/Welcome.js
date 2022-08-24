@@ -86,7 +86,7 @@ const Welcome = () => {
                                 height: 30,
                                 width: 30,
                                 top: 20,
-                                backgroundColor: "rgba(0,0,0,0.1)",
+                                backgroundColor: "#f0f0f0",
                                 right: 20,
                                 
                                 alignItems: "center",
@@ -96,11 +96,11 @@ const Welcome = () => {
                             }}
                         >
 
-                            <Icon name="close" color="green" size={30}/>
+                            <Icon name="close" color="#8B5D33" size={20}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.buttonLogIn}} onPress={() => navigation.navigate("Login")}>
                             <Text style={styles.buttonTextIn}>
-                                LOG IN
+                                LOGIN
                             </Text>
                         </TouchableOpacity>
                 
@@ -111,9 +111,6 @@ const Welcome = () => {
                         </TouchableOpacity>
                     </Animated.View>
                 </PanGestureHandler>
-                
-            
-            
         )
     }
     
@@ -138,7 +135,7 @@ const Welcome = () => {
         return (
             <View style={styles.buttonCircle}>
                 
-                <Text style={{color: "green", fontSize: 30, fontWeight: "bold"}}>
+                <Text style={{color: "#58641d", fontSize: 20, fontWeight: "bold"}}>
                     Continue
                 </Text>
 
@@ -194,8 +191,8 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
     },
     buttonCircle: {
-        width: width * 3/4,
-        height: 80,
+        width: width * 0.5,
+        height: 60,
         backgroundColor: 'white',
         borderRadius: 50,
         shadowColor: '#000',
@@ -204,39 +201,37 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 1,
         bottom: 30,
-        alignSelf: 'center',
-        left: -width*5/6,
+        left: -width*0.5*1.45,
         alignItems: 'center',
         justifyContent: 'center',
-        position: "absolute"
+        position: 'absolute'
     },
     buttonLog: {
-        backgroundColor: "green",
-        height: 70,
+        backgroundColor: "#8B5D33",
+        height: 60,
         marginHorizontal: 40,
         borderRadius: 35,
-        width: width * 3 / 4,
+        width: width * 0.5,
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
-        
-        
     },
     buttonLogIn: {
         backgroundColor: "white",
-        height: 70,
+        height: 60,
         marginHorizontal: 40,
         borderRadius: 50,
-        width: width * 3 / 4,
+        width: width * 0.5,
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center', 
-        borderColor: "green",
+        borderColor: "#8B5D33",
         borderWidth: 1,
         marginBottom: 25,
     },
     space: {
-        borderRadius: 30,
+        zIndex: 10,
+        borderRadius: 20,
         backgroundColor: 'white',
         height: height*0.4,
         justifyContent: 'center',
@@ -246,16 +241,15 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 1,
         overflow: "hidden",
-        
     },
     buttonText: {
-        fontSize: 24,
+        fontSize: 16,
         fontWeight: 'bold',
         color: 'white',
     },
     buttonTextIn: {
-        fontSize: 24,
+        fontSize: 16,
         fontWeight: 'bold',
-        color: 'black',
+        color: '#8B5D33',
     }
 })

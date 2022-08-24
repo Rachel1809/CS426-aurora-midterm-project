@@ -1,8 +1,10 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import React, {useState} from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions, SafeAreaView } from 'react-native'
+import React, {useState, Fragment} from 'react'
 import { firebase } from "../db/config";
 import { useNavigation } from '@react-navigation/native'
+import Icon from 'react-native-vector-icons/Feather';
 
+const { width, height } = Dimensions.get('window')
 
 const Registration = () => {
     const navigation = useNavigation()
@@ -42,22 +44,30 @@ const Registration = () => {
         )
     }
     return (
+    <Fragment>
+        <SafeAreaView 
+        style={{
+        flex: 1,
+        backgroundColor: '#58641d',
+        }}>
+        <View style={styles.header}>
+        </View>
+        <Text style={{fontSize: 30, fontWeight: 'bold', marginHorizontal: 20, color: '#fff'}}>Registration</Text>
         <View style={styles.container}>
-            <Text style={{ fontWeight: "bold", fontSize: 23 }}>
-                Registration
-            </Text>
-            <View style={{ marginTop: 40 }}>
+            <View style={{ marginTop: 0 }}>
                 <TextInput
                     style={styles.TextInput}
                     placeholder="First Name"
                     onChangeText={(firstName) => setFirstName(firstName)}
                     autoCorrect={false}
+                    returnKeyType="done"
                 />
                 <TextInput
                     style={styles.TextInput}
                     placeholder="Last Name"
                     onChangeText={(lastName) => setLastName(lastName)}
                     autoCorrect={false}
+                    returnKeyType="done"
                 />
                 <TextInput
                     style={styles.TextInput}
@@ -66,6 +76,7 @@ const Registration = () => {
                     autoCapitalize="none"
                     keyboardType="email-address"
                     autoCorrect={false}
+                    returnKeyType="done"
                 />
                 <TextInput
                     style={styles.TextInput}
@@ -74,6 +85,7 @@ const Registration = () => {
                     autoCapitalize="none"
                     secureTextEntry={true}
                     autoCorrect={false}
+                    returnKeyType="done"
                 />
             </View>
             <TouchableOpacity
@@ -81,42 +93,62 @@ const Registration = () => {
                 style={styles.button}
             
             >
-                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 16, color: '#fff' }}>
                     Register
                 </Text>
 
             </TouchableOpacity>
         </View>
+        </SafeAreaView>
+        <SafeAreaView
+            style={{
+                flex: 0,
+                backgroundColor: '#f0f0f0',
+            }}
+        />
+    </Fragment>
     )
-
 }
 
 export default Registration
 
 const styles = StyleSheet.create({
-    container: {
+    header: {
         flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: Platform.OS === 'android' ? 40 : 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    container: {
+        flex: 6,
         justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f0f0f0',
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
+        marginTop: 20,
+        paddingTop: 20,
     },
     TextInput: {
+        marginTop: 6,
         paddingTop: 20,
         paddingBottom: 20,
-        width: 400,
-        fontSize: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#000',
+        paddingLeft: 10,
+        width: width*0.8,
+        fontSize: 16,
+        backgroundColor: '#fff',
+        borderRadius: width*0.02,
         marginBottom: 10,
-        textAlign: 'center'
+        justifyContent: 'center'
     },
     button: {
         alignItems: 'center',
-        height: 70,
-        width: 250,
+        height: 60,
+        width: width*0.8,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#026efd',
-        borderRadius: 50,
+        backgroundColor: '#8B5D33',
+        borderRadius: width*0.1,
+        marginTop: 50,
     }
-
-
 })
