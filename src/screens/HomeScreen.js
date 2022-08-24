@@ -23,6 +23,7 @@ import MapScreen from './MapScreen';
 import { Albums, Cart } from '../db/database';
 
 const Tab = createBottomTabNavigator();
+const WIDTH = Dimensions.get('window').width;
 
 const OptionItem = ({icon, bgColor, label, onPress, navigation}) => {
   return (
@@ -57,11 +58,11 @@ export function HomeStackScreen() {
             if (rn === "Home") {
               iconName = "home"
             }
-            else if (rn === "Maps") {
-              iconName = "map"
+            else if (rn === "History") {
+              iconName = "back-in-time"
             }
 
-            return <Icon name={iconName} size={size} color={color} />;
+            return <Entypo name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#58641D',
           tabBarInactiveTintColor: '#000000',
@@ -84,7 +85,7 @@ export function HomeStackScreen() {
         })}>
 
         <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"Maps"} component={MapScreen} options={{headerShown: false}}/>
+        <Tab.Screen name={"History"} component={HomeScreen} options={{headerShown: false}}/>
 
       </Tab.Navigator>
   );
@@ -101,33 +102,11 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.brand}>
             <Text style={styles.brandText}>suki</Text>
           </View>
-          <View style={styles.cart}>
-          <View style={{}}>
-          <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Cart")}>
-            <Icon name="cart" size={25} color="#fff" />
-          </TouchableOpacity>
-          </View>
-          </View>
         </View>
       </View>
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Services</Text>
         <ListService navigation = {navigation}/>
-        <Text style={styles.title}>New items</Text>
-        <FlatList
-          columnWrapperStyle={{justifyContent: 'space-between'}}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            marginTop: 10,
-            paddingBottom: 50,
-          }}
-          numColumns={2}
-          key={2}
-          data={Albums}
-          renderItem={({item}) => {
-            return <Card navigation={navigation} album={item} />;
-          }}
-        />
       </ScrollView>
     </SafeAreaView>
     </Fragment>
@@ -138,10 +117,9 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   greet_container: {
-    flex: 0,
+    flex: 0.3,
     backgroundColor: '#58641d',
     borderBottomLeftRadius: 40,
-    paddingHorizontal: 24,
     paddingBottom: 250
   },
   container: {
@@ -162,8 +140,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    marginLeft: WIDTH*0.5 - 40
   },
   cart: {
     alignItems: 'flex-end',

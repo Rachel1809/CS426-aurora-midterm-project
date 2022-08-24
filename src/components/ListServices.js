@@ -16,11 +16,18 @@ export const listServices = [
     screen: 'Shopping'
   },
   {
+    icon: 'map',
+    label: 'Map',
+    bgColor: '#58641D',
+    screen: 'Maps'
+  },
+  {
     icon: 'compass',
     label: 'Explore',
     bgColor: '#58641D',
     screen: 'Explore'
   },
+
 ];
 
 const renderServiceItem = (item, navigation) => {

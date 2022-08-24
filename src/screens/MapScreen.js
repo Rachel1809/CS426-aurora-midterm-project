@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-import {StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Entypo';
+import {StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Feather';
 import {Stores} from '../db/database'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const initialState = {
   latitude: 10.787546979605876,
@@ -11,37 +13,55 @@ const initialState = {
   longitudeDelta: 0.0028,
 }
 
-const MapScreen = () => {
+const MapScreen = ({navigation}) => {
   const [visible, setVisible] = useState(false);
 
   return (
+    <View style={{flex: 1, backgroundColor: '#fff', zIndex: 3}}>
+    <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} >
+          <Icon name="arrow-left" size={28} color='#fff' />
+        </TouchableOpacity>
+        <Text style={{fontSize: 20, fontWeight: 'bold', marginRight: 135, color: '#fff'}}>Zoo Map</Text>
+    </View>
     <View style={styles.container}>
-    <MapView
-      provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-      showUserLocation
-      style={styles.map}
-      customMapStyle= {mapStyle}
-      initialRegion={initialState}
+      <MapView
+        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        showUserLocation
+        style={styles.map}
+        customMapStyle= {mapStyle}
+        initialRegion={initialState}
 
-    >
-      {Stores.map((marker) => (
-        <Marker
-          key={marker.key}
-          coordinate={marker.coordinates}
-          title={marker.storeName}
-          description={marker.address}
-        >
-          <Icon name= "location-pin" size={50} 
-          colors="#040F38" style={{zIndex: 10}}/>
-        </Marker>
-      ))}
-   </MapView>
- </View>
+      >
+        {Stores.map((marker) => (
+          <Marker
+            key={marker.key}
+            coordinate={marker.coordinates}
+            title={marker.storeName}
+            description={marker.address}
+          >
+            <Entypo name= "location-pin" size={50} 
+            colors="#040F38" style={{zIndex: 10}}/>
+          </Marker>
+        ))}
+      </MapView>
+    </View>
+    </View>
   )
 };
 
 const styles = StyleSheet.create({
+  header: {
+    zIndex: 2,
+    backgroundColor: '#58641d',
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   container: {
+    flex: 1,
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',

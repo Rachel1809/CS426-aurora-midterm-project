@@ -33,7 +33,7 @@ const BookingScreen = ({navigation}) => {
     }}>
       <View style={style.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} >
-          <Icon name="arrow-left" size={28} color='#000' />
+          <Icon name="arrow-left" size={28} color='#fff' />
         </TouchableOpacity>
       </View>
       
