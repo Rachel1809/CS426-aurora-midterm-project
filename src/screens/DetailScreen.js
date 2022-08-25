@@ -14,6 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
 
+
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
@@ -151,9 +152,7 @@ const Detail = ({ navigation, album }) => {
 
 const DetailsScreen = ({ navigation, route }) => {
   const album = route.params;
-  const screens = [
-    <Detail navigation={navigation} album={album} />,
-  ]
+
   return (
     <Fragment>
       <SafeAreaView
@@ -169,14 +168,9 @@ const DetailsScreen = ({ navigation, route }) => {
               <Icon name="shopping-cart" size={28} color='#000' />
           </TouchableOpacity>
         </View>
-        {screens.map((screen, index) => {
-            return (
-              <View key={index} style={style.wrap}>
-                {screen}
-              </View>
-            );
-          }
-        )}
+
+        <Detail navigation={navigation} album={album} />
+
       </SafeAreaView>
       <SafeAreaView style={{ flex: 0, backgroundColor: '#f0f0f0' }} />
     </Fragment>
