@@ -481,3 +481,44 @@ export const Stores = [
         address: '21, Hai Ba Trung street, My Long ward, Long Xuyen city',
     },
   ];
+
+export const Tour = [
+    { 
+        key: 1,
+        name: 'Day Tour',
+        cover: require('../assets/tour/day.jpg'),
+    },
+    { 
+        key: 2,
+        name: 'Night Tour',
+        cover: require('../assets/tour/night.jpg'),
+    },
+];
+
+export const Animals = [
+    { 
+        key: 1,
+        name: 'Peacock',
+        cover: require('../assets/animals/peacock.jpg'),
+    },
+    { 
+        key: 2,
+        name: 'Flamingo',
+        cover: require('../assets/animals/flamingo.jpg'),
+    },
+    { 
+        key: 3,
+        name: 'Elephant',
+        cover: require('../assets/animals/elephant.jpg'),
+    },
+    { 
+        key: 4,
+        name: 'Giffare',
+        cover: require('../assets/animals/giffare.jpg'),
+    },
+    { 
+        key: 5,
+        name: 'Tiger',
+        cover: require('../assets/animals/tiger.jpg'),
+    },
+];

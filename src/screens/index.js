@@ -14,6 +14,7 @@ import DetailsScreen from './DetailScreen';
 import BookingScreen from './BookScreen';
 import MapScreen from './MapScreen';
 import ShoppingScreen from './ShoppingScreen';
+import ExploreScreen from './ExploreScreen';
 
 import { Feather } from '@expo/vector-icons';
 
@@ -54,6 +55,7 @@ const Navigator = () => {
           <HomeStack.Screen name="Booking" component={BookingScreen} />
           <HomeStack.Screen name="Maps" component={MapScreen} />
           <HomeStack.Screen name="Shopping" component={ShoppingScreen} />
+          <HomeStack.Screen name="Explore" component={ExploreScreen} />
         </HomeStack.Navigator>
       </NavigationContainer>
     );

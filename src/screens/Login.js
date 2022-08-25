@@ -37,6 +37,7 @@ const Login = () => {
                     onChangeText={(email) => setEmail(email)}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    keyboardType="email-address"
                     returnKeyType="done"
                 />
                 <TextInput
