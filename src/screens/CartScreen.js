@@ -26,7 +26,7 @@ const CartScreen = ({ navigation }) => {
     
     const [Product, setProduct] = useState(Cart.list);
     const [visible, setVisible] = useState(false);
-    const [Id, setId] = useState();
+    const [key, setKey] = useState();
     const [isRender, setRender] = useState(false);
     const [viewProductVisible, setViewProductVisible] = useState(false);
 
@@ -125,7 +125,7 @@ const CartScreen = ({ navigation }) => {
             <View style={styles.itemContainer}>
             <TouchableNativeFeedback
                 
-                    onPress={() => { setId(item.id);  setViewProductVisible(true)}}
+                    onPress={() => { setId(item.key);  setViewProductVisible(true)}}
                 >
                     <View style={styles.itemStyle}>
                         { item.cover && (
