@@ -487,11 +487,25 @@ export const Tour = [
         key: 1,
         name: 'Day Tour',
         cover: require('../assets/tour/day.jpg'),
+        price: [
+            {
+                kid: 1.5,
+                adult: 3
+            }
+        ],
+        hours: '8.00 AM to 5.00 PM'
     },
     { 
         key: 2,
         name: 'Night Tour',
         cover: require('../assets/tour/night.jpg'),
+        price: [
+            {
+                kid: 5,
+                adult: 10
+            }
+        ],
+        hours: '6.30 PM to 8.00 PM'
     },
 ];
 
@@ -500,25 +514,77 @@ export const Animals = [
         key: 1,
         name: 'Peacock',
         cover: require('../assets/animals/peacock.jpg'),
-    },
+        icon: require('../assets/animals/icons/peacock.png'),
+        coordinates: { latitude: 10.78747590103391, longitude: 106.70700385185006 },
+    }, 
     { 
         key: 2,
         name: 'Flamingo',
         cover: require('../assets/animals/flamingo.jpg'),
+        icon: require('../assets/animals/icons/flamingo.png'),
+        coordinates: { latitude: 10.787624192038303, longitude: 106.70713232738176 },
     },
     { 
         key: 3,
         name: 'Elephant',
         cover: require('../assets/animals/elephant.jpg'),
+        icon: require('../assets/animals/icons/elephant.png'),
+        coordinates: { latitude: 10.788702272153307, longitude: 106.70696586282457 },
     },
     { 
         key: 4,
-        name: 'Giffare',
+        name: 'Giraffe',
         cover: require('../assets/animals/giffare.jpg'),
+        icon: require('../assets/animals/icons/giraffe.png'),
+        coordinates: { latitude: 10.788530417130628, longitude: 106.70717829883604 },
     },
     { 
         key: 5,
         name: 'Tiger',
         cover: require('../assets/animals/tiger.jpg'),
+        icon: require('../assets/animals/icons/tiger.png'),
+        coordinates: { latitude: 10.785371698757286, longitude: 106.708165547904 },
+    },
+    { 
+        key: 6,
+        name: 'Crocodile',
+        cover: require('../assets/animals/crocodile.jpg'),
+        icon: require('../assets/animals/icons/crocodile.png'),
+        coordinates: { latitude: 10.785905609701132, longitude: 106.70847702718977 },
     },
 ];
+
+export const Souvenirs = [
+    {
+        id: 1,
+        name: 'Wooden Pen',
+        price: 3.00,
+        cover: require('../assets/wooden_pen.jpg'),
+        height: 4.5,
+        width: 1.2,
+    },
+    {
+        id: 2,
+        name: '[Crochet] Giraffe',
+        price: 15.00,
+        cover: require('../assets/crochet_giffare.jpg'),
+        height: 10,
+        width: 3,
+    },
+    {
+        id: 3,
+        name: '[Crochet] Elephant',
+        price: 15.00,
+        cover: require('../assets/crochet_elephant.jpg'),
+        height: 10,
+        width: 3,
+    },
+    {
+        id: 4,
+        name: '[Crochet] Fox',
+        price: 15.00,
+        cover: require('../assets/crochet_fox.jpg'),
+        height: 10,
+        width: 3,
+    }
+]

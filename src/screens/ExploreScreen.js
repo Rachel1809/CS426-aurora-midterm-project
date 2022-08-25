@@ -60,17 +60,16 @@ const ExploreScreen = ({ navigation }) => {
       
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Our tours</Text>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <FlatList
           horizontal
-          showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           data={Tour}
           renderItem={renderItem}
         />
         </ScrollView>
         <Text style={styles.title}>Our animals</Text>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <FlatList
           horizontal
           showsVerticalScrollIndicator={false}

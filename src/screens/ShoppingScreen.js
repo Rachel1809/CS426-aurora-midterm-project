@@ -16,7 +16,7 @@ import {
   import Card from '../components/ListAlbums';
   import Icon from 'react-native-vector-icons/Feather';
   import MapScreen from './MapScreen';
-  import { Albums, Cart } from '../db/database';
+  import { Albums, Cart, Souvenirs } from '../db/database';
 
   const ShoppingScreen = ({ navigation }) => {
   
@@ -59,7 +59,7 @@ import {
             paddingBottom: 50,
           }}
           numColumns={2}
-          data={Albums}
+          data={Souvenirs}
           renderItem={({item}) => {
             return <Card navigation={navigation} album={item} />;
           }}

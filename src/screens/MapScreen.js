@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-import {StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
-import {Stores} from '../db/database'
+import {Animals} from '../db/database'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const initialState = {
@@ -22,7 +22,18 @@ const MapScreen = ({navigation}) => {
         <TouchableOpacity onPress={() => navigation.goBack()} >
           <Icon name="arrow-left" size={28} color='#fff' />
         </TouchableOpacity>
-        <Text style={{fontSize: 20, fontWeight: 'bold', marginRight: 135, color: '#fff'}}>Zoo Map</Text>
+        <Text 
+          style={{
+            fontSize: 24, 
+            fontWeight: 'bold', 
+            marginRight: 135, 
+            color: '#fff',
+            right: 16,
+            fontFamily: 'FredokaOne-Regular'
+          }}
+        >
+          map
+        </Text>
     </View>
     <View style={styles.container}>
       <MapView
@@ -33,15 +44,12 @@ const MapScreen = ({navigation}) => {
         initialRegion={initialState}
 
       >
-        {Stores.map((marker) => (
+        {Animals.map((marker) => (
           <Marker
             key={marker.key}
             coordinate={marker.coordinates}
-            title={marker.storeName}
-            description={marker.address}
           >
-            <Entypo name= "location-pin" size={50} 
-            colors="#040F38" style={{zIndex: 10}}/>
+            <Image source={marker.icon} style={{height: 50, width: 50}}></Image>
           </Marker>
         ))}
       </MapView>

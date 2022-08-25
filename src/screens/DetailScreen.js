@@ -13,7 +13,6 @@ import {
 
 import Icon from 'react-native-vector-icons/Feather';
 import { Cart } from '../db/database';
-import MusicPlayer from './MusicPlayer';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -84,7 +83,6 @@ const Detail = ({ navigation, album }) => {
             }}>
             <View>
             <Text style={{fontSize: 28, fontWeight: 'bold'}}>{album.name}</Text>
-            <Text style={{fontSize: 20, paddingTop: 10 }}>{album.artist}</Text>
             </View>
             <View style={style.priceTag}>
               <Text
@@ -100,16 +98,9 @@ const Detail = ({ navigation, album }) => {
           </View>
           <View style={{marginHorizontal: 20, marginTop: 10, flex: 1}}>
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>About</Text>
-              <Text style={style.info}> {album.description} </Text>
               <Text style={{fontSize: 20, fontWeight: 'bold', marginVertical: 10}}>Information</Text>
-              <Text style={style.info}> Published year: {album.year} </Text>
-              <Text style={style.info}> Number of songs: {album.songs.length} </Text>
-              <View style={{marginLeft: 5, marginTop: 5}}>
-                {album.songs.map((song, index) => {
-                  return <Text key={index} style={style.song}>{song.id + '. ' + song.name + '\n'}</Text>
-                })}
-              </View>
+              <Text style={style.info}> Height: {album.height} inches</Text>
+              <Text style={style.info}> Width: {album.width} inches</Text>
             </ScrollView>
             <View
               style={{
@@ -162,7 +153,6 @@ const DetailsScreen = ({ navigation, route }) => {
   const album = route.params;
   const screens = [
     <Detail navigation={navigation} album={album} />,
-    <MusicPlayer album={album} />
   ]
   return (
     <Fragment>
@@ -179,21 +169,14 @@ const DetailsScreen = ({ navigation, route }) => {
               <Icon name="shopping-cart" size={28} color='#000' />
           </TouchableOpacity>
         </View>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled={true}
-          horizontal
-          style={style.wrap}
-        >
-          {screens.map((screen, index) => {
+        {screens.map((screen, index) => {
             return (
               <View key={index} style={style.wrap}>
                 {screen}
               </View>
             );
           }
-          )}
-        </ScrollView>
+        )}
       </SafeAreaView>
       <SafeAreaView style={{ flex: 0, backgroundColor: '#f0f0f0' }} />
     </Fragment>

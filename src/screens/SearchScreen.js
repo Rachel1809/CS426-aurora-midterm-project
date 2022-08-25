@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Albums } from '../db/database';
+import { Albums, Souvenirs } from '../db/database';
 import {
     SafeAreaView, 
     View, 
@@ -20,8 +20,8 @@ const SearchScreen = ({navigation}) => {
   const [masterDataSource, setMasterDataSource] = useState([]);
   const [checkResult, setResult] = useState(true);
   useEffect(() => {
-    setFilteredDataSource(Albums);
-    setMasterDataSource(Albums);
+    setFilteredDataSource(Souvenirs);
+    setMasterDataSource(Souvenirs);
 
   }, []);
  
@@ -96,7 +96,7 @@ const SearchScreen = ({navigation}) => {
  
   const getItem = (item) => {
     // Function for click on an item
-    const album = Albums.find(obj => item.id === obj.id);
+    const album = Souvenirs.find(obj => item.id === obj.id);
     navigation.navigate('Details', album);
   };
 

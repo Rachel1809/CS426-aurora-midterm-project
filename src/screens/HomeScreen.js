@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import MapScreen from './MapScreen';
+import TicketScreen from './TicketScreen';
 import { Albums, Cart } from '../db/database';
 
 const Tab = createBottomTabNavigator();
@@ -85,7 +85,7 @@ export function HomeStackScreen() {
         })}>
 
         <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"History"} component={HomeScreen} options={{headerShown: false}}/>
+        <Tab.Screen name={"History"} component={TicketScreen} options={{headerShown: false}}/>
 
       </Tab.Navigator>
   );
