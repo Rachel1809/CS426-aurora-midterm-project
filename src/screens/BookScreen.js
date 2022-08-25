@@ -76,7 +76,7 @@ const BookingScreen = ({ navigation }) => {
     Cart.count = Cart.list.reduce((acc, cur) => {
       return acc + cur.adult + cur.kid;
     }, 0);
-    navigation.navigate('Cart');
+
     setAdult(0);
     setKid(0);
     setType(1);
