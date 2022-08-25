@@ -19,7 +19,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNPickerSelect from 'react-native-picker-select';
 
-import { Cart, Tour } from '../db/database';
+import { Ticket, Tour } from '../db/database';
 
 
 const WIDTH = Dimensions.get('window').width;
@@ -31,7 +31,7 @@ const BookingScreen = ({ navigation }) => {
   const [adult, setAdult] = React.useState(0);
   const [kid, setKid] = React.useState(0);
   const [type, setType] = React.useState(1);
-  const [element, setElement] = React.useState(Cart.list);
+  const [element, setElement] = React.useState(Ticket.list);
   const [subtotal, setSubtotal] = React.useState(0);
 
 
@@ -55,7 +55,7 @@ const BookingScreen = ({ navigation }) => {
     });
     if (!isFound) {
       let tmp = Tour.filter(obj => obj.key === type)
-      Cart.list.push({
+      Ticket.list.push({
         key: type,
         name: tmp.name,
         priceAdult: tmp.priceAdult,
@@ -66,14 +66,14 @@ const BookingScreen = ({ navigation }) => {
         cover: tmp.cover,
         date: date
       });
-      setElement(Cart.list);
+      setElement(Ticket.list);
     }
-    Cart.sum = Cart.list.reduce((acc, cur) => {
+    Ticket.sum = Ticket.list.reduce((acc, cur) => {
       let s = acc + parseFloat(cur.total)
       s = parseFloat(s.toFixed(2));
       return s;
     }, 0);
-    Cart.count = Cart.list.reduce((acc, cur) => {
+    Ticket.count = Ticket.list.reduce((acc, cur) => {
       return acc + cur.adult + cur.kid;
     }, 0);
 

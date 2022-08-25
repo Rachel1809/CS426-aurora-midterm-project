@@ -454,6 +454,10 @@ export const Cart = {
     list: [],
 }
 
+export const Ticket = {
+    list: [],
+}
+
 export const Stores = [
     { 
         key: 1,
