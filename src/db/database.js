@@ -492,8 +492,8 @@ export const Tour = [
         name: 'Day Tour',
         cover: require('../assets/tour/day.jpg'),
         hours: '8.00 AM to 5.00 PM',
-        priceAdult: 3.00,
-        priceKid: 1.50, 
+        priceAdult: 4.00,
+        priceKid: 2.00, 
 
 
     },

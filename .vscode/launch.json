@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Stripe: Webhooks listen",
+            "type": "stripe",
+            "request": "launch",
+            "command": "listen"
+        },
+        {
             "name": "Debug Android",
             "cwd": "${workspaceFolder}",
             "type": "reactnative",
