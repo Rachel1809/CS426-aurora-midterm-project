@@ -3,7 +3,7 @@ import {
   View, 
   SafeAreaView, 
   Image, 
-  Text, 
+  Text,
   StyleSheet, 
   Dimensions, 
   TextInput,
@@ -20,6 +20,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import RNPickerSelect from 'react-native-picker-select';
 
 import { Ticket, Tour } from '../db/database';
+import { firebase } from '../db/config';
 
 
 const WIDTH = Dimensions.get('window').width;
@@ -27,14 +28,25 @@ const HEIGHT = Dimensions.get('window').height;
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 180 : 0
 
 const BookingScreen = ({ navigation }) => {
-  const [date, setDate] = React.useState(null);
+  const [date, setDate] = React.useState(new Date());
   const [adult, setAdult] = React.useState(0);
   const [kid, setKid] = React.useState(0);
   const [type, setType] = React.useState(1);
   const [element, setElement] = React.useState(Ticket.list);
   const [subtotal, setSubtotal] = React.useState(0);
-
-
+  const [email, setEmail] = React.useState('')
+  React.useEffect(() => {
+        firebase.firestore().collection('users')
+        .doc(firebase.auth().currentUser.uid).get()
+        .then(doc => {
+            if (doc.exists) {
+                setEmail(doc.data().email)
+            }
+            else {
+                console.log('User does not exist')
+            }
+        })
+    }, [])
 
   React.useEffect(() => {
     let x = Tour.filter(obj => obj.key === type)[0]
@@ -54,7 +66,7 @@ const BookingScreen = ({ navigation }) => {
       }
     });
     if (!isFound) {
-      let tmp = Tour.filter(obj => obj.key === type)
+      let tmp = Tour.filter(obj => obj.key === type)[0]
       Ticket.list.push({
         key: type,
         name: tmp.name,
@@ -64,19 +76,23 @@ const BookingScreen = ({ navigation }) => {
         kid: kid,
         total: (adult * tmp.priceAdult + kid * tmp.priceKid).toFixed(2),
         cover: tmp.cover,
-        date: date
+        date: date,
+        email: email
       });
       setElement(Ticket.list);
+      console.log(Ticket.list)
+
     }
     Ticket.sum = Ticket.list.reduce((acc, cur) => {
       let s = acc + parseFloat(cur.total)
       s = parseFloat(s.toFixed(2));
       return s;
     }, 0);
-    Ticket.count = Ticket.list.reduce((acc, cur) => {
-      return acc + cur.adult + cur.kid;
-    }, 0);
-
+    console.log(Ticket.sum)
+    if (Ticket.sum !== 0)
+      navigation.navigate('PaymentProvider');
+    else
+      return
     setAdult(0);
     setKid(0);
     setType(1);
