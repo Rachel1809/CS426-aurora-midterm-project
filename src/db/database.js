@@ -454,6 +454,10 @@ export const Cart = {
     list: [],
 }
 
+export const Ticket = {
+    list: [],
+}
+
 export const Stores = [
     { 
         key: 1,
@@ -487,25 +491,19 @@ export const Tour = [
         key: 1,
         name: 'Day Tour',
         cover: require('../assets/tour/day.jpg'),
-        price: [
-            {
-                kid: 1.5,
-                adult: 3
-            }
-        ],
-        hours: '8.00 AM to 5.00 PM'
+        hours: '8.00 AM to 5.00 PM',
+        priceAdult: 3.00,
+        priceKid: 1.50, 
+
+
     },
     { 
         key: 2,
         name: 'Night Tour',
         cover: require('../assets/tour/night.jpg'),
-        price: [
-            {
-                kid: 5,
-                adult: 10
-            }
-        ],
-        hours: '6.30 PM to 8.00 PM'
+        hours: '6.30 PM to 8.00 PM',
+        priceAdult: 10.00,
+        priceKid: 5.00, 
     },
 ];
 
@@ -571,6 +569,7 @@ export const Souvenirs = [
         height: 10,
         width: 3,
     },
+
     {
         id: 3,
         name: '[Crochet] Elephant',
@@ -588,3 +587,4 @@ export const Souvenirs = [
         width: 3,
     }
 ]
+

@@ -19,11 +19,70 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNPickerSelect from 'react-native-picker-select';
 
+import { Ticket, Tour } from '../db/database';
+
+
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 180 : 0
 
-const BookingScreen = ({navigation}) => {
+const BookingScreen = ({ navigation }) => {
+  const [date, setDate] = React.useState(null);
+  const [adult, setAdult] = React.useState(0);
+  const [kid, setKid] = React.useState(0);
+  const [type, setType] = React.useState(1);
+  const [element, setElement] = React.useState(Ticket.list);
+  const [subtotal, setSubtotal] = React.useState(0);
+
+
+
+  React.useEffect(() => {
+    let x = Tour.filter(obj => obj.key === type)[0]
+
+    setSubtotal(x.priceAdult * adult + x.priceKid * kid)
+  } ,[adult, kid, subtotal, type]);
+
+
+
+  const confirm = () => {
+    const isFound = element.some(e => {
+      if (e.key === type) {
+        e.adult += adult;
+        e.kid += kid;
+        e.total = (e.adult * e.priceAdult + e.kid * e.priceKid).toFixed(2);
+        return true;
+      }
+    });
+    if (!isFound) {
+      let tmp = Tour.filter(obj => obj.key === type)
+      Ticket.list.push({
+        key: type,
+        name: tmp.name,
+        priceAdult: tmp.priceAdult,
+        priceKid: tmp.priceKid,
+        adult: adult,
+        kid: kid,
+        total: (adult * tmp.priceAdult + kid * tmp.priceKid).toFixed(2),
+        cover: tmp.cover,
+        date: date
+      });
+      setElement(Ticket.list);
+    }
+    Ticket.sum = Ticket.list.reduce((acc, cur) => {
+      let s = acc + parseFloat(cur.total)
+      s = parseFloat(s.toFixed(2));
+      return s;
+    }, 0);
+    Ticket.count = Ticket.list.reduce((acc, cur) => {
+      return acc + cur.adult + cur.kid;
+    }, 0);
+
+    setAdult(0);
+    setKid(0);
+    setType(1);
+    setDate(null)
+  }
+
   return (
     <Fragment>
     <SafeAreaView 
@@ -57,12 +116,16 @@ const BookingScreen = ({navigation}) => {
             keyboardVerticalOffset={keyboardVerticalOffset}>
             <Text style={{fontSize: 16, fontWeight: 'bold'}}>Visit date</Text>
             <CalendarPicker
-            startFromMonday={true}
+                  startFromMonday={true}
             minDate={new Date()}
             selectedDayColor="#58641d"
             selectedDayTextColor="#FFFFFF"
             width = {WIDTH*0.9}
-            height = {HEIGHT*0.9}
+                  height={HEIGHT * 0.9}
+                  onDateChange={(date) => {
+                    setDate(date);
+                  }
+                  }
             />
             <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10}}>Visitors</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>
@@ -72,27 +135,36 @@ const BookingScreen = ({navigation}) => {
                   style={{paddingLeft: 5}}
                   placeholder="Adults"
                   keyboardType="numeric"
-                  returnKeyType="done"
+                      returnKeyType="done"
+                      onChangeText={(text) => { setAdult(parseInt(text)); }}
+                      value={adult ? adult.toString() : ''}
+                      
+
                 />
             </View>
             <View style={[style.input, { flexDirection:'row' , alignItems:'center'}]}>
               <MaterialCommunityIcons name={"human-child"} size={20}/>
-              <TextInput
+                    <TextInput
                 style={{paddingLeft: 5}}
                 placeholder="Kids"
                 keyboardType="numeric"
-                returnKeyType="done"
+                      returnKeyType="done"
+                      onChangeText={(text) => { setKid(parseInt(text)); }}
+                      value={kid ? kid.toString(): ''}
+                      
               />
             </View>
           </View>
           <Text style={{fontSize: 16, fontWeight: 'bold', marginVertical: 10}}>Type</Text>
-          <RNPickerSelect
-            style={pickerSelectStyles}
-            items={[
-              { label: 'Day Tour' },
-              { label: 'Night Tour' },
-            ]}
-          />
+                <RNPickerSelect
+                  value={type}
+                  style={pickerSelectStyles}
+                  onValueChange={(itemValue) => {  setType(itemValue); } }
+                  items={[
+                      { label: 'Day Tour', value: 1 },
+                      { label: 'Night Tour', value: 2 },
+                  ]}
+                />
           </KeyboardAvoidingView>
           </ScrollView>
           <View
@@ -122,16 +194,16 @@ const BookingScreen = ({navigation}) => {
                     marginHorizontal: 0,
                     fontWeight: 'bold',
                   }}>
-                  $100
+                  ${parseFloat(subtotal).toString()}
                 </Text>
               </View>
             </View>
-            <View style={style.buyBtn}>
+            <TouchableOpacity style={style.buyBtn} onPress={confirm}>
               <Text
                 style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
                 Book Now
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
