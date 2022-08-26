@@ -550,6 +550,12 @@ export const Animals = [
         icon: require('../assets/animals/icons/crocodile.png'),
         coordinates: { latitude: 10.785905609701132, longitude: 106.70847702718977 },
     },
+    { 
+        key: 7,
+        name: 'Butterfly',
+        icon: require('../assets/animals/icons/butterfly.png'),
+        coordinates: { latitude: 10.787643500579547, longitude: 106.70639770256535 },
+    },
 ];
 
 export const Souvenirs = [

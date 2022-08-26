@@ -31,15 +31,16 @@ const ExploreScreen = ({ navigation }) => {
                     }
                 ]}
             >
-            <ImageBackground 
+            {!!item.cover && <ImageBackground 
                 source={item.cover} 
                 resizeMode="cover" 
                 style={styles.image} 
                 imageStyle={{ borderRadius: 10, opacity: 0.9}}
             >
                 <Text style={styles.imgText}>{item.name}</Text>
-            </ImageBackground>
+            </ImageBackground>}
             </TouchableOpacity>
+            
         )
     }
     return (
