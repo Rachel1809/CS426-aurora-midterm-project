@@ -38,12 +38,32 @@ const MapScreen = ({navigation}) => {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-        showUserLocation
+        showsUserLocation
         style={styles.map}
         customMapStyle= {mapStyle}
         initialRegion={initialState}
 
       >
+        <Marker
+            coordinate={{latitude: 10.787294165363136, longitude: 106.70500315995794 }}
+        >
+            <Image source={require('../assets/zoo.png')} style={{height: 40, width: 40}}></Image>
+        </Marker>
+        <Marker
+            coordinate={{latitude: 10.787490676123817, longitude: 106.70619458238227 }}
+        >
+            <Image source={require('../assets/fountain.png')} style={{height: 40, width: 40}}></Image>
+        </Marker>
+        <Marker
+            coordinate={{latitude: 10.788880680796904, longitude: 106.70643580621775 }}
+        >
+            <Image source={require('../assets/stage.png')} style={{height: 35, width: 35}}></Image>
+        </Marker>
+        <Marker
+            coordinate={{latitude: 10.790243179568376, longitude: 106.70545425931152 }}
+        >
+            <Image source={require('../assets/zoo.png')} style={{height: 40, width: 40, transform: [{ rotate: '90deg' }]}}></Image>
+        </Marker>
         {Animals.map((marker) => (
           <Marker
             key={marker.key}
