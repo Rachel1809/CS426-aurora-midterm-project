@@ -13,21 +13,17 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import CalendarPicker from 'react-native-calendar-picker';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import RNPickerSelect from 'react-native-picker-select';
 import { History } from '../db/database';
+import moment from 'moment'
 import QRCode from 'react-native-qrcode-svg';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 180 : 0
 
-const TicketScreen = ({ navigation }) => {
-  console.log(History);
-  if (History.sum !== 0) {
+const TicketScreen = ({ navigation, route }) => {
+  const item = route.params;
     return (
       <Fragment>
         <SafeAreaView
@@ -54,41 +50,41 @@ const TicketScreen = ({ navigation }) => {
               }}>
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 10, flex: 1 }}>
-              <ScrollView>
-                <KeyboardAvoidingView
-                  style={{ flex: 1 }}
-                  behavior={"position"}
-                  keyboardVerticalOffset={keyboardVerticalOffset}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+              >
                   <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Ticket details</Text>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Booked on</Text>
-                    <Text style={style.ticketInfo}>Aug 27, 2022</Text>
+                    <Text style={style.ticketInfo}>{moment(item.bookDate).format("hh:mm:ss A, MMM Do YYYY")}</Text>
                   </View>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Ticket no.</Text>
-                    <Text style={style.ticketInfo}>IEHDK43937</Text>
+                    <Text style={style.ticketInfo}>{item.code}</Text>
                   </View>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Visit Date</Text>
-                    <Text style={style.ticketInfo}>Aug 29, 2022</Text>
+                    <Text style={style.ticketInfo}>{moment(item.visitDate).format("MMM Do YYYY")}</Text>
                   </View>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Visitors</Text>
-                    <Text style={style.ticketInfo}>4 adult(s), 0 kid(s)</Text>
+                    <Text style={style.ticketInfo}>{item.adult} adult(s), {item.kid} kid(s)</Text>
                   </View>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Type</Text>
-                    <Text style={style.ticketInfo}>Day Tour</Text>
+                    <Text style={style.ticketInfo}>{item.type == 1 ? "Day Tour" : "Night Tour"}</Text>
                   </View>
                   <View style={style.ticketDetail}>
                     <Text style={style.ticketTitle}>Total payment</Text>
-                    <Text style={style.ticketInfo}>$12</Text>
+                    <Text style={style.ticketInfo}>${item.total}</Text>
                   </View>
-                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Notes</Text>
+                  <View style={{marginVertical: 15, alignItems: 'center'}}>
+                    <QRCode value={item.code} size={150} backgroundColor={'transparent'}/>
+                  </View>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Notes</Text>
                   <Text style={style.noteInfo}>- Tickets will not be refunded in any cases.</Text>
                   <Text style={style.noteInfo}>- Please wear a face mask during visiting our zoo.</Text>
-                  <QRCode value={History.email} size={200} />
-                </KeyboardAvoidingView>
+                  <View style={{marginBottom: 40}}></View>
               </ScrollView>
             </View>
           </View>
@@ -102,8 +98,7 @@ const TicketScreen = ({ navigation }) => {
       </Fragment>
   
     );
-  }
-};
+}
 
 const style = StyleSheet.create({
   header: {

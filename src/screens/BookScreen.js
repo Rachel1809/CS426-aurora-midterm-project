@@ -15,11 +15,11 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import moment from 'moment'
 import CalendarPicker from 'react-native-calendar-picker';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNPickerSelect from 'react-native-picker-select';
 
-import { Ticket, Tour } from '../db/database';
+import { Ticket, Tour, History } from '../db/database';
 import { firebase } from '../db/config';
 
 
@@ -67,16 +67,22 @@ const BookingScreen = ({ navigation }) => {
     });
     if (!isFound) {
       let tmp = Tour.filter(obj => obj.key === type)[0]
+      let key = History.length + 1
+      var length = Math.log(key) * Math.LOG10E + 1 | 0;
+      console.log(length)
+      let code = (type === 1 ? "D" : "N") + "0".repeat(7-length) + String(key)
       Ticket.list.push({
-        key: type,
+        type: type,
         name: tmp.name,
         priceAdult: tmp.priceAdult,
         priceKid: tmp.priceKid,
         adult: adult,
         kid: kid,
         total: (adult * tmp.priceAdult + kid * tmp.priceKid).toFixed(2),
-        cover: tmp.cover,
-        date: date,
+        key: key,
+        code: code,
+        bookDate: new Date().toJSON(),
+        visitDate: date.toJSON(),
       });
       setElement(Ticket.list);
       console.log(Ticket.list)
@@ -95,7 +101,7 @@ const BookingScreen = ({ navigation }) => {
     setAdult(0);
     setKid(0);
     setType(1);
-    setDate(null)
+    setDate(new Date());
   }
 
   return (

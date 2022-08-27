@@ -6,11 +6,21 @@ export const Ticket = {
     list: [],
 }
 
-export const History = {
-    list: [],
-    sum: 0,
-    email: ''
-}
+export const History = [
+    {
+        "adult": 13,
+        "bookDate": "2022-08-27T15:57:01.943Z",
+        "code": "D0000001",
+        "key": 1,
+        "kid": 0,
+        "name": "Day Tour",
+        "priceAdult": 4,
+        "priceKid": 2,
+        "total": "52.00",
+        "type": 1,
+        "visitDate": "2022-08-31T05:00:00.000Z",
+      },
+]
 
 export const Stores = [
     { 

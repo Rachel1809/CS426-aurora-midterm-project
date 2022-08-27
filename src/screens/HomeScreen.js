@@ -5,7 +5,7 @@ import {
   View, 
   ScrollView, 
   TouchableOpacity, 
-  FlatList, 
+  Image, 
   Dimensions
 } from 'react-native';
 
@@ -13,12 +13,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme } from '@react-navigation/native';
 
-import Card from '../components/ListAlbums';
 import ListService from '../components/ListServices';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
+import HistoryScreen from './HistoryScreen';
 import TicketScreen from './TicketScreen';
 import { Albums, Cart } from '../db/database';
 
@@ -64,7 +64,7 @@ export function HomeStackScreen() {
         })}>
 
         <Tab.Screen name={"Home"} component={HomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name={"History"} component={TicketScreen} options={{headerShown: false}}/>
+        <Tab.Screen name={"History"} component={HistoryScreen} options={{headerShown: false}}/>
 
       </Tab.Navigator>
   );
@@ -77,18 +77,23 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={{flex:0, backgroundColor: '#58641d'}}/>
     <SafeAreaView style={{flex:1, backgroundColor: '#fff', paddingTop: -50}}>
       <View style={styles.greet_container}>
+      <View style={{justifyContent: 'flex-end', flexDirection: 'row',}}>
         <View style={styles.header}>
           <View style={styles.brand}>
             <Text style={styles.brandText}>suki</Text>
           </View>
         </View>
-        <View style={styles.cart}>
+          <View style={styles.cart}>
             <View>
                 <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Noti")}>
-                    <Icon name="notifications-outline" size={25} color="#fff" />
+                    <Icon name="notifications" size={25} color="#fff" />
                 </TouchableOpacity>
             </View>
           </View>
+      </View>
+      <View style={{justifyContent: 'flex-end', marginTop: 100, alignItems: 'center', marginLeft: 100}}>
+      <Image source={require('../assets/giraffe_home.png')} style={{height: 250, width: 250}}></Image>
+      </View>
       </View>
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Services</Text>
@@ -104,10 +109,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   greet_container: {
     backgroundColor: '#58641d',
-    borderBottomLeftRadius: 40,
-    paddingBottom: 250,
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
+    borderBottomLeftRadius: 200,
   },
   container: {
     flex: 1,

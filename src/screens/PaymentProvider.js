@@ -21,7 +21,7 @@ export default PaymentProvider;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#58641d",
     alignItems: "center",
     justifyContent: "center",
   },

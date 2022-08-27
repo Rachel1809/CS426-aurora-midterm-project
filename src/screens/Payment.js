@@ -1,36 +1,52 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, FlatList, TouchableOpacity, Alert } from "react-native";
-import { CardField, useConfirmPayment, useStripe } from "@stripe/stripe-react-native";
+import { 
+    View, 
+    SafeAreaView, 
+    Text, 
+    StyleSheet, 
+    Dimensions, 
+    FlatList, 
+    TouchableOpacity, 
+    Alert 
+} from "react-native";
+
+import { useStripe } from "@stripe/stripe-react-native";
 import {Ticket, History} from '../db/database';
 import { useNavigation } from '@react-navigation/native'
+import moment from 'moment'
 
+const {width, height} = Dimensions.get('window');
 
 //ADD localhost address of your server
-const API_URL = "http://192.168.2.7:3000";
+const API_URL = "http://192.168.1.10:19000";
 
 const Payment = () => {
     const navigation = useNavigation();
     const email = Ticket.email;
-    const amount = Ticket.sum;
+    let amount = 0;
 
     const stripe = useStripe();
 
-    const itemRender = (email, name, adult, kid) => {
+    const itemRender = (visitDate, name, adult, kid, total) => {
+        amount = total;
         return (
             <View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 200, padding: 10}}>
-                    <Text style={{fontSize: 30}}>Email: {email}</Text>
-                </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, padding: 10}}>
-                    <Text style={{fontSize: 30}}>Type: {name}</Text>
-                </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, padding: 10}}>
-                    <Text style={{fontSize: 30}}>Number of adults: {adult}</Text>
-                </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, padding: 10}}>
-                    <Text style={{fontSize: 30}}>Number of kids: {kid}</Text>
-                </View>
-
+                <View style={styles.ticketDetail}>
+                    <Text style={styles.ticketTitle}>Visit Date</Text>
+                    <Text style={styles.ticketInfo}>{moment(visitDate).format("MMM Do YYYY")}</Text>
+                  </View>
+                  <View style={styles.ticketDetail}>
+                    <Text style={styles.ticketTitle}>Visitors</Text>
+                    <Text style={styles.ticketInfo}>{adult} adult(s), {kid} kid(s)</Text>
+                  </View>
+                  <View style={styles.ticketDetail}>
+                    <Text style={styles.ticketTitle}>Type</Text>
+                    <Text style={styles.ticketInfo}>{name}</Text>
+                  </View>
+                  <View style={styles.ticketDetail}>
+                    <Text style={styles.ticketTitle}>Total payment</Text>
+                    <Text style={styles.ticketInfo}>${total}</Text>
+                  </View>
             </View>
         )
     }
@@ -38,7 +54,7 @@ const Payment = () => {
     const clear = () => {
         Ticket.sum = 0;
         Ticket.list = [];
-        navigation.navigate('Aurora');
+        navigation.navigate('Booking');
     }
 
     const buy = async () => {
@@ -98,21 +114,32 @@ const Payment = () => {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
+            <View style={styles.card}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, padding: 10}}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Review</Text>
+            </View>
             <FlatList 
                 data={Ticket.list}
-                renderItem={({ item }) => itemRender(item.email, item.name, item.adult, item.kid)}
+                renderItem={({ item }) => itemRender(item.visitDate, item.name, item.adult, item.kid, item.total)}
                 keyExtractor={(item) => item.key}
             />
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, padding: 10}}>
-                <Text style={{ fontSize: 30 }}>Amount of money: ${amount}</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 20}}>
+                <TouchableOpacity style={styles.buyBtn} onPress={buy}>
+                <Text
+                    style={{color: '#ffffff', fontSize: 18, fontWeight: 'bold'}}>
+                    Checkout
+                </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.cancelBtn} onPress={() => { clear();}}>
+                <Text
+                    style={{color: '#8B5D33', fontSize: 18, fontWeight: 'bold'}}>
+                    Cancel
+                </Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={{ backgroundColor: "green", justifyContent:'center', alignSelf:'center' }} onPress={buy}>
-                <Text style={{ fontSize: 30, color: "white", padding: 10 }}>Buy</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ backgroundColor: "red", justifyContent: 'center', alignSelf: 'center', marginBottom: 100 }} onPress={() => { clear();}}>
-                <Text style={{ fontSize: 30, color: "white", padding: 10 }}>Cancel</Text>
-            </TouchableOpacity>
+            <View style={{marginBottom: 20}}></View>
+            </View>
         </View>
 
   );
@@ -121,9 +148,10 @@ export default Payment;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
+    width,
     justifyContent: "center",
-    margin: 20,
+    backgroundColor: '#58641d'
   },
   input: {
     backgroundColor: "#efefefef",
@@ -134,10 +162,43 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   card: {
-    backgroundColor: "#efefefef",
+    paddingHorizontal: 20,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    marginHorizontal: 20,
   },
   cardContainer: {
     height: 50,
     marginVertical: 30,
+  },
+  ticketDetail: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginVertical: 10
+  },
+  ticketTitle: {
+    fontSize: 16
+  },
+  ticketInfo: {
+    fontSize: 18, 
+    fontWeight: 'bold'
+  },
+  buyBtn: {
+    width: 130,
+    height: 50,
+    backgroundColor: '#8B5D33',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+  },
+  cancelBtn: {
+    width: 130,
+    height: 50,
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#8B5D33',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
   },
 });
