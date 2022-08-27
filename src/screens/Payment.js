@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, FlatList, TouchableOpacity, Alert } from "react-native";
 import { CardField, useConfirmPayment, useStripe } from "@stripe/stripe-react-native";
-import {Ticket} from '../db/database';
+import {Ticket, History} from '../db/database';
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -10,8 +10,9 @@ const API_URL = "http://192.168.2.7:3000";
 
 const Payment = () => {
     const navigation = useNavigation();
-    const email = Ticket.list[0].email;
+    const email = Ticket.email;
     const amount = Ticket.sum;
+
     const stripe = useStripe();
 
     const itemRender = (email, name, adult, kid) => {
@@ -34,10 +35,16 @@ const Payment = () => {
         )
     }
 
+    const clear = () => {
+        Ticket.sum = 0;
+        Ticket.list = [];
+        navigation.navigate('Aurora');
+    }
+
     const buy = async () => {
     try {
         const finalAmount = parseInt(amount);
-
+        
 
         const response = await fetch(`${API_URL}/buy`, {
             method: "POST",
@@ -50,13 +57,19 @@ const Payment = () => {
         });
         const data = await response.json();
         if (!response.ok) {
+            clear();
+
             return Alert.alert(data.message);
+            
         }
         const initSheet = await stripe.initPaymentSheet({
             paymentIntentClientSecret: data.clientSecret,
         });
         if (initSheet.error) {
             console.error(initSheet.error);
+            clear();
+
+
             return Alert.alert(initSheet.error.message);
         }
         const presentSheet = await stripe.presentPaymentSheet({
@@ -64,15 +77,23 @@ const Payment = () => {
         });
         if (presentSheet.error) {
             console.error(presentSheet.error);
+            clear();
+
+
             return Alert.alert(presentSheet.error.message);
         }
         Alert.alert("Pay successfully");
         } catch (err) {
             console.error(err);
+            clear();
             Alert.alert("Payment failed!");
+            
         }
-        Ticket.list = [];
-        console.log(Ticket)
+        History.list = Ticket.list;
+        History.sum = Ticket.sum;
+        History.email = Ticket.email;
+        clear();
+
         navigation.navigate('Aurora')
     };
 
@@ -88,7 +109,10 @@ const Payment = () => {
             </View>
             <TouchableOpacity style={{ backgroundColor: "green", justifyContent:'center', alignSelf:'center' }} onPress={buy}>
                 <Text style={{ fontSize: 30, color: "white", padding: 10 }}>Buy</Text>
-                </TouchableOpacity>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: "red", justifyContent: 'center', alignSelf: 'center', marginBottom: 100 }} onPress={() => { clear();}}>
+                <Text style={{ fontSize: 30, color: "white", padding: 10 }}>Cancel</Text>
+            </TouchableOpacity>
         </View>
 
   );

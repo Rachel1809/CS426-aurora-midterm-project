@@ -50,13 +50,13 @@ const BookingScreen = ({ navigation }) => {
 
   React.useEffect(() => {
     let x = Tour.filter(obj => obj.key === type)[0]
-
     setSubtotal(x.priceAdult * adult + x.priceKid * kid)
   } ,[adult, kid, subtotal, type]);
 
 
 
   const confirm = () => {
+    Ticket.email = email;
     const isFound = element.some(e => {
       if (e.key === type) {
         e.adult += adult;
@@ -77,7 +77,6 @@ const BookingScreen = ({ navigation }) => {
         total: (adult * tmp.priceAdult + kid * tmp.priceKid).toFixed(2),
         cover: tmp.cover,
         date: date,
-        email: email
       });
       setElement(Ticket.list);
       console.log(Ticket.list)

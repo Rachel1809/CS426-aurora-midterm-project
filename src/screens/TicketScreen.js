@@ -18,84 +18,91 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import CalendarPicker from 'react-native-calendar-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNPickerSelect from 'react-native-picker-select';
+import { History } from '../db/database';
+import QRCode from 'react-native-qrcode-svg';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 180 : 0
 
-const TicketScreen = ({navigation}) => {
-  return (
-    <Fragment>
-    <SafeAreaView 
-    style={{
-      flex: 1,
-      backgroundColor: '#58641d',
-    }}>
-      <View style={style.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} >
-          <Icon name="arrow-left" size={28} color='#fff' />
-        </TouchableOpacity>
-      </View>
-      
-      <View style={style.imageContainer}>
-      </View>
-      <Text style={{fontSize: 30, fontWeight: 'bold', marginHorizontal: 20, color: '#fff'}}>Visitor Pass</Text>
-      <View style={style.detailsContainer}>
-        <View
+const TicketScreen = ({ navigation }) => {
+  console.log(History);
+  if (History.sum !== 0) {
+    return (
+      <Fragment>
+        <SafeAreaView
           style={{
-            marginLeft: 20,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            flex: 1,
+            backgroundColor: '#58641d',
           }}>
-        </View>
-          <View style={{marginHorizontal: 20, marginTop: 10, flex: 1}}>
-          <ScrollView>
-          <KeyboardAvoidingView 
-            style={{flex: 1}} 
-            behavior={"position"} 
-            keyboardVerticalOffset={keyboardVerticalOffset}>
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 10}}>Ticket details</Text>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Booked on</Text>
-                <Text style={style.ticketInfo}>Aug 27, 2022</Text>
-            </View>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Ticket no.</Text>
-                <Text style={style.ticketInfo}>IEHDK43937</Text>
-            </View>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Visit Date</Text>
-                <Text style={style.ticketInfo}>Aug 29, 2022</Text>
-            </View>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Visitors</Text>
-                <Text style={style.ticketInfo}>4 adult(s), 0 kid(s)</Text>
-            </View>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Type</Text>
-                <Text style={style.ticketInfo}>Day Tour</Text>
-            </View>
-            <View style={style.ticketDetail}>
-                <Text style={style.ticketTitle}>Total payment</Text>
-                <Text style={style.ticketInfo}>$12</Text>
-            </View>
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10}}>Notes</Text>
-            <Text style={style.noteInfo}>- Tickets will not be refunded in any cases.</Text>
-            <Text style={style.noteInfo}>- Please wear a face mask during visiting our zoo.</Text>
-          </KeyboardAvoidingView>
-          </ScrollView>
-        </View>
-      </View>
+          <View style={style.header}>
+            <TouchableOpacity onPress={() => navigation.goBack()} >
+              <Icon name="arrow-left" size={28} color='#fff' />
+            </TouchableOpacity>
+          </View>
       
-    </SafeAreaView>
-    <SafeAreaView
-      style={{
-        flex: 0,
-        backgroundColor: '#f0f0f0',
-      }}/>
-    </Fragment>
-  );
+          <View style={style.imageContainer}>
+          </View>
+          <Text style={{ fontSize: 30, fontWeight: 'bold', marginHorizontal: 20, color: '#fff' }}>Visitor Pass</Text>
+          <View style={style.detailsContainer}>
+            <View
+              style={{
+                marginLeft: 20,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+            </View>
+            <View style={{ marginHorizontal: 20, marginTop: 10, flex: 1 }}>
+              <ScrollView>
+                <KeyboardAvoidingView
+                  style={{ flex: 1 }}
+                  behavior={"position"}
+                  keyboardVerticalOffset={keyboardVerticalOffset}>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Ticket details</Text>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Booked on</Text>
+                    <Text style={style.ticketInfo}>Aug 27, 2022</Text>
+                  </View>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Ticket no.</Text>
+                    <Text style={style.ticketInfo}>IEHDK43937</Text>
+                  </View>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Visit Date</Text>
+                    <Text style={style.ticketInfo}>Aug 29, 2022</Text>
+                  </View>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Visitors</Text>
+                    <Text style={style.ticketInfo}>4 adult(s), 0 kid(s)</Text>
+                  </View>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Type</Text>
+                    <Text style={style.ticketInfo}>Day Tour</Text>
+                  </View>
+                  <View style={style.ticketDetail}>
+                    <Text style={style.ticketTitle}>Total payment</Text>
+                    <Text style={style.ticketInfo}>$12</Text>
+                  </View>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Notes</Text>
+                  <Text style={style.noteInfo}>- Tickets will not be refunded in any cases.</Text>
+                  <Text style={style.noteInfo}>- Please wear a face mask during visiting our zoo.</Text>
+                  <QRCode value={History.email} size={200} />
+                </KeyboardAvoidingView>
+              </ScrollView>
+            </View>
+          </View>
+      
+        </SafeAreaView>
+        <SafeAreaView
+          style={{
+            flex: 0,
+            backgroundColor: '#f0f0f0',
+          }} />
+      </Fragment>
+  
+    );
+  }
 };
 
 const style = StyleSheet.create({

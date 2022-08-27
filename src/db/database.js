@@ -6,6 +6,12 @@ export const Ticket = {
     list: [],
 }
 
+export const History = {
+    list: [],
+    sum: 0,
+    email: ''
+}
+
 export const Stores = [
     { 
         key: 1,
