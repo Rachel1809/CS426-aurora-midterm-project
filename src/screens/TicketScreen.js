@@ -27,10 +27,8 @@ const TicketScreen = ({ navigation, route }) => {
     return (
       <Fragment>
         <SafeAreaView
-          style={{
-            flex: 1,
-            backgroundColor: '#58641d',
-          }}>
+          style={[{
+            flex: 1}, item.type == 1 ?  {backgroundColor: '#E4B363'} : {backgroundColor: '#21295C'}]}>
           <View style={style.header}>
             <TouchableOpacity onPress={() => navigation.goBack()} >
               <Icon name="arrow-left" size={28} color='#fff' />

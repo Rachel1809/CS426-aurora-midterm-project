@@ -8,6 +8,19 @@ export const Ticket = {
 
 export const History = [
     {
+        "adult": 3,
+        "bookDate": "2022-08-27T22:15:41.489Z",
+        "code": "N0000002",
+        "key": 2,
+        "kid": 2,
+        "name": "Night Tour",
+        "priceAdult": 10,
+        "priceKid": 5,
+        "total": "40.00",
+        "type": 2,
+        "visitDate": "2022-09-03T05:00:00.000Z",
+    },
+    {
         "adult": 13,
         "bookDate": "2022-08-27T15:57:01.943Z",
         "code": "D0000001",

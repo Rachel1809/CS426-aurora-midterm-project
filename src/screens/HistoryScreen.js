@@ -2,47 +2,41 @@ import React, {Fragment} from 'react';
 import {
   View, 
   SafeAreaView, 
-  Image, 
   Text,
   StyleSheet, 
   Dimensions, 
-  TextInput,
   ScrollView,
   TouchableOpacity,
   Platform,
   FlatList
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 
 import { History } from '../db/database';
 import moment from 'moment'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const keyboardVerticalOffset = Platform.OS === 'ios' ? 180 : 0
-const {width, height} = Dimensions.get('window')
 
 const HistoryScreen = ({ navigation }) => {
     renderItem = ({item}) => {
       return (
           <View>
           {!!item.key && <TouchableOpacity onPress={() => {navigation.navigate('Ticket', item)}}
-              style={[style.card]}
+              style={[style.card, item.type == 1 ?  {backgroundColor: '#E4B363'} : {backgroundColor: '#21295C'}]}
           >
-          <Text style={{fontWeight: 'bold', fontSize: 20, padding: 10}}>{moment(item.visitDate).format("MMM D, YYYY")}</Text>
-          <Text style={{paddingLeft: 10, color: '#bebebe', marginBottom: 10, fontSize: 18}}>{item.type == 1 ? "Day Tour" : "Night Tour"}</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 20, padding: 10, color: '#fff'}}>{moment(item.visitDate).format("MMM D, YYYY")}</Text>
+          <Text style={{paddingLeft: 10, color: '#fff', marginBottom: 10, fontSize: 18}}>{item.type == 1 ? "Day Tour" : "Night Tour"}</Text>
           <View style={{justifyContent: 'space-between', flexDirection: 'row', marginTop: 22, paddingLeft: 10}}>
             <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
-              <View style={{justifyContent: 'flex-start', flexDirection: 'row', }}>
-                <MaterialCommunityIcons name={"human-male-female"} size={20}/>
-                <Text style={{paddingLeft: 7, fontSize: 18}}>{item.adult}</Text>
+              <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
+                <MaterialCommunityIcons name={"human-male-female"} size={20} color={'#fff'}/>
+                <Text style={{paddingLeft: 7, fontSize: 18, color: '#fff'}}>{item.adult}</Text>
               </View>
               <View style={{justifyContent: 'flex-start', flexDirection: 'row', paddingLeft: 15}}>
-                <MaterialCommunityIcons name={"human-child"} size={20}/>
-                <Text style={{paddingLeft: 5, fontSize: 18}}>{item.kid}</Text>
+                <MaterialCommunityIcons name={"human-child"} size={20} color={'#fff'}/>
+                <Text style={{paddingLeft: 5, fontSize: 18, color: '#fff'}}>{item.kid}</Text>
               </View>
             </View>
             <View style={{justifyContent: 'flex-end'}}>
-                <Text style={{ marginTop: -2, paddingRight: 18, fontSize: 24, fontWeight: 'bold'}}>${item.total}</Text>
+                <Text style={{ marginTop: -2, paddingRight: 18, fontSize: 24, fontWeight: 'bold', color: '#fff'}}>${item.total}</Text>
               </View>
           </View>
           </TouchableOpacity>
@@ -55,15 +49,12 @@ const HistoryScreen = ({ navigation }) => {
     <SafeAreaView 
     style={{
         flex: 1,
-        backgroundColor: '#58641d',
+        backgroundColor: '#f0f0f0',
     }}>
         <View style={style.header}>
-        
+        <Text style={{fontSize: 30, fontWeight: 'bold', marginTop: 10, marginHorizontal: 20, fontFamily: 'FredokaOne-Regular'}}>history</Text>
         </View>
         
-        <View style={style.imageContainer}>
-        </View>
-        <Text style={{fontSize: 30, fontWeight: 'bold', marginHorizontal: 20, color: '#fff'}}>History ({History.length})</Text>
         <View style={style.detailsContainer}>
         <View
             style={{
@@ -97,7 +88,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: Platform.OS === 'android' ? 40 : 0,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'center',
   },
   imageContainer: {
     flex: 1,
@@ -110,12 +101,11 @@ const style = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    marginTop: 20,
+    marginTop: 0,
     paddingTop: 20,
   },
   card: {
     height: 150,
-    backgroundColor: '#fff',
     borderRadius: 10,
     marginBottom: 10,
     paddingBottom: 10,
