@@ -45,7 +45,7 @@ import {
         <TouchableOpacity activeOpacity={1}>
           <TouchableOpacity style={styles.searchBar} onPress={()=>navigation.navigate('Search')}>
             <Icon name="search" size={25} color="#000000" />
-            <Text style={styles.searchGuide}>What album motivates you today?</Text>
+            <Text style={styles.searchGuide}>Search for an animal</Text>
           </TouchableOpacity>
         </TouchableOpacity>
       </View>

@@ -12,7 +12,7 @@ import {
     Dimensions 
 } from 'react-native';
 
-import { Albums, Cart } from '../db/database';
+import { Souvenirs, Cart } from '../db/database';
 import Icon from 'react-native-vector-icons/Feather';
 import { Card } from 'react-native-elements';
 
@@ -26,7 +26,7 @@ const CartScreen = ({ navigation }) => {
     
     const [Product, setProduct] = useState(Cart.list);
     const [visible, setVisible] = useState(false);
-    const [key, setKey] = useState();
+    const [id, setId] = useState();
     const [isRender, setRender] = useState(false);
     const [viewProductVisible, setViewProductVisible] = useState(false);
 
@@ -112,8 +112,8 @@ const CartScreen = ({ navigation }) => {
 
     const handleVisit = () => {
         // Function for click on an item
-        const album = Albums.find(obj => Id === obj.id);
-        navigation.navigate('Details', album);
+        const souvenir = Souvenirs.find(obj => Id === obj.id);
+        navigation.navigate('Details', souvenir);
         setProduct(Cart.list);
         setRender(!isRender);
     };
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     deleteStyle: {
-        height: 175,
+        height: 140,
         width: 100,
         marginVertical: 10,
         marginRight: 20,
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     modalText: {
         fontSize: 20,
         fontFamily: 'Roboto-Black',
-        color: '#040F38',
+        color: '#58641d',
         marginTop: 20,
         width: '70%',
         textAlign: 'center',
@@ -441,28 +441,29 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     modalButtonYes: {
-        backgroundColor: '#040F38',
+        backgroundColor: '#58641d',
         borderWidth: 1,
         borderRadius: 50,
         paddingHorizontal: 30,
         paddingVertical: 15,
         marginHorizontal: 20,
         marginVertical: 40,
-        width: '40%',
-        height: '30%',
+        width: '35%',
+        height: '25%',
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     modalButtonNo: {
+        borderColor: '#58641d',
         borderWidth: 1,
         borderRadius: 50,
         paddingHorizontal: 30,
         paddingVertical: 15,
         marginHorizontal: 20,
         marginVertical: 40,
-        width: '40%',
-        height: '30%',
+        width: '35%',
+        height: '25%',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -473,9 +474,9 @@ const styles = StyleSheet.create({
 
     },
     modalButtonTextNo: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
-    
+        color: '#58641d',
     },
     borderBtn: {
         borderColor: 'grey',

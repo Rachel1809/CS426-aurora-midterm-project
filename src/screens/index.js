@@ -15,6 +15,7 @@ import BookingScreen from './BookScreen';
 import MapScreen from './MapScreen';
 import ShoppingScreen from './ShoppingScreen';
 import ExploreScreen from './ExploreScreen';
+import NotiScreen from './NotiScreen';
 import PaymentProvider from './PaymentProvider';
 
 
@@ -58,6 +59,7 @@ const Navigator = () => {
           <HomeStack.Screen name="Maps" component={MapScreen} />
           <HomeStack.Screen name="Shopping" component={ShoppingScreen} />
           <HomeStack.Screen name="Explore" component={ExploreScreen} />
+          <HomeStack.Screen name="Noti" component={NotiScreen} />
           <HomeStack.Screen name="PaymentProvider" component={PaymentProvider} />
         </HomeStack.Navigator>
       </NavigationContainer>

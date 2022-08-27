@@ -145,10 +145,10 @@ const BookingScreen = ({ navigation }) => {
             />
             <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10}}>Visitors</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>
-              <View style={[style.input, { flexDirection:'row' , alignItems:'center'}]}>
+              <View style={[{ flexDirection:'row' , alignItems:'center'}]}>
                 <MaterialCommunityIcons name={"human-male-female"} size={20}/>
                 <TextInput
-                  style={{paddingLeft: 5}}
+                  style={[style.input,{paddingLeft: 5, backgroundColor: '#f0f0f0'}]}
                   placeholder="Adults"
                   keyboardType="numeric"
                       returnKeyType="done"
@@ -158,17 +158,16 @@ const BookingScreen = ({ navigation }) => {
 
                 />
             </View>
-            <View style={[style.input, { flexDirection:'row' , alignItems:'center'}]}>
+            <View style={[{flexDirection:'row' , alignItems:'center'}]}>
               <MaterialCommunityIcons name={"human-child"} size={20}/>
-                    <TextInput
-                style={{paddingLeft: 5}}
-                placeholder="Kids"
-                keyboardType="numeric"
-                      returnKeyType="done"
-                      onChangeText={(text) => { setKid(parseInt(text)); }}
-                      value={kid ? kid.toString(): ''}
-                      
-              />
+                <TextInput
+                  style={[style.input, {paddingLeft: 5, backgroundColor: '#f0f0f0'}]}
+                  placeholder="Kids"
+                  keyboardType="numeric"
+                  returnKeyType="done"
+                  onChangeText={(text) => { setKid(parseInt(text)); }}
+                  value={kid ? kid.toString(): ''}      
+                />
             </View>
           </View>
           <Text style={{fontSize: 16, fontWeight: 'bold', marginVertical: 10}}>Type</Text>
@@ -294,7 +293,7 @@ const style = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 120,
+    width: 100,
     borderWidth: 1,
     paddingLeft: 6,
     borderRadius: 8,

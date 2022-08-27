@@ -23,7 +23,8 @@ const {width, height} = Dimensions.get('window')
 const ExploreScreen = ({ navigation }) => {
     renderItem = ({item}) => {
         return (
-            <TouchableOpacity
+          <View>
+          {!!item.cover && <TouchableOpacity
                 style={[
                     styles.card,
                     {
@@ -31,16 +32,17 @@ const ExploreScreen = ({ navigation }) => {
                     }
                 ]}
             >
-            {!!item.cover && <ImageBackground 
+             <ImageBackground 
                 source={item.cover} 
                 resizeMode="cover" 
                 style={styles.image} 
                 imageStyle={{ borderRadius: 10, opacity: 0.9}}
             >
                 <Text style={styles.imgText}>{item.name}</Text>
-            </ImageBackground>}
+            </ImageBackground>
             </TouchableOpacity>
-            
+          }
+          </View>
         )
     }
     return (

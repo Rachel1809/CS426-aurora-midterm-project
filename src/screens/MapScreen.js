@@ -52,7 +52,7 @@ const MapScreen = ({navigation}) => {
         <Marker
             coordinate={{latitude: 10.787490676123817, longitude: 106.70619458238227 }}
         >
-            <Image source={require('../assets/fountain.png')} style={{height: 40, width: 40}}></Image>
+            <Image source={require('../assets/fountain.png')} style={{height: 30, width: 30}}></Image>
         </Marker>
         <Marker
             coordinate={{latitude: 10.788880680796904, longitude: 106.70643580621775 }}
@@ -64,12 +64,17 @@ const MapScreen = ({navigation}) => {
         >
             <Image source={require('../assets/zoo.png')} style={{height: 40, width: 40, transform: [{ rotate: '90deg' }]}}></Image>
         </Marker>
+        <Marker
+            coordinate={{latitude: 10.78728916629199, longitude: 106.70866113973858 }}
+        >
+            <Image source={require('../assets/ferris_wheel.png')} style={{height: 35, width: 35}}></Image>
+        </Marker>
         {Animals.map((marker) => (
           <Marker
             key={marker.key}
             coordinate={marker.coordinates}
           >
-            <Image source={marker.icon} style={{height: 50, width: 50}}></Image>
+            <Image source={marker.icon} style={{height: 35, width: 35}}></Image>
           </Marker>
         ))}
       </MapView>

@@ -121,7 +121,7 @@ const SearchScreen = ({navigation}) => {
               searchIcon={{size: 24}}
               onChangeText={(text) => {  searchFilterFunction(text)}}
               onClear={(text) => searchFilterFunction('')}
-              placeholder="Which one makes your day?"
+              placeholder="Which animals do you want?"
               containerStyle={styles.searchContainer}
               value={search}
               inputStyle = {styles.searchGuide}     

@@ -25,27 +25,6 @@ import { Albums, Cart } from '../db/database';
 const Tab = createBottomTabNavigator();
 const WIDTH = Dimensions.get('window').width;
 
-const OptionItem = ({icon, bgColor, label, onPress, navigation}) => {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={() => navigation.navigate(onPress)}
-    >
-      <View style={[{flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30}]}>
-        <View style={[{alignItems: 'center', width: 60, height: 60, backgroundColor: '#fff', borderRadius: 13}]}>
-          <View
-            style = {{flex: 1, justifyContent: 'center'}}
-          >
-            <Entypo name = {icon} color = {bgColor} size={32}/>
-          </View>
-        </View>
-        <Text style={{marginVertical: 10, fontSize: 12}}>{label}</Text>
-      </View>
-    </TouchableOpacity>
-  )
-}
-
-
 export function HomeStackScreen() {    
     return (
       <Tab.Navigator
@@ -103,6 +82,13 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.brandText}>suki</Text>
           </View>
         </View>
+        <View style={styles.cart}>
+            <View>
+                <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Noti")}>
+                    <Icon name="notifications-outline" size={25} color="#fff" />
+                </TouchableOpacity>
+            </View>
+          </View>
       </View>
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Services</Text>
@@ -117,10 +103,11 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   greet_container: {
-    flex: 0.3,
     backgroundColor: '#58641d',
     borderBottomLeftRadius: 40,
-    paddingBottom: 250
+    paddingBottom: 250,
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   container: {
     flex: 1,
@@ -140,13 +127,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   header: {
-    justifyContent: 'center',
     marginLeft: WIDTH*0.5 - 40
   },
   cart: {
-    alignItems: 'flex-end',
-    paddingBottom: 24,
-    paddingTop: 12
+    paddingLeft: 90,
+    paddingRight: 24, 
+    marginTop: 20
   },
   searchBar: {
     flexDirection: 'row',
@@ -163,7 +149,7 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: Dimensions.get('window').width/4 + 16,
+    marginRight: Dimensions.get('window').width/20,
   },
   brandText: {
     fontFamily: 'PTSerif-Regular',
