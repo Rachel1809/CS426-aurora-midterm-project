@@ -31,7 +31,7 @@ const NotiScreen = ({ navigation }) => {
                 style={[style.card]}
             >
             <Text style={{fontWeight: 'bold', fontSize: 16}}>{item.title}</Text>
-            <Text style={{paddingTop: 5, color: '#bebebe', marginBottom: 10}}>{item.date}</Text>
+            <Text style={{paddingTop: 5, color: '#bebebe', marginBottom: 15}}>{item.date}</Text>
             <TouchableOpacity style={style.buyBtn}>
               <Text
                 style={{color: '#ffffff', fontSize: 14, fontWeight: 'bold'}}>
@@ -123,6 +123,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    marginBottom: 5,
   },
 });
 

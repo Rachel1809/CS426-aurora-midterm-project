@@ -13,6 +13,8 @@ import ShoppingScreen from './ShoppingScreen';
 import ExploreScreen from './ExploreScreen';
 import NotiScreen from './NotiScreen';
 import TicketScreen from './TicketScreen';
+import TourScreen from './TourScreen';
+import AnimalScreen from './AnimalScreen';
 import PaymentProvider from './PaymentProvider';
 
 const theme = {
@@ -41,6 +43,8 @@ const Navigator = () => {
           <HomeStack.Screen name="Explore" component={ExploreScreen} />
           <HomeStack.Screen name="Noti" component={NotiScreen} />
           <HomeStack.Screen name="Ticket" component={TicketScreen} />
+          <HomeStack.Screen name="Tour" component={TourScreen} />
+          <HomeStack.Screen name="Animal" component={AnimalScreen} />
           <HomeStack.Screen name="PaymentProvider" component={PaymentProvider} options={{gestureEnabled: false}}/>
         </HomeStack.Navigator>
       </NavigationContainer>

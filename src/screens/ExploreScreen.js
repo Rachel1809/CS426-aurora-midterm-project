@@ -21,7 +21,7 @@ import { Albums, Cart, Tour, Animals } from '../db/database';
 const {width, height} = Dimensions.get('window')
 
 const ExploreScreen = ({ navigation }) => {
-    renderItem = ({item}) => {
+    const renderTourItem = ({item}) => {
         return (
           <View>
           {!!item.cover && <TouchableOpacity
@@ -31,6 +31,7 @@ const ExploreScreen = ({ navigation }) => {
                         height: height*0.3,
                     }
                 ]}
+                onPress={() => navigation.navigate("Tour", item)}
             >
              <ImageBackground 
                 source={item.cover} 
@@ -45,6 +46,32 @@ const ExploreScreen = ({ navigation }) => {
           </View>
         )
     }
+
+    const renderItem = ({item}) => {
+      return (
+        <View>
+        {!!item.cover && <TouchableOpacity
+              style={[
+                  styles.card,
+                  {
+                      height: height*0.3,
+                  }
+              ]}
+              onPress={() => navigation.navigate("Animal", item)}
+          >
+           <ImageBackground 
+              source={item.cover} 
+              resizeMode="cover" 
+              style={styles.image} 
+              imageStyle={{ borderRadius: 10, opacity: 0.9}}
+          >
+              <Text style={styles.imgText}>{item.name}</Text>
+          </ImageBackground>
+          </TouchableOpacity>
+        }
+        </View>
+      )
+  }
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff', flexGrow: 1}}
       nestedScrollEnabled={true}>
@@ -68,7 +95,8 @@ const ExploreScreen = ({ navigation }) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={Tour}
-          renderItem={renderItem}
+          renderItem={renderTourItem}
+          
         />
         </ScrollView>
         <Text style={styles.title}>Our animals</Text>
