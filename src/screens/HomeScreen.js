@@ -20,10 +20,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import HistoryScreen from './HistoryScreen';
 import TicketScreen from './TicketScreen';
-import { Albums, Cart } from '../db/database';
+import { Albums, Cart, History } from '../db/database';
+import { firebase } from '../db/config';
 
 const Tab = createBottomTabNavigator();
 const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 export function HomeStackScreen() {    
     return (
@@ -98,7 +100,10 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Services</Text>
         <ListService navigation = {navigation}/>
-      </ScrollView>
+        </ScrollView>
+        <TouchableOpacity style={styles.button} onPress={() => firebase.auth().signOut()}>
+          <Text style={{ fontWeight: "bold", fontSize: 16, color: '#fff' }}>Sign Out</Text>
+        </TouchableOpacity>
     </SafeAreaView>
     </Fragment>
   );
@@ -107,6 +112,19 @@ const HomeScreen = ({ navigation }) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+      button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+        alignSelf: 'center',
+    marginTop: HEIGHT * 0.7,
+        height: 60,
+        width: WIDTH*0.8,
+        justifyContent: 'center',
+        backgroundColor: '#8B5D33',
+    borderRadius: WIDTH * 0.1,
+        position: 'absolute',
+        
+    },
   greet_container: {
     backgroundColor: '#58641d',
     borderBottomLeftRadius: 200,

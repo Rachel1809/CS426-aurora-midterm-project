@@ -81,7 +81,7 @@ const CartScreen = ({ navigation }) => {
 
     const handleDelete = () => {
         const newProduct = Product.map(e => {
-            if (e.id === Id) {
+            if (e.id === id) {
                 e.quantity = 0;
                 e.total = 0;
                 deleteItem(e.id);

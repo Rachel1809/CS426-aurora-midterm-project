@@ -16,7 +16,9 @@ import moment from 'moment'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HistoryScreen = ({ navigation }) => {
-    renderItem = ({item}) => {
+
+  
+  const renderItem = ({item}) => {
       return (
           <View>
           {!!item.key && <TouchableOpacity onPress={() => {navigation.navigate('Ticket', item)}}

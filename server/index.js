@@ -4,15 +4,19 @@ const app = express();
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const cors = require("cors");
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use("/stripe", express.raw({ type: "*/*" }));
 
 app.use(express.json());
 app.use(cors());
 
+app.get("/", function (req, res) {
+    res.send(req.body);
+});
 
 app.post("/buy", async (req, res) => {
+  console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
   try {
     // Getting data from client
     let { amount, email } = req.body;

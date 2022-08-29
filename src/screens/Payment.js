@@ -18,7 +18,7 @@ import moment from 'moment'
 const {width, height} = Dimensions.get('window');
 
 //ADD localhost address of your server
-const API_URL = "http://192.168.1.10:19000";
+const API_URL = "http://192.168.2.7:3000";
 
 const Payment = () => {
     const navigation = useNavigation();
@@ -105,11 +105,10 @@ const Payment = () => {
             Alert.alert("Payment failed!");
             
         }
-        History.list = Ticket.list;
-        History.sum = Ticket.sum;
+        History.push.apply(History, Ticket.list);
         History.email = Ticket.email;
         clear();
-
+        console.log(History);
         navigation.navigate('Aurora')
     };
 
