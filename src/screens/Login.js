@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions, SafeAr
 import React, {useState, Fragment} from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {firebase} from '../db/config'
-import Icon from 'react-native-vector-icons/Feather';
 
 const { width, height } = Dimensions.get('window')
 

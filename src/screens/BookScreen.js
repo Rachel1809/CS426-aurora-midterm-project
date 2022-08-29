@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import {
   View, 
   SafeAreaView, 
-  Image, 
   Text,
   StyleSheet, 
   Dimensions, 
@@ -12,10 +11,10 @@ import {
   Platform,
   KeyboardAvoidingView
 } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import moment from 'moment'
 import CalendarPicker from 'react-native-calendar-picker';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -52,8 +51,6 @@ const BookingScreen = ({ navigation }) => {
     let x = Tour.filter(obj => obj.key === type)[0]
     setSubtotal(x.priceAdult * adult + x.priceKid * kid)
   } ,[adult, kid, subtotal, type]);
-
-
 
   const confirm = () => {
     Ticket.email = email;
@@ -263,23 +260,6 @@ const style = StyleSheet.create({
     marginTop: 20,
     paddingTop: 20,
   },
-  line: {
-    width: 25,
-    height: 2,
-    backgroundColor: '#f0f0f0',
-    marginBottom: 5,
-    marginRight: 3,
-  },
-  borderBtn: {
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 40,
-    height: 40,
-  },
-  borderBtnText: {fontWeight: 'bold', fontSize: 28},
   buyBtn: {
     width: 170,
     height: 50,
@@ -287,14 +267,6 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
-  },
-  priceTag: {
-    backgroundColor: '#58641D',
-    width: 100,
-    height: 40,
-    justifyContent: 'center',
-    borderTopLeftRadius: 25,
-    borderBottomLeftRadius: 25,
   },
   input: {
     height: 40,

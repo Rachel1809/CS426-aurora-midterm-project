@@ -151,20 +151,6 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
     paddingTop: 6,
   },
-  searchBar: {
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
-    borderColor: '#000000',
-    borderWidth: 2,
-    borderRadius: 10,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-  },
-  searchGuide: {
-    paddingTop: 4,
-    paddingLeft: 5,
-    color: '#CBD2D0',
-  },
   brand: {
     marginRight: Dimensions.get('window').width/4 + 24,
     paddingLeft: 82,
@@ -190,15 +176,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   imgText: {
-      fontSize: 20,
-      color: '#fff',
-      fontWeight: 'bold',
-      fontFamily: 'PTSerif-Regular',
-      marginBottom: 20,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 5,
-      width: width*0.5,
-      textAlign: 'center'
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    fontFamily: 'PTSerif-Regular',
+    marginBottom: 20,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    padding: 5,
+    width: width*0.5,
+    textAlign: 'center'
   }
 });
 

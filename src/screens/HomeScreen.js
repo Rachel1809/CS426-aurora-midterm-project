@@ -79,19 +79,24 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={{flex:0, backgroundColor: '#58641d'}}/>
     <SafeAreaView style={{flex:1, backgroundColor: '#fff', paddingTop: -50}}>
       <View style={styles.greet_container}>
-      <View style={{justifyContent: 'flex-end', flexDirection: 'row',}}>
-        <View style={styles.header}>
-          <View style={styles.brand}>
-            <Text style={styles.brandText}>suki</Text>
-          </View>
-        </View>
-          <View style={styles.cart}>
+      <View style={{justifyContent: 'space-between', flexDirection: 'row',}}>
+        <View style={styles.cart}>
             <View>
-                <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Noti")}>
-                    <Icon name="notifications" size={25} color="#fff" />
+                <TouchableOpacity onPress={()  => firebase.auth().signOut()}>
+                    <Icon name="power" size={25} color="#fff" />
                 </TouchableOpacity>
             </View>
+        </View>
+        <View style={styles.brand}>
+          <Text style={styles.brandText}>suki</Text>
+        </View>
+        <View style={styles.cart}>
+          <View>
+              <TouchableOpacity disabled = {!Cart || Cart.count == 0} onPress={() => navigation.navigate("Noti")}>
+                  <Icon name="notifications" size={25} color="#fff" />
+              </TouchableOpacity>
           </View>
+        </View>
       </View>
       <View style={{justifyContent: 'flex-end', marginTop: 100, alignItems: 'center', marginLeft: 100}}>
       <Image source={require('../assets/giraffe_home.png')} style={{height: 250, width: 250}}></Image>
@@ -101,9 +106,6 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.title}>Services</Text>
         <ListService navigation = {navigation}/>
         </ScrollView>
-        <TouchableOpacity style={styles.button} onPress={() => firebase.auth().signOut()}>
-          <Text style={{ fontWeight: "bold", fontSize: 16, color: '#fff' }}>Sign Out</Text>
-        </TouchableOpacity>
     </SafeAreaView>
     </Fragment>
   );
@@ -112,22 +114,22 @@ const HomeScreen = ({ navigation }) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-      button: {
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
-        alignSelf: 'center',
-    marginTop: HEIGHT * 0.7,
-        height: 60,
-        width: WIDTH*0.8,
-        justifyContent: 'center',
-        backgroundColor: '#8B5D33',
+    alignSelf: 'center',
+    marginTop: HEIGHT * 0.68,
+    height: 60,
+    width: WIDTH*0.8,
+    justifyContent: 'center',
+    backgroundColor: '#8B5D33',
     borderRadius: WIDTH * 0.1,
-        position: 'absolute',
-        
-    },
+    position: 'absolute',
+  },
   greet_container: {
     backgroundColor: '#58641d',
     borderBottomLeftRadius: 200,
+    paddingHorizontal: 20,
   },
   container: {
     flex: 1,
@@ -147,12 +149,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   header: {
-    marginLeft: WIDTH*0.5 - 40
   },
   cart: {
-    paddingLeft: 90,
-    paddingRight: 24, 
-    marginTop: 20
+    marginTop: 15
   },
   searchBar: {
     flexDirection: 'row',
@@ -169,7 +168,6 @@ const styles = StyleSheet.create({
     color: '#CBD2D0',
   },
   brand: {
-    marginRight: Dimensions.get('window').width/20,
   },
   brandText: {
     fontFamily: 'PTSerif-Regular',

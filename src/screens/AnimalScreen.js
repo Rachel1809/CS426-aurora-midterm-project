@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { 
     View, 
     ImageBackground, 
     Text, 
     StyleSheet, 
     Dimensions, 
-    FlatList, 
     TouchableOpacity, 
 } from "react-native";
 
@@ -49,13 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: '#58641d'
   },
-  input: {
-    backgroundColor: "#efefefef",
-    borderRadius: 8,
-    fontSize: 20,
-    height: 50,
-    padding: 10,
-  },
   card: {
     height: height - 180,
     paddingHorizontal: 20,
@@ -67,39 +59,9 @@ const styles = StyleSheet.create({
     height,
     marginVertical: 30,
   },
-  ticketDetail: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    marginVertical: 10
-  },
-  ticketTitle: {
-    fontSize: 16
-  },
-  ticketInfo: {
-    fontSize: 18, 
-    fontWeight: 'bold'
-  },
   image: {
     height: 175,
     alignItems: 'center',
     borderRadius: 10,
-  },
-  buyBtn: {
-    width: 130,
-    height: 50,
-    backgroundColor: '#8B5D33',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-  },
-  cancelBtn: {
-    width: 130,
-    height: 50,
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: '#8B5D33',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
   },
 });
