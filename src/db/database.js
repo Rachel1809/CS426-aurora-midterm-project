@@ -35,34 +35,6 @@ export const History = [
       },
 ]
 
-export const Stores = [
-    { 
-        key: 1,
-        coordinates: { latitude: 21.030961775351827, longitude: 105.84854823005392 },
-        storeName: 'Aurora in Hanoi',
-        address: '23, Cotton street, Hang Gai ward, Hoan Kiem district, Ha Noi city',
-    },
-    { 
-        key: 2,
-        coordinates: { latitude: 16.06336904296533, longitude:  108.23408680558316 },
-        storeName: 'Aurora in Danang',
-        address: '965, Ngo Quyen street, An Hai Bac ward, Son Tra district, Da Nang city',
-
-    },
-    { 
-        key: 3,
-        coordinates: { latitude: 10.7748190093447, longitude:  106.69986300331179 },
-        storeName: 'Aurora in Ho Chi Minh',
-        address: '117, Le Thanh Ton street, Ben Nghe ward, District 1, Ho Chi Minh city',
-    },
-    { 
-        key: 4,
-        coordinates: { latitude: 10.38198089123573, longitude: 105.44246632357063 },
-        storeName: 'Aurora in Long Xuyen',
-        address: '21, Hai Ba Trung street, My Long ward, Long Xuyen city',
-    },
-  ];
-
 export const Tour = [
     { 
         key: 1,

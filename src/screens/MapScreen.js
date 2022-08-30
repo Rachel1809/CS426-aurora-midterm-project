@@ -15,7 +15,6 @@ const initialState = {
 
 const MapScreen = ({navigation}) => {
   const [visible, setVisible] = useState(false);
-
   return (
     <View style={{flex: 1, backgroundColor: '#fff', zIndex: 3}}>
     <View style={styles.header}>
@@ -70,12 +69,13 @@ const MapScreen = ({navigation}) => {
             <Image source={require('../assets/ferris_wheel.png')} style={{height: 35, width: 35}}></Image>
         </Marker>
         {Animals.map((marker) => (
-          <Marker
+            <Marker
             key={marker.key}
             coordinate={marker.coordinates}
-          >
-            <Image source={marker.icon} style={{height: 35, width: 35}}></Image>
-          </Marker>
+            onPress={() => navigation.navigate('Animal',marker)}
+            >
+              <Image source={marker.icon} style={{height: 35, width: 35}}></Image>
+            </Marker>
         ))}
       </MapView>
     </View>
