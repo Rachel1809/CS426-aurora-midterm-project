@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "aurora",
-    "slug": "aurora",
+    "name": "suki",
+    "slug": "suki",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/logo.png",
+    "icon": "./src/assets/logo-2.png",
     "userInterfaceStyle": "light",
 
     "splash": {
