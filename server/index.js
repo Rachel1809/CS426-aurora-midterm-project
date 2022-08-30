@@ -1,10 +1,19 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send({ "Welome to": "Expo's Stripe example server!" });
+});
+
+app.get("/stripe-key", (req, res) => {
+  res.send({ publishableKey: stripePublishableKey });
+});
 
 app.use("/stripe", express.raw({ type: "*/*" }));
 
@@ -31,7 +40,7 @@ app.post("/buy", async (req, res) => {
       payment_method_types: ["card"],
       metadata: { email },
     });
-    // Extracting the client secret 
+    // Extracting the client secret
     const clientSecret = paymentIntent.client_secret;
     // Sending the client secret as response
     res.json({ message: "Payment initiated", clientSecret });
@@ -71,4 +80,8 @@ app.post("/stripe", async (req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(8000, () => console.log(`Server running on port ${8000}`));
+
+
+
+

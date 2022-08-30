@@ -18,7 +18,7 @@ import moment from 'moment'
 const {width, height} = Dimensions.get('window');
 
 //ADD localhost address of your server
-const API_URL = "http://192.168.2.7:3000";
+const API_URL = "https://denim-periodic-clerk.glitch.me";
 
 const Payment = () => {
     const navigation = useNavigation();
