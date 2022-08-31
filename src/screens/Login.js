@@ -6,9 +6,10 @@ import {firebase} from '../db/config'
 const { width, height } = Dimensions.get('window')
 
 const Login = () => {
-    const navigation = useNavigation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigation = useNavigation()
+
 
     loginUser = async (email, password) => {
         try {

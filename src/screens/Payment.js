@@ -25,7 +25,7 @@ const Payment = () => {
     const email = Ticket.email;
     let amount = 0;
 
-    const stripe = useStripe();
+    // const stripe = useStripe();
 
     const itemRender = (visitDate, name, adult, kid, total) => {
         amount = total;
@@ -58,53 +58,52 @@ const Payment = () => {
     }
 
     const buy = async () => {
-    try {
-        const finalAmount = parseInt(amount);
-        
+    // try {
+    //     const finalAmount = parseInt(amount);
 
-        const response = await fetch(`${API_URL}/buy`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+    //     const response = await fetch(`${API_URL}/buy`, {
+    //         method: "POST",
+    //         headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json"
                 
-            },
-            body: JSON.stringify({ amount: finalAmount, email: email }),
-        });
-        const data = await response.json();
-        if (!response.ok) {
-            clear();
+    //         },
+    //         body: JSON.stringify({ amount: finalAmount, email: email }),
+    //     });
+    //     const data = await response.json();
+    //     if (!response.ok) {
+    //         clear();
 
-            return Alert.alert(data.message);
+    //         return Alert.alert(data.message);
             
-        }
-        const initSheet = await stripe.initPaymentSheet({
-            paymentIntentClientSecret: data.clientSecret,
-        });
-        if (initSheet.error) {
-            console.error(initSheet.error);
-            clear();
+    //     }
+    //     const initSheet = await stripe.initPaymentSheet({
+    //         paymentIntentClientSecret: data.clientSecret,
+    //     });
+    //     if (initSheet.error) {
+    //         console.error(initSheet.error);
+    //         clear();
 
 
-            return Alert.alert(initSheet.error.message);
-        }
-        const presentSheet = await stripe.presentPaymentSheet({
-            clientSecret: data.clientSecret,
-        });
-        if (presentSheet.error) {
-            console.error(presentSheet.error);
-            clear();
+    //         return Alert.alert(initSheet.error.message);
+    //     }
+    //     const presentSheet = await stripe.presentPaymentSheet({
+    //         clientSecret: data.clientSecret,
+    //     });
+    //     if (presentSheet.error) {
+    //         console.error(presentSheet.error);
+    //         clear();
 
 
-            return Alert.alert(presentSheet.error.message);
-        }
-        Alert.alert("Pay successfully");
-        } catch (err) {
-            console.error(err);
-            clear();
-            Alert.alert("Payment failed!");
+    //         return Alert.alert(presentSheet.error.message);
+    //     }
+    Alert.alert("Pay successfully");
+    //     } catch (err) {
+    //         console.error(err);
+    //         clear();
+    //         Alert.alert("Payment failed!");
             
-        }
+    //     }
         History.push.apply(History, Ticket.list);
         History.email = Ticket.email;
         clear();
