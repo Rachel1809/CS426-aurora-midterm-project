@@ -90,40 +90,40 @@ const Welcome = () => {
                 </View>
                 
                 
-                    <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
-                        <Animated.View style={{ ...styles.space, bottom: translation }}>
-                            <TouchableOpacity
-                                onPress={onDismiss}
-                                style={{
-                                    position: "absolute",
-                                    height: 30,
-                                    width: 30,
-                                    top: 20,
-                                    backgroundColor: "#f0f0f0",
-                                    right: 20,
-                                
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    borderRadius: 30,
+                <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
+                    <Animated.View style={{ ...styles.space, bottom: translation }}>
+                        <TouchableOpacity
+                            onPress={onDismiss}
+                            style={{
+                                position: "absolute",
+                                height: 30,
+                                width: 30,
+                                top: 20,
+                                backgroundColor: "#f0f0f0",
+                                right: 20,
+                            
+                                alignItems: "center",
+                                justifyContent: "center",
+                                borderRadius: 30,
 
-                                }}
-                            >
+                            }}
+                        >
 
-                                <Icon name="close" color="#8B5D33" size={20} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ ...styles.buttonLogIn }} onPress={() => navigation.navigate("Login")}>
-                                <Text style={styles.buttonTextIn}>
-                                    LOGIN
-                                </Text>
-                            </TouchableOpacity>
-                
-                            <TouchableOpacity style={styles.buttonLog} onPress={() => navigation.navigate("Registration")}>
-                                <Text style={styles.buttonText}>
-                                    REGISTER
-                                </Text>
-                            </TouchableOpacity>
-                        </Animated.View>
-                    </PanGestureHandler>
+                            <Icon name="close" color="#8B5D33" size={20} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ ...styles.buttonLogIn }} onPress={() => navigation.navigate("Login")}>
+                            <Text style={styles.buttonTextIn}>
+                                LOGIN
+                            </Text>
+                        </TouchableOpacity>
+            
+                        <TouchableOpacity style={styles.buttonLog} onPress={() => navigation.navigate("Registration")}>
+                            <Text style={styles.buttonText}>
+                                REGISTER
+                            </Text>
+                        </TouchableOpacity>
+                    </Animated.View>
+                </PanGestureHandler>
                 
                 
             </View>
