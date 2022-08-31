@@ -7,11 +7,13 @@ import Icon from 'react-native-vector-icons/Feather';
 const { width, height } = Dimensions.get('window')
 
 const Registration = () => {
-    const navigation = useNavigation()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+
+    const navigation = useNavigation()
+
 
     const registerUser = async (email, password, firstName, lastName) => { 
         await firebase.auth().createUserWithEmailAndPassword(email, password)

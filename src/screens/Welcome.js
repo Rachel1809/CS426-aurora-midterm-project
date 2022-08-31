@@ -1,4 +1,4 @@
-import { Animated, LogBox, Easing, View, Text, Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { Animated, LogBox, Easing, View, Text, Dimensions, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native'
 import React, {useEffect, useState, useRef} from 'react'
 
 import { useNavigation } from '@react-navigation/native'
@@ -35,26 +35,7 @@ const Welcome = () => {
 
     const navigation = useNavigation()
 
-
-    const RenderTab = ({ onDismiss }) => {
-        const translation = useRef(
-            new Animated.Value(-height*0.5)
-        ).current;
-
-        const onGesture = (event) => {
-            if (event.nativeEvent.translationY > 0) {
-                translation.setValue(-event.nativeEvent.translationY)
-            }
-        }
-        const onGestureEnd = (event) => {
-            if (event.nativeEvent.translationY > height * 0.2) { 
-                onDismiss()
-            }
-            else {
-                translation.setValue(0)
-            }
-        }
-
+    // const RenderTab = ({ onDismiss }) => {
         useEffect(() => {
             if (done) {
                 setOpen(true)
@@ -75,43 +56,29 @@ const Welcome = () => {
                 }).start(() => { setOpen(false); })
             }
         }, [done])
-        if (open)
-            return (
-                <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
-                    <Animated.View style={{ ...styles.space, bottom: translation }}>
-                        <TouchableOpacity
-                            onPress={onDismiss}
-                            style={{
-                                position: "absolute",
-                                height: 30,
-                                width: 30,
-                                top: 20,
-                                backgroundColor: "#f0f0f0",
-                                right: 20,
-                                
-                                alignItems: "center",
-                                justifyContent: "center",
-                                borderRadius: 30,
+        
+        
 
-                            }}
-                        >
+    const translation = useRef(
+        new Animated.Value(-height*0.5)
+    ).current;
 
-                            <Icon name="close" color="#8B5D33" size={20}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.buttonLogIn}} onPress={() => navigation.navigate("Login")}>
-                            <Text style={styles.buttonTextIn}>
-                                LOGIN
-                            </Text>
-                        </TouchableOpacity>
-                
-                        <TouchableOpacity style={styles.buttonLog} onPress={() => navigation.navigate("Registration")}>
-                            <Text style={styles.buttonText}>
-                                REGISTER
-                            </Text>
-                        </TouchableOpacity>
-                    </Animated.View>
-                </PanGestureHandler>
-        )
+    const onGesture = (event) => {
+        if (event.nativeEvent.translationY > 0) {
+            translation.setValue(-event.nativeEvent.translationY)
+        }
+    }
+    const onGestureEnd = (event) => {
+        if (event.nativeEvent.translationY > height * 0.2) { 
+            onDismiss()
+        }
+        else {
+            translation.setValue(0)
+        }
+    }
+
+    const onDismiss = () => {
+        setDone(false)
     }
     
         
@@ -122,7 +89,42 @@ const Welcome = () => {
                     <Image source={item.image} style={styles.image}/>
                 </View>
                 
-                <RenderTab onDismiss={() => setDone(false)} />
+                
+                    <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
+                        <Animated.View style={{ ...styles.space, bottom: translation }}>
+                            <TouchableOpacity
+                                onPress={onDismiss}
+                                style={{
+                                    position: "absolute",
+                                    height: 30,
+                                    width: 30,
+                                    top: 20,
+                                    backgroundColor: "#f0f0f0",
+                                    right: 20,
+                                
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 30,
+
+                                }}
+                            >
+
+                                <Icon name="close" color="#8B5D33" size={20} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ ...styles.buttonLogIn }} onPress={() => navigation.navigate("Login")}>
+                                <Text style={styles.buttonTextIn}>
+                                    LOGIN
+                                </Text>
+                            </TouchableOpacity>
+                
+                            <TouchableOpacity style={styles.buttonLog} onPress={() => navigation.navigate("Registration")}>
+                                <Text style={styles.buttonText}>
+                                    REGISTER
+                                </Text>
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </PanGestureHandler>
+                
                 
             </View>
             
