@@ -26,7 +26,7 @@ const CartScreen = ({ navigation }) => {
     
     const [Product, setProduct] = useState(Cart.list);
     const [visible, setVisible] = useState(false);
-    const [id, setId] = useState();
+    const [Id, setId] = useState();
     const [isRender, setRender] = useState(false);
     const [viewProductVisible, setViewProductVisible] = useState(false);
 
@@ -81,7 +81,7 @@ const CartScreen = ({ navigation }) => {
 
     const handleDelete = () => {
         const newProduct = Product.map(e => {
-            if (e.id === id) {
+            if (e.id === Id) {
                 e.quantity = 0;
                 e.total = 0;
                 deleteItem(e.id);
@@ -125,7 +125,7 @@ const CartScreen = ({ navigation }) => {
             <View style={styles.itemContainer}>
             <TouchableNativeFeedback
                 
-                    onPress={() => { setId(item.key);  setViewProductVisible(true)}}
+                    onPress={() => { setId(item.id);  setViewProductVisible(true)}}
                 >
                     <View style={styles.itemStyle}>
                         { item.cover && (
@@ -276,7 +276,6 @@ const CartScreen = ({ navigation }) => {
                             <Text style={styles.modalButtonTextNo}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.modalButtonYes} onPress={() => { setViewProductVisible(false);  handleVisit()}}>
-                        
                             <Text style={styles.modalButtonTextYes}>View</Text>
                         </TouchableOpacity>
                         
